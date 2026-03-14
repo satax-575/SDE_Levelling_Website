@@ -1327,6 +1327,20 @@ function init() {
 
   authToggleBtn.addEventListener('click', toggleAuthMode);
   authSubmitBtn.addEventListener('click', handleAuthSubmit);
+
+  // Enter key submits auth form
+  [authEmailInput, authPasswordInput].forEach(input => {
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') handleAuthSubmit(); });
+  });
+
+  // Clear error when user starts typing
+  [authEmailInput, authPasswordInput].forEach(input => {
+    input.addEventListener('input', () => { authErrorMsg.style.display = 'none'; });
+  });
+
+  // Forgot password link
+  const forgotBtn = document.getElementById('forgot-password-btn');
+  if (forgotBtn) forgotBtn.addEventListener('click', handleForgotPassword);
 }
 
 function switchTab(tab) {
@@ -1752,23 +1766,73 @@ function toggleAuthMode() {
   authToggleTextEl.innerText = isLoginMode ? "Don't have an account?" : "Already have an account?";
   authToggleBtn.innerText = isLoginMode ? "Sign Up" : "Log In";
   authErrorMsg.style.display = 'none';
+  // Show forgot password only in login mode
+  const fp = document.getElementById('forgot-password-row');
+  if (fp) fp.style.display = isLoginMode ? '' : 'none';
 }
+
+// Maps Firebase error codes → human-readable messages
+const AUTH_ERRORS = {
+  'auth/invalid-credential':        'Incorrect email or password. Please try again.',
+  'auth/user-not-found':            'No account found with this email address.',
+  'auth/wrong-password':            'Incorrect password. Please try again.',
+  'auth/email-already-in-use':      'An account with this email already exists. Try logging in.',
+  'auth/weak-password':             'Password must be at least 6 characters long.',
+  'auth/invalid-email':             'Please enter a valid email address.',
+  'auth/too-many-requests':         'Too many failed attempts. Please wait a few minutes and try again.',
+  'auth/network-request-failed':    'Network error. Please check your internet connection.',
+  'auth/user-disabled':             'This account has been disabled. Please contact support.',
+  'auth/operation-not-allowed':     'Email/password sign-in is not enabled. Please contact support.',
+};
 
 async function handleAuthSubmit() {
   const email = authEmailInput.value.trim();
   const password = authPasswordInput.value;
   if (!email || !password) { showAuthError("Please fill in both fields."); return; }
+
   authSubmitBtn.innerText = "Processing...";
+  authSubmitBtn.disabled = true;
+  authErrorMsg.style.display = 'none';
+
   try {
-    if (isLoginMode) await auth.signInWithEmailAndPassword(email, password);
-    else await auth.createUserWithEmailAndPassword(email, password);
+    if (isLoginMode) {
+      await auth.signInWithEmailAndPassword(email, password);
+    } else {
+      await auth.createUserWithEmailAndPassword(email, password);
+    }
     authModal.classList.remove('show');
-  } catch(err) { showAuthError(err.message); }
-  authSubmitBtn.innerText = isLoginMode ? "Log In" : "Sign Up";
+    authEmailInput.value = '';
+    authPasswordInput.value = '';
+  } catch(err) {
+    const msg = AUTH_ERRORS[err.code] || 'An unexpected error occurred. Please try again.';
+    showAuthError(msg);
+  } finally {
+    authSubmitBtn.innerText = isLoginMode ? "Log In" : "Sign Up";
+    authSubmitBtn.disabled = false;
+  }
+}
+
+async function handleForgotPassword() {
+  const email = authEmailInput.value.trim();
+  if (!email) { showAuthError("Enter your email address above, then click Forgot Password."); return; }
+  try {
+    await auth.sendPasswordResetEmail(email);
+    showAuthSuccess("Password reset email sent! Check your inbox.");
+  } catch(err) {
+    const msg = AUTH_ERRORS[err.code] || err.message;
+    showAuthError(msg);
+  }
 }
 
 function showAuthError(msg) {
   authErrorMsg.innerText = msg;
+  authErrorMsg.style.color = '';
+  authErrorMsg.style.display = 'block';
+}
+
+function showAuthSuccess(msg) {
+  authErrorMsg.innerText = msg;
+  authErrorMsg.style.color = 'var(--success)';
   authErrorMsg.style.display = 'block';
 }
 
