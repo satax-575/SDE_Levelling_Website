@@ -3,112 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SDE Journey: 12-Month Gamified Roadmap</title>
+    <title>SDE Quest — 12-Month Engineering Roadmap</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div id="particles-js"></div>
-    
+    <div class="bg-grid"></div>
+    <div class="bg-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Top Bar -->
     <header class="topbar">
         <div class="logo">
-            <i class="fa-solid fa-code"></i> SDE<span class="highlight">Quest</span>
+            <div class="logo-icon"><i class="fa-solid fa-terminal"></i></div>
+            <span class="logo-text">SDE<span class="highlight">Quest</span></span>
         </div>
+
+        <div class="tab-nav">
+            <button class="tab-btn active" data-tab="sde">
+                <i class="fa-solid fa-laptop-code"></i> SDE Journey
+            </button>
+            <button class="tab-btn" data-tab="dsa">
+                <i class="fa-solid fa-code-branch"></i> DSA Master Path
+            </button>
+        </div>
+
         <div class="player-stats">
-            <div class="user-info tooltip" id="user-info" style="display:none; cursor:pointer;" title="Logged in">
-                <i class="fa-solid fa-user-check" style="color:var(--success);"></i>
-                <span id="user-email" style="font-size:0.8rem; margin-left:5px;"></span>
+            <div class="streak-badge tooltip" id="streak-badge" title="Daily Streak">
+                <i class="fa-solid fa-fire"></i>
+                <span id="streak-count">0</span>
+                <span class="tooltiptext">Day Streak!</span>
+            </div>
+            <div class="user-info" id="user-info" style="display:none;">
+                <i class="fa-solid fa-circle-check" style="color:var(--success);"></i>
+                <span id="user-email"></span>
             </div>
             <div class="stat-badge tooltip">
-                <i class="fa-solid fa-star"></i> Level <span id="player-level">1</span>
+                <i class="fa-solid fa-star"></i> Lv.<span id="player-level">1</span>
                 <span class="tooltiptext" id="player-title">Novice Coder</span>
             </div>
             <div class="xp-container">
                 <div class="xp-text">
-                    <span id="current-xp">0</span> / <span id="next-level-xp">1000</span> XP
+                    <span id="current-xp">0</span>&nbsp;/&nbsp;<span id="next-level-xp">500</span> XP
                 </div>
                 <div class="xp-bar-bg">
                     <div class="xp-bar-fill" id="xp-bar-fill"></div>
                 </div>
             </div>
+            <button id="achievements-btn" class="icon-btn tooltip" title="Achievements">
+                <i class="fa-solid fa-trophy"></i>
+                <span class="badge-dot" id="new-achievement-dot" style="display:none;"></span>
+            </button>
             <button id="reset-btn" class="icon-btn tooltip" title="Reset Progress">
                 <i class="fa-solid fa-rotate-right"></i>
             </button>
-            <button id="auth-btn" class="icon-btn tooltip" title="Login / Sign Up">
-                <i class="fa-solid fa-user"></i>
+            <button id="auth-btn" class="icon-btn tooltip" title="Cloud Save">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
             </button>
             <button id="logout-btn" class="icon-btn tooltip" style="display:none;" title="Log Out">
-                <i class="fa-solid fa-sign-out-alt"></i>
+                <i class="fa-solid fa-right-from-bracket"></i>
             </button>
         </div>
     </header>
 
+    <!-- Main Content -->
     <main class="container">
-        <section class="intro">
-            <h1>Embark on your <span class="gradient-text">Engineering Journey</span></h1>
-            <p>Welcome to your 12-month comprehensive roadmap to becoming a Software Development Engineer. Complete quests to gain XP, level up, and unlock new months. The path is difficult, but the reward is greatness.</p>
+
+        <!-- SDE Tab -->
+        <section id="tab-sde" class="tab-content active">
+            <div class="section-intro">
+                <div class="intro-badge"><i class="fa-solid fa-rocket"></i> 12-MONTH PROGRAM</div>
+                <h1>Your <span class="gradient-text">Engineering Journey</span></h1>
+                <p>A battle-tested roadmap from zero to SDE. Complete quests, gain XP, level up, and unlock new months. The path is difficult — the reward is everything.</p>
+                <div class="intro-stats" id="sde-intro-stats">
+                    <div class="istat"><span id="sde-total-done">0</span><small>Quests Done</small></div>
+                    <div class="istat"><span id="sde-total-quests">96</span><small>Total Quests</small></div>
+                    <div class="istat"><span id="sde-months-done">0</span><small>Months Complete</small></div>
+                    <div class="istat"><span id="sde-percent">0%</span><small>Overall Progress</small></div>
+                </div>
+            </div>
+            <div class="roadmap-container" id="sde-roadmap-container"></div>
         </section>
 
-        <section class="roadmap-container" id="roadmap-container">
-            <!-- Roadmap paths will be generated by JS -->
+        <!-- DSA Tab -->
+        <section id="tab-dsa" class="tab-content">
+            <div class="section-intro dsa-intro">
+                <div class="intro-badge dsa-badge"><i class="fa-solid fa-microchip"></i> DSA MASTER PATH</div>
+                <h1>From <span class="gradient-text-dsa">C++ Zero</span> to <span class="gradient-text-dsa">DSA Hero</span></h1>
+                <p>The most comprehensive DSA curriculum — start from absolute C++ basics, master every data structure, conquer dynamic programming, and dominate coding interviews at top companies.</p>
+                <div class="intro-stats dsa-stats" id="dsa-intro-stats">
+                    <div class="istat dsa-istat"><span id="dsa-total-done">0</span><small>Quests Done</small></div>
+                    <div class="istat dsa-istat"><span id="dsa-total-quests">100</span><small>Total Quests</small></div>
+                    <div class="istat dsa-istat"><span id="dsa-months-done">0</span><small>Months Complete</small></div>
+                    <div class="istat dsa-istat"><span id="dsa-percent">0%</span><small>Overall Progress</small></div>
+                </div>
+            </div>
+            <div class="roadmap-container" id="dsa-roadmap-container"></div>
         </section>
     </main>
 
-    <!-- Modal for Quests -->
+    <!-- Quest Modal -->
     <div id="quest-modal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <div class="modal-header">
+                <div class="modal-track-badge" id="modal-track-badge">SDE</div>
                 <h2 id="modal-title">Month X</h2>
                 <p id="modal-desc">Description</p>
+                <div class="modal-meta">
+                    <span class="modal-meta-item" id="modal-time-estimate"></span>
+                    <span class="modal-meta-item" id="modal-xp-total"></span>
+                </div>
                 <div class="month-progress">
-                    <span id="modal-progress-text">0/8 Quests Completed</span>
+                    <span id="modal-progress-text">0/10 Quests Completed</span>
                     <div class="mini-bar-bg"><div class="mini-bar-fill" id="modal-progress-fill"></div></div>
                 </div>
             </div>
-            <div class="quest-list" id="quest-list">
-                <!-- Quests generated by JS -->
+            <div class="quest-list" id="quest-list"></div>
+        </div>
+    </div>
+
+    <!-- Achievements Modal -->
+    <div id="achievements-modal" class="modal">
+        <div class="modal-content achievements-modal-content">
+            <span class="close-modal close-achievements">&times;</span>
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-trophy" style="color:#ffd700;"></i> Achievements</h2>
+                <p>Unlock badges by completing milestones on your journey.</p>
             </div>
+            <div class="achievements-grid" id="achievements-grid"></div>
         </div>
     </div>
 
     <!-- Level Up Notification -->
     <div id="level-up-notification" class="level-up-hidden">
         <div class="level-up-content">
-            <i class="fa-solid fa-crown level-icon"></i>
-            <h2>Level Up!</h2>
-            <p>You are now Level <span id="notify-level">2</span></p>
+            <div class="level-up-stars">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-crown"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <h2>LEVEL UP!</h2>
+            <p class="level-num">You are now Level <span id="notify-level">2</span></p>
             <p id="notify-title" class="notify-title">Junior Developer</p>
+        </div>
+    </div>
+
+    <!-- Achievement Unlocked Notification -->
+    <div id="achievement-notification" class="achievement-notif-hidden">
+        <div class="achievement-notif-content">
+            <div class="achievement-notif-icon" id="notif-achievement-icon">🏆</div>
+            <div class="achievement-notif-text">
+                <div class="achievement-notif-label">ACHIEVEMENT UNLOCKED</div>
+                <div class="achievement-notif-name" id="notif-achievement-name">First Blood</div>
+            </div>
         </div>
     </div>
 
     <!-- Auth Modal -->
     <div id="auth-modal" class="modal">
-        <div class="modal-content" style="max-width: 400px; text-align: center;">
+        <div class="modal-content auth-modal-content">
             <span class="close-modal close-auth">&times;</span>
-            <div class="modal-header">
-                <h2 id="auth-modal-title">Cloud Save Login</h2>
-                <p>Login or Sign Up to save your progress across devices.</p>
+            <div class="modal-header" style="text-align:center;">
+                <div style="font-size:3rem; margin-bottom:1rem;">☁️</div>
+                <h2 id="auth-modal-title">Cloud Save</h2>
+                <p>Sync your progress across devices.</p>
             </div>
-            <form id="auth-form" onsubmit="return false;" style="display: flex; flex-direction: column; gap: 15px; margin-top:20px;">
-                <input type="email" id="auth-email" placeholder="Email Address" required style="padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: white;">
-                <input type="password" id="auth-password" placeholder="Password" required style="padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: white;">
-                <button id="auth-submit" style="padding: 12px; border-radius: 8px; background: var(--primary); color: #000; font-weight: bold; border: none; cursor: pointer; transition: 0.3s; margin-top: 10px;">Log In</button>
-            </form>
-            <p id="auth-error-msg" style="color: #ff4757; margin-top: 15px; font-size: 0.9rem; display: none;"></p>
-            <p style="margin-top:20px; font-size: 0.9rem;">
-                <span id="auth-toggle-text">Don't have an account?</span> 
-                <span id="auth-toggle-btn" class="highlight" style="cursor: pointer; font-weight: bold;">Sign Up</span>
+            <div id="auth-form" style="display:flex; flex-direction:column; gap:12px; margin-top:20px;">
+                <input type="email" id="auth-email" placeholder="Email Address" class="auth-input">
+                <input type="password" id="auth-password" placeholder="Password" class="auth-input">
+                <button id="auth-submit" class="auth-submit-btn">Log In</button>
+            </div>
+            <p id="auth-error-msg" class="auth-error" style="display:none;"></p>
+            <p class="auth-toggle-text">
+                <span id="auth-toggle-text">Don't have an account?</span>
+                <span id="auth-toggle-btn" class="highlight" style="cursor:pointer; font-weight:700; margin-left:5px;">Sign Up</span>
             </p>
         </div>
     </div>
 
-    <!-- Firebase SDK Compat -->
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
-    
     <script src="script.js"></script>
 </body>
 </html>
