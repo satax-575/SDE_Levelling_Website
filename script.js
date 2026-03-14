@@ -618,36 +618,45 @@ const dsaRoadmapData = [
         { name: "Codeforces: Getting Started Blog", url: "https://codeforces.com/blog/entry/47824" }
       ]},
       { title: "Your First Program: Hello World, Compilation Steps, Execution", resources: [
-        { name: "CPP Reference: Getting Started", url: "https://en.cppreference.com/w/cpp/language/hello_world" },
-        { name: "Programiz: C++ Hello World", url: "https://www.programiz.com/cpp-programming/examples/print-sentence" }
+        { name: "📖 LearnCPP Ch.1.1-1.9 — Statements, structure, compilation (read in order)", url: "https://www.learncpp.com/cpp-tutorial/statements-and-the-structure-of-a-program/" },
+        { name: "🎬 C++ Full Course — Bro Code (watch chapters 1-3)", url: "https://www.youtube.com/watch?v=-TkoO8Z07hI" },
+        { name: "📖 CPP Reference: Hello World breakdown", url: "https://en.cppreference.com/w/cpp/language/hello_world" }
       ]},
       { title: "I/O: cin, cout, scanf, printf — and Fast I/O for Competitive Programming", resources: [
-        { name: "GeeksforGeeks: Fast I/O in C++", url: "https://www.geeksforgeeks.org/fast-io-for-competitive-programming/" },
-        { name: "CPP Reference: Standard I/O", url: "https://en.cppreference.com/w/cpp/io" }
+        { name: "📖 LearnCPP Ch.1.5 — Introduction to iostream (cout, cin, endl)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-iostream-cout-cin-and-endl/" },
+        { name: "📖 GeeksforGeeks: Fast I/O in C++ for Competitive Programming", url: "https://www.geeksforgeeks.org/fast-io-for-competitive-programming/" },
+        { name: "📝 Tip: Always add at start of main(): ios::sync_with_stdio(false); cin.tie(NULL); — makes I/O 10x faster.", url: "https://www.geeksforgeeks.org/fast-io-for-competitive-programming/" }
       ]},
       { title: "Data Types: int, long long, double, char, bool — sizes, overflow, casting", resources: [
-        { name: "CPP Reference: Fundamental Types", url: "https://en.cppreference.com/w/cpp/language/types" },
-        { name: "GeeksforGeeks: C++ Data Types", url: "https://www.geeksforgeeks.org/c-data-types/" }
+        { name: "📖 LearnCPP Ch.4.1-4.6 — Fundamental data types (skip 4.7+)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-fundamental-data-types/" },
+        { name: "📖 LearnCPP Ch.4.11 — Chars specifically", url: "https://www.learncpp.com/cpp-tutorial/chars/" },
+        { name: "📝 Tip: Always use long long in CP to avoid overflow. int max = 2.1 billion, long long = 9.2 quintillion.", url: "https://www.geeksforgeeks.org/c-data-types/" },
+        { name: "📖 CPP Reference: Fundamental Types reference", url: "https://en.cppreference.com/w/cpp/language/types" }
       ]},
       { title: "Operators: Arithmetic, Relational, Logical, Bitwise, Assignment, Ternary", resources: [
-        { name: "CPP Reference: Operator Precedence", url: "https://en.cppreference.com/w/cpp/language/operator_precedence" },
-        { name: "TutorialsPoint: C++ Operators", url: "https://www.tutorialspoint.com/cplusplus/cpp_operators.htm" }
+        { name: "📖 LearnCPP Ch.6.1-6.7 — Operators (focus: precedence table)", url: "https://www.learncpp.com/cpp-tutorial/operator-precedence-and-associativity/" },
+        { name: "📖 LearnCPP Ch.6.21 — Bitwise operators specifically", url: "https://www.learncpp.com/cpp-tutorial/bitwise-operators/" },
+        { name: "🔧 Bitwise Visualizer — watch bits flip in real time", url: "https://bitwisecmd.com/" }
       ]},
       { title: "Control Flow: if/else, switch, ternary — nested conditions", resources: [
-        { name: "Programiz: C++ if...else", url: "https://www.programiz.com/cpp-programming/if-else" },
-        { name: "HackerRank: C++ Conditionals", url: "https://www.hackerrank.com/challenges/cpp-introduction" }
+        { name: "📖 LearnCPP Ch.8.1-8.8 — Control flow introduction (read all 8 sections)", url: "https://www.learncpp.com/cpp-tutorial/control-flow-introduction/" },
+        { name: "📖 Programiz: C++ if...else with examples", url: "https://www.programiz.com/cpp-programming/if-else" },
+        { name: "🏋️ HackerRank: C++ conditionals (first 5 problems)", url: "https://www.hackerrank.com/domains/cpp" }
       ]},
       { title: "Loops: for, while, do-while, range-based for, break/continue", resources: [
-        { name: "Programiz: C++ Loops", url: "https://www.programiz.com/cpp-programming/for-loop" },
-        { name: "GeeksforGeeks: Loops in C++", url: "https://www.geeksforgeeks.org/loops-in-c-and-cpp/" }
+        { name: "📖 LearnCPP Ch.8.7-8.15 — Loop chapters (while, do-while, for, range-based)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-loops-and-while-statements/" },
+        { name: "🔧 Python Tutor (C++ mode) — paste loop code and watch it execute step by step", url: "https://pythontutor.com/cpp.html" },
+        { name: "📖 Programiz: C++ for loop with examples", url: "https://www.programiz.com/cpp-programming/for-loop" }
       ]},
       { title: "Functions: declaration, definition, pass by value vs reference, default args, overloading", resources: [
-        { name: "CPP Reference: Functions", url: "https://en.cppreference.com/w/cpp/language/functions" },
-        { name: "GeeksforGeeks: Functions in C++", url: "https://www.geeksforgeeks.org/functions-in-cpp/" }
+        { name: "📖 LearnCPP Ch.2 — Functions (read ALL of chapter 2, it is short and essential)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-functions/" },
+        { name: "📖 LearnCPP Ch.12.1 — Pass by reference (critical for performance)", url: "https://www.learncpp.com/cpp-tutorial/lvalue-references/" },
+        { name: "🎬 The Cherno: C++ Functions (14 min)", url: "https://www.youtube.com/watch?v=V9zuox47zr0" }
       ]},
       { title: "Arrays and 2D Arrays: declaration, traversal, common patterns", resources: [
-        { name: "GeeksforGeeks: C++ Arrays", url: "https://www.geeksforgeeks.org/arrays-in-c-cpp/" },
-        { name: "CPP Reference: Array", url: "https://en.cppreference.com/w/cpp/container/array" }
+        { name: "📖 LearnCPP Ch.17.1-17.6 — Arrays (read sections 17.1 to 17.6 only)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-arrays-part-i/" },
+        { name: "📝 Tip: Prefer std::vector over raw arrays in modern C++. Use arrays only when size is fixed.", url: "https://www.learncpp.com/cpp-tutorial/an-introduction-to-stdvector/" },
+        { name: "📖 GeeksforGeeks: C++ Arrays with examples", url: "https://www.geeksforgeeks.org/arrays-in-c-cpp/" }
       ]},
       { title: "Practice: HackerRank C++ Basics + First 20 LeetCode Easy (Brute Force OK)", resources: [
         { name: "HackerRank: C++ Domain", url: "https://www.hackerrank.com/domains/cpp" },
@@ -662,25 +671,29 @@ const dsaRoadmapData = [
     estimatedWeeks: 2, badge: "🔧",
     topics: [
       { title: "Pointers: address-of (&), dereference (*), pointer arithmetic, nullptr", resources: [
-        { name: "CPP Reference: Pointers", url: "https://en.cppreference.com/w/cpp/language/pointer" },
-        { name: "GeeksforGeeks: Pointers in C++", url: "https://www.geeksforgeeks.org/pointers-in-cpp/" },
-        { name: "Python Tutor: Visualize Pointers", url: "https://pythontutor.com/cpp.html" }
+        { name: "📖 LearnCPP Ch.9.6-9.12 — Introduction to Pointers (read in order)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-pointers/" },
+        { name: "🎬 The Cherno: Pointers in C++ (18 min, excellent visual)", url: "https://www.youtube.com/watch?v=DTxHyVn0ODg" },
+        { name: "🔧 Python Tutor (C++ mode): Paste pointer code and watch memory layout", url: "https://pythontutor.com/cpp.html" }
       ]},
       { title: "References vs Pointers: when to use each, const references", resources: [
-        { name: "CPP Reference: Reference", url: "https://en.cppreference.com/w/cpp/language/reference" },
-        { name: "Stack Overflow: References vs Pointers", url: "https://stackoverflow.com/questions/57483/what-are-the-differences-between-a-pointer-variable-and-a-reference-variable" }
+        { name: "📖 LearnCPP Ch.12.1-12.5 — L-value References (the reference chapters)", url: "https://www.learncpp.com/cpp-tutorial/lvalue-references/" },
+        { name: "📖 LearnCPP Ch.12.3 — L-value references to const", url: "https://www.learncpp.com/cpp-tutorial/lvalue-references-to-const/" },
+        { name: "📝 Tip: Prefer references over pointers in modern C++. Use pointers only when you need null or reassignment.", url: "https://stackoverflow.com/questions/57483/what-are-the-differences-between-a-pointer-variable-and-a-reference-variable" }
       ]},
       { title: "Dynamic Memory: new/delete, heap vs stack, memory leaks", resources: [
-        { name: "GeeksforGeeks: new and delete in C++", url: "https://www.geeksforgeeks.org/new-and-delete-operators-in-cpp-for-dynamic-memory/" },
-        { name: "Valgrind: Detecting Memory Leaks", url: "https://valgrind.org/docs/manual/quick-start.html" }
+        { name: "📖 LearnCPP Ch.19.1-19.4 — Dynamic Memory Allocation with new and delete", url: "https://www.learncpp.com/cpp-tutorial/dynamic-memory-allocation-with-new-and-delete/" },
+        { name: "📖 LearnCPP Ch.22 — Smart Pointers (use these instead of raw new/delete)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-smart-pointers-move-semantics/" },
+        { name: "🎬 The Cherno: Stack vs Heap Memory in C++ (16 min)", url: "https://www.youtube.com/watch?v=wJ1L2nSIV1s" }
       ]},
       { title: "Strings: std::string, string methods (find, substr, stoi, to_string), stringstream", resources: [
-        { name: "CPP Reference: std::string", url: "https://en.cppreference.com/w/cpp/string/basic_string" },
-        { name: "GeeksforGeeks: String Functions in C++", url: "https://www.geeksforgeeks.org/string-functions-in-c/" }
+        { name: "📖 LearnCPP Ch.5.2 — std::string (the essential string chapter)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-stdstring/" },
+        { name: "📖 LearnCPP Ch.5.3 — std::string_view (fast read-only string, modern C++)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-stdstring_view/" },
+        { name: "📝 Tip: Use stoi() to convert string to int, to_string() for int to string. Use stringstream for parsing.", url: "https://en.cppreference.com/w/cpp/string/basic_string" }
       ]},
       { title: "STL Vector: dynamic array, push_back, emplace_back, iterators, sort", resources: [
-        { name: "CPP Reference: std::vector", url: "https://en.cppreference.com/w/cpp/container/vector" },
-        { name: "GeeksforGeeks: Vector in C++ STL", url: "https://www.geeksforgeeks.org/vector-in-cpp-stl/" }
+        { name: "📖 LearnCPP Ch.16.1-16.8 — std::vector (the complete vector chapter)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-stdvector-and-list-constructors/" },
+        { name: "📝 Tip: Use emplace_back() not push_back() — constructs in place, slightly faster. Reserve capacity with reserve().", url: "https://en.cppreference.com/w/cpp/container/vector" },
+        { name: "📖 CPP Reference: std::vector method reference", url: "https://en.cppreference.com/w/cpp/container/vector" }
       ]},
       { title: "STL Map & Unordered_map: insertion, lookup, iteration — O(log n) vs O(1)", resources: [
         { name: "CPP Reference: std::map", url: "https://en.cppreference.com/w/cpp/container/map" },
@@ -691,12 +704,14 @@ const dsaRoadmapData = [
         { name: "GeeksforGeeks: STL Containers", url: "https://www.geeksforgeeks.org/the-c-standard-template-library-stl/" }
       ]},
       { title: "STL Algorithms: sort, reverse, find, lower_bound, upper_bound, min/max", resources: [
-        { name: "CPP Reference: <algorithm>", url: "https://en.cppreference.com/w/cpp/algorithm" },
-        { name: "GeeksforGeeks: STL Algorithms", url: "https://www.geeksforgeeks.org/c-magicians-stl-algorithms/" }
+        { name: "📖 LearnCPP Ch.18.1-18.4 — Iterators and Algorithms", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-iterators/" },
+        { name: "📝 Tip: lower_bound = first element >= target. upper_bound = first element > target. Critical for binary search.", url: "https://en.cppreference.com/w/cpp/algorithm/lower_bound" },
+        { name: "📖 CPP Reference: <algorithm> — full reference (bookmark this)", url: "https://en.cppreference.com/w/cpp/algorithm" }
       ]},
       { title: "Pairs, Tuples, auto, lambda functions & range-based algorithms", resources: [
-        { name: "CPP Reference: std::pair", url: "https://en.cppreference.com/w/cpp/utility/pair" },
-        { name: "GeeksforGeeks: Lambda Expressions", url: "https://www.geeksforgeeks.org/lambda-expression-in-c/" }
+        { name: "📖 LearnCPP Ch.20.5 — Lambda Expressions (modern C++, essential for STL)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-lambdas-anonymous-functions/" },
+        { name: "📝 Tip: Sort vector of pairs by 2nd element: sort(v.begin(),v.end(),[](auto&a,auto&b){return a.second<b.second;})", url: "https://www.geeksforgeeks.org/sorting-vector-of-pairs-in-c-set-1-sort-by-first-and-second/" },
+        { name: "📖 CPP Reference: std::pair", url: "https://en.cppreference.com/w/cpp/utility/pair" }
       ]},
       { title: "Practice: 30 LeetCode Easy/Medium with STL — Arrays, HashMap, Sorting", resources: [
         { name: "NeetCode: Arrays & Hashing Problems", url: "https://neetcode.io/roadmap" },
@@ -1149,7 +1164,7 @@ function countCompletedMonths(s, data) {
 //  FIREBASE CONFIGURATION
 // ═══════════════════════════════════════════════════════════════════════
 const firebaseConfig = {
-  apiKey: "AIzaSyCb1SBz9gHdE5bXNR2DxY8DKsqWnHeF_-s",
+  apiKey: "AIzaSyCPOVNgif3smdzyX5I_Du2Q0bXknssrEto",
   authDomain: "sde-levelling.firebaseapp.com",
   projectId: "sde-levelling",
   storageBucket: "sde-levelling.firebasestorage.app",
@@ -1175,17 +1190,21 @@ const LEVEL_TITLES = [
 ];
 
 // ═══════════════════════════════════════════════════════════════════════
-//  STATE
+//  STATE — factory function so we always get a clean copy
 // ═══════════════════════════════════════════════════════════════════════
-let playerState = {
-  xp: 0, level: 1,
-  completedQuests: {},
-  unlockedMonths: [1],
-  unlockedDsaMonths: ["dsa-1"],
-  achievements: [],
-  streak: 0,
-  lastActivityDate: null
-};
+function defaultState() {
+  return {
+    xp: 0, level: 1,
+    completedQuests: {},
+    unlockedMonths: [1],
+    unlockedDsaMonths: ["dsa-1"],
+    achievements: [],
+    streak: 0,
+    lastActivityDate: null
+  };
+}
+
+let playerState = defaultState();
 
 let currentUser = null;
 let isLoginMode = true;
@@ -1253,7 +1272,7 @@ const tabContents      = document.querySelectorAll('.tab-content');
 //  INIT
 // ═══════════════════════════════════════════════════════════════════════
 function init() {
-  loadProgress();
+  // Start with zeroed state — populated only when user logs in
   updateStreakUI();
   renderBothRoadmaps();
   updatePlayerStatsUI();
@@ -1262,17 +1281,25 @@ function init() {
 
   auth.onAuthStateChanged(async user => {
     if (user) {
+      // ── LOGGED IN ──
       currentUser = user;
-      userInfo.style.display = 'flex';
+      userInfo.style.display  = 'flex';
       userEmailSpan.innerText = user.email.split('@')[0];
-      authBtn.style.display = 'none';
+      authBtn.style.display   = 'none';
       logoutBtn.style.display = 'inline-block';
-      await fetchCloudProgress();
+      await fetchCloudProgress(); // restore their progress from cloud
     } else {
+      // ── LOGGED OUT — ALWAYS reset to zero ──
       currentUser = null;
-      userInfo.style.display = 'none';
-      authBtn.style.display = 'inline-block';
+      userInfo.style.display  = 'none';
+      authBtn.style.display   = 'inline-block';
       logoutBtn.style.display = 'none';
+      playerState = defaultState(); // wipe everything to zero
+      renderBothRoadmaps();
+      updatePlayerStatsUI();
+      updateTrackStats();
+      updateStreakUI();
+      renderAchievements();
     }
   });
 
@@ -1295,7 +1322,8 @@ function init() {
   resetBtn.addEventListener('click', resetProgress);
   achievementsBtn.addEventListener('click', () => { achievementsModal.classList.add('show'); newAchDot.style.display = 'none'; });
   authBtn.addEventListener('click', () => { authErrorMsg.style.display = 'none'; authModal.classList.add('show'); });
-  logoutBtn.addEventListener('click', () => auth.signOut().then(() => { alert("Logged out."); loadProgress(); renderBothRoadmaps(); updatePlayerStatsUI(); }));
+  // Logout — just sign out. onAuthStateChanged handles the state reset automatically.
+  logoutBtn.addEventListener('click', () => auth.signOut());
 
   authToggleBtn.addEventListener('click', toggleAuthMode);
   authSubmitBtn.addEventListener('click', handleAuthSubmit);
@@ -1311,24 +1339,15 @@ function switchTab(tab) {
 //  STORAGE
 // ═══════════════════════════════════════════════════════════════════════
 function saveProgress() {
-  localStorage.setItem('sdeRoadmapProgress_v2', JSON.stringify(playerState));
+  // Cloud-only saving. No localStorage = logout truly means zero.
   if (currentUser) {
-    db.collection('userProgress').doc(currentUser.uid).set(playerState).catch(console.error);
+    db.collection('userProgress').doc(currentUser.uid).set(playerState)
+      .catch(err => console.error("Cloud save failed:", err));
   }
 }
 
-function loadProgress() {
-  const saved = localStorage.getItem('sdeRoadmapProgress_v2');
-  if (saved) {
-    try {
-      const parsed = JSON.parse(saved);
-      playerState = { ...playerState, ...parsed };
-    } catch(e) { console.error(e); }
-  }
-  ensureDefaults();
-  checkUnlocks();
-  updateStreak();
-}
+// loadProgress removed — fetchCloudProgress() handles all state loading.
+// State starts at defaultState() and is only populated on login.
 
 function ensureDefaults() {
   if (!playerState.unlockedMonths) playerState.unlockedMonths = [1];
@@ -1339,8 +1358,8 @@ function ensureDefaults() {
 
 function resetProgress() {
   if (!confirm("Reset ALL progress? This cannot be undone.")) return;
-  playerState = { xp: 0, level: 1, completedQuests: {}, unlockedMonths: [1], unlockedDsaMonths: ["dsa-1"], achievements: [], streak: 0, lastActivityDate: null };
-  saveProgress();
+  playerState = defaultState();
+  saveProgress(); // clears cloud doc too
   renderBothRoadmaps();
   updatePlayerStatsUI();
   updateTrackStats();
@@ -1352,17 +1371,22 @@ async function fetchCloudProgress() {
   try {
     const doc = await db.collection('userProgress').doc(currentUser.uid).get();
     if (doc.exists) {
-      playerState = { ...playerState, ...doc.data() };
-      ensureDefaults();
-      checkUnlocks();
-      renderBothRoadmaps();
-      updatePlayerStatsUI();
-      updateTrackStats();
-      updateStreakUI();
+      playerState = { ...defaultState(), ...doc.data() }; // always merge into fresh defaults
     } else {
-      saveProgress();
+      playerState = defaultState(); // brand new user
+      saveProgress(); // save initial state to Firestore
     }
-  } catch(e) { console.error(e); }
+    ensureDefaults();
+    updateStreak(); // check if streak broke while they were away
+    checkUnlocks();
+    renderBothRoadmaps();
+    updatePlayerStatsUI();
+    updateTrackStats();
+    updateStreakUI();
+    renderAchievements();
+  } catch(e) {
+    console.error("Failed to fetch cloud progress:", e);
+  }
 }
 
 // ═══════════════════════════════════════════════════════════════════════
