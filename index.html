@@ -172,16 +172,24 @@
                 <p>Sync your progress across devices.</p>
             </div>
             <div id="auth-form" style="display:flex; flex-direction:column; gap:12px; margin-top:20px;">
-                <input type="email" id="auth-email" placeholder="Email Address" class="auth-input" autocomplete="email">
+                <input type="email" id="auth-email" placeholder="Email Address" class="auth-input" autocomplete="email" spellcheck="false" autocapitalize="none">
                 <div style="position:relative;">
-                    <input type="password" id="auth-password" placeholder="Password" class="auth-input" autocomplete="current-password" style="padding-right: 44px;">
-                    <button type="button" id="toggle-password" onclick="(function(){var i=document.getElementById('auth-password');var b=document.getElementById('toggle-password');if(i.type==='password'){i.type='text';b.innerHTML='<i class=\'fa-solid fa-eye-slash\'></i>';}else{i.type='password';b.innerHTML='<i class=\'fa-solid fa-eye\'></i>';}i.focus();})()" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.9rem;padding:4px;line-height:1;">
-                        <i class="fa-solid fa-eye"></i>
+                    <input type="password" id="auth-password" placeholder="Password" class="auth-input" autocomplete="current-password" style="padding-right: 44px;" spellcheck="false">
+                    <button type="button" id="toggle-password" aria-label="Show/hide password" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.9rem;padding:4px;line-height:1;transition:color 0.2s;">
+                        <i class="fa-solid fa-eye" id="toggle-password-icon"></i>
                     </button>
                 </div>
-                <button id="auth-submit" class="auth-submit-btn">Log In</button>
+                <button id="auth-submit" class="auth-submit-btn">
+                    <span id="auth-submit-text">Log In</span>
+                    <span id="auth-submit-spinner" style="display:none;"><i class="fa-solid fa-spinner fa-spin"></i></span>
+                </button>
             </div>
-            <p id="auth-error-msg" class="auth-error" style="display:none;"></p>
+            <div id="auth-error-box" style="display:none; margin-top:12px;">
+                <p id="auth-error-msg" class="auth-error" style="margin:0 0 8px 0;"></p>
+                <button id="auth-reset-inline-btn" class="auth-reset-inline" style="display:none;">
+                    <i class="fa-solid fa-paper-plane"></i> Send password reset email
+                </button>
+            </div>
             <p class="auth-toggle-text" id="forgot-password-row" style="margin-top:8px;">
                 <span id="forgot-password-btn" class="highlight" style="cursor:pointer; font-size:0.8rem; opacity:0.8;">Forgot Password?</span>
             </p>

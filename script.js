@@ -1174,7 +1174,12 @@ const firebaseConfig = {
 
 if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
-const db = firebase.firestore();
+const db   = firebase.firestore();
+
+// Set session persistence once at startup — sessions survive tab closes & page reloads.
+// Using the string literal 'local' is more reliable than firebase.auth.Auth.Persistence.LOCAL
+// in bundled/deployed environments where the class reference may not resolve correctly.
+auth.setPersistence('local').catch(e => console.warn('[Auth] setPersistence:', e.message));
 
 // ═══════════════════════════════════════════════════════════════════════
 //  CONSTANTS
@@ -1255,7 +1260,7 @@ const authToggleTextEl = document.getElementById('auth-toggle-text');
 const authEmailInput   = document.getElementById('auth-email');
 const authPasswordInput= document.getElementById('auth-password');
 const authModalTitle   = document.getElementById('auth-modal-title');
-const authErrorMsg     = document.getElementById('auth-error-msg');
+const authErrorMsg     = document.getElementById('auth-error-msg'); // lives inside authErrorBox
 
 const levelUpNotif     = document.getElementById('level-up-notification');
 const notifyLevel      = document.getElementById('notify-level');
@@ -1333,9 +1338,11 @@ function init() {
     input.addEventListener('keydown', e => { if (e.key === 'Enter') handleAuthSubmit(); });
   });
 
-  // Clear error when user starts typing
+  // Clear error box when user starts typing
   [authEmailInput, authPasswordInput].forEach(input => {
-    input.addEventListener('input', () => { authErrorMsg.style.display = 'none'; });
+    input.addEventListener('input', () => {
+      authErrorBox.style.display = 'none';
+    });
   });
 
   // Forgot password link
@@ -1760,21 +1767,72 @@ function updateModalProgress(done, total) {
 // ═══════════════════════════════════════════════════════════════════════
 //  AUTH
 // ═══════════════════════════════════════════════════════════════════════
+
+// ── DOM refs specific to auth (not grabbed globally above) ──
+const authSubmitTextEl  = document.getElementById('auth-submit-text');
+const authSubmitSpinner = document.getElementById('auth-submit-spinner');
+const authErrorBox      = document.getElementById('auth-error-box');
+const authResetInlineBtn= document.getElementById('auth-reset-inline-btn');
+const togglePwBtn       = document.getElementById('toggle-password');
+const togglePwIcon      = document.getElementById('toggle-password-icon');
+
+// ── Toggle password visibility ──
+togglePwBtn.addEventListener('click', () => {
+  const isHidden = authPasswordInput.type === 'password';
+  authPasswordInput.type = isHidden ? 'text' : 'password';
+  togglePwIcon.className = isHidden ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+  togglePwBtn.style.color = isHidden ? 'var(--primary)' : 'var(--text-muted)';
+  authPasswordInput.focus();
+});
+
+// ── Inline reset button ──
+authResetInlineBtn.addEventListener('click', async () => {
+  const email = authEmailInput.value.trim();
+  if (!email) { showAuthError("Enter your email above first."); return; }
+  authResetInlineBtn.disabled = true;
+  authResetInlineBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+  try {
+    await auth.sendPasswordResetEmail(email);
+    authErrorBox.style.display = 'block';
+    authErrorMsg.style.display = 'none';
+    authResetInlineBtn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Reset email sent! Check your inbox.';
+    authResetInlineBtn.style.background = 'rgba(16,185,129,0.15)';
+    authResetInlineBtn.style.borderColor = 'rgba(16,185,129,0.4)';
+    authResetInlineBtn.style.color = 'var(--success)';
+  } catch(err) {
+    authResetInlineBtn.disabled = false;
+    authResetInlineBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send password reset email';
+    showAuthError(AUTH_ERRORS[err.code] || `Reset failed. (${err.code})`);
+  }
+});
+
 function resetAuthModal() {
-  // Always bring the modal back to login mode with clean state
   isLoginMode = true;
   authModalTitle.innerText = "Cloud Save";
-  authSubmitBtn.innerText = "Log In";
+  authSubmitTextEl.innerText = "Log In";
   authSubmitBtn.disabled = false;
+  authSubmitSpinner.style.display = 'none';
+  authSubmitTextEl.style.display = '';
   authToggleTextEl.innerText = "Don't have an account?";
   authToggleBtn.innerText = "Sign Up";
+  // Clear error box fully
+  authErrorBox.style.display = 'none';
   authErrorMsg.style.display = 'none';
+  authErrorMsg.innerText = '';
+  authResetInlineBtn.style.display = 'none';
+  authResetInlineBtn.disabled = false;
+  authResetInlineBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send password reset email';
+  authResetInlineBtn.style.background = '';
+  authResetInlineBtn.style.borderColor = '';
+  authResetInlineBtn.style.color = '';
+  // Clear fields
   authEmailInput.value = '';
   authPasswordInput.value = '';
-  // Reset password field to hidden + icon
   authPasswordInput.type = 'password';
-  const togglePwBtn = document.getElementById('toggle-password');
-  if (togglePwBtn) togglePwBtn.innerHTML = '<i class="fa-solid fa-eye"></i>';
+  authPasswordInput.setAttribute('autocomplete', 'current-password');
+  togglePwIcon.className = 'fa-solid fa-eye';
+  togglePwBtn.style.color = 'var(--text-muted)';
+  // Forgot password row
   const fp = document.getElementById('forgot-password-row');
   if (fp) fp.style.display = '';
 }
@@ -1782,71 +1840,93 @@ function resetAuthModal() {
 function toggleAuthMode() {
   isLoginMode = !isLoginMode;
   authModalTitle.innerText = isLoginMode ? "Cloud Save" : "Create Account";
-  authSubmitBtn.innerText = isLoginMode ? "Log In" : "Sign Up";
+  authSubmitTextEl.innerText = isLoginMode ? "Log In" : "Sign Up";
   authToggleTextEl.innerText = isLoginMode ? "Don't have an account?" : "Already have an account?";
   authToggleBtn.innerText = isLoginMode ? "Sign Up" : "Log In";
+  // Update autocomplete so browser autofill behaves correctly for each mode
+  authPasswordInput.setAttribute('autocomplete', isLoginMode ? 'current-password' : 'new-password');
+  // Hide error box and forgot-password in signup mode
+  authErrorBox.style.display = 'none';
   authErrorMsg.style.display = 'none';
-  // Show forgot password only in login mode
+  authResetInlineBtn.style.display = 'none';
   const fp = document.getElementById('forgot-password-row');
   if (fp) fp.style.display = isLoginMode ? '' : 'none';
 }
 
 // Maps Firebase error codes → human-readable messages
 const AUTH_ERRORS = {
-  'auth/invalid-credential':        'Incorrect email or password. Please double-check and try again, or use "Forgot Password" to reset.',
-  'auth/user-not-found':            'No account found with this email address.',
-  'auth/wrong-password':            'Incorrect password. Please try again or use "Forgot Password".',
-  'auth/email-already-in-use':      'An account with this email already exists. Try logging in instead.',
-  'auth/weak-password':             'Password must be at least 6 characters long.',
-  'auth/invalid-email':             'Please enter a valid email address.',
-  'auth/too-many-requests':         'Too many failed attempts. Please wait a few minutes and try again.',
-  'auth/network-request-failed':    'Network error. Please check your internet connection.',
-  'auth/user-disabled':             'This account has been disabled. Please contact support.',
-  'auth/operation-not-allowed':     'Email/password sign-in is not enabled. Please contact support.',
+  'auth/invalid-credential':     'Incorrect email or password. Use the button below to reset your password.',
+  'auth/user-not-found':         'No account found with this email. Try signing up instead.',
+  'auth/wrong-password':         'Incorrect password. Use the button below to reset it.',
+  'auth/email-already-in-use':   'An account with this email already exists. Try logging in.',
+  'auth/weak-password':          'Password must be at least 6 characters.',
+  'auth/invalid-email':          'Please enter a valid email address.',
+  'auth/too-many-requests':      'Too many failed attempts. Wait a few minutes, or reset your password below.',
+  'auth/network-request-failed': 'Network error. Check your internet connection and try again.',
+  'auth/user-disabled':          'This account has been disabled. Contact support.',
+  'auth/operation-not-allowed':  'Email/password sign-in is not enabled. Contact support.',
 };
 
+// Codes that warrant showing the inline reset-email button
+const SHOW_RESET_FOR = new Set([
+  'auth/invalid-credential',
+  'auth/wrong-password',
+  'auth/too-many-requests',
+]);
+
+function setAuthLoading(loading) {
+  authSubmitBtn.disabled = loading;
+  authSubmitSpinner.style.display = loading ? 'inline' : 'none';
+  authSubmitTextEl.style.display  = loading ? 'none'   : 'inline';
+}
+
 async function handleAuthSubmit() {
-  const email = authEmailInput.value.trim();
+  const email    = authEmailInput.value.trim();
   const password = authPasswordInput.value;
   if (!email || !password) { showAuthError("Please fill in both fields."); return; }
 
-  authSubmitBtn.innerText = "Processing...";
-  authSubmitBtn.disabled = true;
-  authErrorMsg.style.display = 'none';
+  // Capture mode BEFORE any async work so the finally block is always correct
+  const wasLoginMode = isLoginMode;
+
+  setAuthLoading(true);
+  authErrorBox.style.display = 'none';
+  authResetInlineBtn.style.display = 'none';
 
   try {
-    if (isLoginMode) {
-      // Explicitly set persistence to LOCAL so sessions survive page reloads
-      await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+    if (wasLoginMode) {
       await auth.signInWithEmailAndPassword(email, password);
     } else {
       await auth.createUserWithEmailAndPassword(email, password);
     }
-    // Success — close modal and reset state for next open
-    isLoginMode = true;
+    // ── Success ──
     authModal.classList.remove('show');
-    authEmailInput.value = '';
-    authPasswordInput.value = '';
+    resetAuthModal();
   } catch(err) {
-    // Log the raw Firebase error code to the console for easier debugging
     console.error('[Auth Error]', err.code, err.message);
-    const msg = AUTH_ERRORS[err.code] || `An unexpected error occurred. (Code: ${err.code})`;
+    const msg = AUTH_ERRORS[err.code] || `Authentication failed. (Code: ${err.code})`;
     showAuthError(msg);
+    // Show the one-click reset button for password-related failures in login mode
+    if (wasLoginMode && SHOW_RESET_FOR.has(err.code)) {
+      authResetInlineBtn.style.display = 'block';
+    }
   } finally {
-    authSubmitBtn.innerText = isLoginMode ? "Log In" : "Sign Up";
-    authSubmitBtn.disabled = false;
+    setAuthLoading(false);
+    authSubmitTextEl.innerText = wasLoginMode ? "Log In" : "Sign Up";
   }
 }
 
 async function handleForgotPassword() {
   const email = authEmailInput.value.trim();
-  if (!email) { showAuthError("Enter your email address above, then click Forgot Password."); return; }
+  if (!email) { showAuthError("Enter your email address above first, then click Forgot Password."); return; }
+  const forgotBtn = document.getElementById('forgot-password-btn');
+  if (forgotBtn) { forgotBtn.style.opacity = '0.5'; forgotBtn.style.pointerEvents = 'none'; }
   try {
     await auth.sendPasswordResetEmail(email);
-    showAuthSuccess("Password reset email sent! Check your inbox.");
+    showAuthSuccess("✓ Password reset email sent! Check your inbox (and spam folder).");
   } catch(err) {
-    const msg = AUTH_ERRORS[err.code] || err.message;
-    showAuthError(msg);
+    showAuthError(AUTH_ERRORS[err.code] || err.message);
+  } finally {
+    if (forgotBtn) { forgotBtn.style.opacity = ''; forgotBtn.style.pointerEvents = ''; }
   }
 }
 
@@ -1854,12 +1934,15 @@ function showAuthError(msg) {
   authErrorMsg.innerText = msg;
   authErrorMsg.style.color = '';
   authErrorMsg.style.display = 'block';
+  authErrorBox.style.display = 'block';
 }
 
 function showAuthSuccess(msg) {
   authErrorMsg.innerText = msg;
   authErrorMsg.style.color = 'var(--success)';
   authErrorMsg.style.display = 'block';
+  authErrorBox.style.display = 'block';
+  authResetInlineBtn.style.display = 'none';
 }
 
 // ═══════════════════════════════════════════════════════════════════════

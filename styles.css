@@ -700,15 +700,29 @@ body {
     background: var(--primary); color: #000;
     font-weight: 700; border: none; cursor: pointer;
     font-size: 0.95rem; font-family: var(--font-main);
-    transition: var(--transition);
+    transition: var(--transition); display: flex;
+    align-items: center; justify-content: center; gap: 8px;
 }
-.auth-submit-btn:hover { box-shadow: 0 0 20px var(--primary-glow); transform: translateY(-1px); }
-.auth-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+.auth-submit-btn:hover:not(:disabled) { box-shadow: 0 0 20px var(--primary-glow); transform: translateY(-1px); }
+.auth-submit-btn:disabled { opacity: 0.65; cursor: not-allowed; transform: none !important; }
 .auth-error {
-    color: var(--danger); margin-top: 10px; font-size: 0.85rem;
-    background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2);
-    padding: 8px 12px; border-radius: 6px;
+    color: var(--danger); font-size: 0.85rem;
+    background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2);
+    padding: 9px 12px; border-radius: 6px; line-height: 1.45;
 }
+.auth-reset-inline {
+    width: 100%; padding: 9px 12px; border-radius: 6px;
+    background: rgba(0,229,255,0.07); border: 1px solid rgba(0,229,255,0.25);
+    color: var(--primary); font-size: 0.82rem; font-weight: 600;
+    font-family: var(--font-main); cursor: pointer;
+    transition: var(--transition); display: flex;
+    align-items: center; justify-content: center; gap: 7px;
+    margin-top: 0;
+}
+.auth-reset-inline:hover:not(:disabled) {
+    background: rgba(0,229,255,0.14); border-color: rgba(0,229,255,0.45);
+}
+.auth-reset-inline:disabled { opacity: 0.6; cursor: not-allowed; }
 .auth-toggle-text {
     text-align: center; margin-top: 18px; font-size: 0.85rem; color: var(--text-muted);
 }
