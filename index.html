@@ -172,8 +172,13 @@
                 <p>Sync your progress across devices.</p>
             </div>
             <div id="auth-form" style="display:flex; flex-direction:column; gap:12px; margin-top:20px;">
-                <input type="email" id="auth-email" placeholder="Email Address" class="auth-input">
-                <input type="password" id="auth-password" placeholder="Password" class="auth-input">
+                <input type="email" id="auth-email" placeholder="Email Address" class="auth-input" autocomplete="email">
+                <div style="position:relative;">
+                    <input type="password" id="auth-password" placeholder="Password" class="auth-input" autocomplete="current-password" style="padding-right: 44px;">
+                    <button type="button" id="toggle-password" onclick="(function(){var i=document.getElementById('auth-password');var b=document.getElementById('toggle-password');if(i.type==='password'){i.type='text';b.innerHTML='<i class=\'fa-solid fa-eye-slash\'></i>';}else{i.type='password';b.innerHTML='<i class=\'fa-solid fa-eye\'></i>';}i.focus();})()" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.9rem;padding:4px;line-height:1;">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
                 <button id="auth-submit" class="auth-submit-btn">Log In</button>
             </div>
             <p id="auth-error-msg" class="auth-error" style="display:none;"></p>

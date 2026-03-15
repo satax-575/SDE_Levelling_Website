@@ -1311,17 +1311,17 @@ function init() {
   // Modals
   closeModalBtn.addEventListener('click', closeModal);
   closeAchBtn.addEventListener('click', () => achievementsModal.classList.remove('show'));
-  closeAuthBtn.addEventListener('click', () => authModal.classList.remove('show'));
+  closeAuthBtn.addEventListener('click', () => { authModal.classList.remove('show'); resetAuthModal(); });
 
   window.addEventListener('click', e => {
     if (e.target === modal) closeModal();
     if (e.target === achievementsModal) achievementsModal.classList.remove('show');
-    if (e.target === authModal) authModal.classList.remove('show');
+    if (e.target === authModal) { authModal.classList.remove('show'); resetAuthModal(); }
   });
 
   resetBtn.addEventListener('click', resetProgress);
   achievementsBtn.addEventListener('click', () => { achievementsModal.classList.add('show'); newAchDot.style.display = 'none'; });
-  authBtn.addEventListener('click', () => { authErrorMsg.style.display = 'none'; authModal.classList.add('show'); });
+  authBtn.addEventListener('click', () => { resetAuthModal(); authModal.classList.add('show'); });
   // Logout — just sign out. onAuthStateChanged handles the state reset automatically.
   logoutBtn.addEventListener('click', () => auth.signOut());
 
@@ -1393,6 +1393,7 @@ async function fetchCloudProgress() {
     ensureDefaults();
     updateStreak(); // check if streak broke while they were away
     checkUnlocks();
+    checkLevelUp();  // ensure level matches XP in case of any state drift
     renderBothRoadmaps();
     updatePlayerStatsUI();
     updateTrackStats();
@@ -1501,7 +1502,7 @@ function checkAchievements() {
     }
   });
   if (newlyUnlocked.length > 0) {
-    showAchievementNotification(newlyUnlocked[0]);
+    newlyUnlocked.forEach(ach => showAchievementNotification(ach));
     newAchDot.style.display = 'block';
   }
   renderAchievements();
@@ -1759,6 +1760,25 @@ function updateModalProgress(done, total) {
 // ═══════════════════════════════════════════════════════════════════════
 //  AUTH
 // ═══════════════════════════════════════════════════════════════════════
+function resetAuthModal() {
+  // Always bring the modal back to login mode with clean state
+  isLoginMode = true;
+  authModalTitle.innerText = "Cloud Save";
+  authSubmitBtn.innerText = "Log In";
+  authSubmitBtn.disabled = false;
+  authToggleTextEl.innerText = "Don't have an account?";
+  authToggleBtn.innerText = "Sign Up";
+  authErrorMsg.style.display = 'none';
+  authEmailInput.value = '';
+  authPasswordInput.value = '';
+  // Reset password field to hidden + icon
+  authPasswordInput.type = 'password';
+  const togglePwBtn = document.getElementById('toggle-password');
+  if (togglePwBtn) togglePwBtn.innerHTML = '<i class="fa-solid fa-eye"></i>';
+  const fp = document.getElementById('forgot-password-row');
+  if (fp) fp.style.display = '';
+}
+
 function toggleAuthMode() {
   isLoginMode = !isLoginMode;
   authModalTitle.innerText = isLoginMode ? "Cloud Save" : "Create Account";
@@ -1773,10 +1793,10 @@ function toggleAuthMode() {
 
 // Maps Firebase error codes → human-readable messages
 const AUTH_ERRORS = {
-  'auth/invalid-credential':        'Incorrect email or password. Please try again.',
+  'auth/invalid-credential':        'Incorrect email or password. Please double-check and try again, or use "Forgot Password" to reset.',
   'auth/user-not-found':            'No account found with this email address.',
-  'auth/wrong-password':            'Incorrect password. Please try again.',
-  'auth/email-already-in-use':      'An account with this email already exists. Try logging in.',
+  'auth/wrong-password':            'Incorrect password. Please try again or use "Forgot Password".',
+  'auth/email-already-in-use':      'An account with this email already exists. Try logging in instead.',
   'auth/weak-password':             'Password must be at least 6 characters long.',
   'auth/invalid-email':             'Please enter a valid email address.',
   'auth/too-many-requests':         'Too many failed attempts. Please wait a few minutes and try again.',
@@ -1796,15 +1816,21 @@ async function handleAuthSubmit() {
 
   try {
     if (isLoginMode) {
+      // Explicitly set persistence to LOCAL so sessions survive page reloads
+      await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
       await auth.signInWithEmailAndPassword(email, password);
     } else {
       await auth.createUserWithEmailAndPassword(email, password);
     }
+    // Success — close modal and reset state for next open
+    isLoginMode = true;
     authModal.classList.remove('show');
     authEmailInput.value = '';
     authPasswordInput.value = '';
   } catch(err) {
-    const msg = AUTH_ERRORS[err.code] || 'An unexpected error occurred. Please try again.';
+    // Log the raw Firebase error code to the console for easier debugging
+    console.error('[Auth Error]', err.code, err.message);
+    const msg = AUTH_ERRORS[err.code] || `An unexpected error occurred. (Code: ${err.code})`;
     showAuthError(msg);
   } finally {
     authSubmitBtn.innerText = isLoginMode ? "Log In" : "Sign Up";
@@ -1840,3 +1866,5 @@ function showAuthSuccess(msg) {
 //  BOOT
 // ═══════════════════════════════════════════════════════════════════════
 init();
+
+
