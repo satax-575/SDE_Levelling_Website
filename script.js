@@ -1276,15 +1276,20 @@ const tabContents      = document.querySelectorAll('.tab-content');
 // ═══════════════════════════════════════════════════════════════════════
 //  INIT
 // ═══════════════════════════════════════════════════════════════════════
+let _authResolved = false; // true once Firebase confirms session status
+
 function init() {
-  // Start with zeroed state — populated only when user logs in
+  // 1. Load from localStorage IMMEDIATELY for instant first paint
+  loadLocalProgress();
   updateStreakUI();
   renderBothRoadmaps();
   updatePlayerStatsUI();
   updateTrackStats();
   renderAchievements();
 
+  // 2. Firebase auth state — resolves asynchronously
   auth.onAuthStateChanged(async user => {
+    const saveInd = document.getElementById('save-indicator');
     if (user) {
       // ── LOGGED IN ──
       currentUser = user;
@@ -1292,20 +1297,29 @@ function init() {
       userEmailSpan.innerText = user.email.split('@')[0];
       authBtn.style.display   = 'none';
       logoutBtn.style.display = 'inline-block';
-      await fetchCloudProgress(); // restore their progress from cloud
+      if (saveInd) saveInd.style.display = 'none'; // cloud icon replaces it
+      // Pre-save email for next-time pre-fill
+      try { localStorage.setItem('sdeQuestLastEmail', user.email); } catch(e) {}
+      await fetchCloudProgress(); // merge cloud state (may be ahead of local)
     } else {
-      // ── LOGGED OUT — ALWAYS reset to zero ──
+      // ── LOGGED OUT ──
       currentUser = null;
       userInfo.style.display  = 'none';
       authBtn.style.display   = 'inline-block';
       logoutBtn.style.display = 'none';
-      playerState = defaultState(); // wipe everything to zero
-      renderBothRoadmaps();
-      updatePlayerStatsUI();
-      updateTrackStats();
-      updateStreakUI();
-      renderAchievements();
+      if (saveInd) saveInd.style.display = 'flex'; // show local save icon
+
+      if (_authResolved) {
+        // Real logout — keep local progress visible, cloud sync disabled
+        renderBothRoadmaps();
+        updatePlayerStatsUI();
+        updateTrackStats();
+        updateStreakUI();
+        renderAchievements();
+      }
+      // else: first-paint null — localStorage already loaded above
     }
+    _authResolved = true;
   });
 
   // Tab switching
@@ -1327,8 +1341,12 @@ function init() {
   resetBtn.addEventListener('click', resetProgress);
   achievementsBtn.addEventListener('click', () => { achievementsModal.classList.add('show'); newAchDot.style.display = 'none'; });
   authBtn.addEventListener('click', () => { resetAuthModal(); authModal.classList.add('show'); });
-  // Logout — just sign out. onAuthStateChanged handles the state reset automatically.
+  // Logout — sign out + keep showing local progress (state stays in localStorage)
   logoutBtn.addEventListener('click', () => auth.signOut());
+
+  // Google Sign-In button
+  const googleSignInBtn = document.getElementById('google-signin-btn');
+  if (googleSignInBtn) googleSignInBtn.addEventListener('click', handleGoogleSignIn);
 
   authToggleBtn.addEventListener('click', toggleAuthMode);
   authSubmitBtn.addEventListener('click', handleAuthSubmit);
@@ -1359,16 +1377,42 @@ function switchTab(tab) {
 // ═══════════════════════════════════════════════════════════════════════
 //  STORAGE
 // ═══════════════════════════════════════════════════════════════════════
+const LS_KEY = 'sdeQuestProgress_v2';
+
+function flashSaveIndicator() {
+  const ind = document.getElementById('save-indicator');
+  if (!ind) return;
+  ind.classList.add('saved-flash');
+  setTimeout(() => ind.classList.remove('saved-flash'), 1200);
+}
+
 function saveProgress() {
-  // Cloud-only saving. No localStorage = logout truly means zero.
+  // Always save to localStorage so progress survives session expiry / PC restarts
+  try {
+    localStorage.setItem(LS_KEY, JSON.stringify(playerState));
+    flashSaveIndicator();
+  } catch(e) { console.warn('localStorage save failed:', e); }
+
+  // If logged in, also sync to Firestore (cloud backup)
   if (currentUser) {
-    db.collection('userProgress').doc(currentUser.uid).set(playerState)
+    db.collection('userProgress').doc(currentUser.uid)
+      .set({ ...playerState, _lastSaved: Date.now() })
       .catch(err => console.error("Cloud save failed:", err));
   }
 }
 
-// loadProgress removed — fetchCloudProgress() handles all state loading.
-// State starts at defaultState() and is only populated on login.
+// Load from localStorage immediately — used on first paint before cloud sync
+function loadLocalProgress() {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (raw) {
+      const saved = JSON.parse(raw);
+      playerState = { ...defaultState(), ...saved };
+      ensureDefaults();
+      checkUnlocks();
+    }
+  } catch(e) { console.warn('localStorage load failed:', e); }
+}
 
 function ensureDefaults() {
   if (!playerState.unlockedMonths) playerState.unlockedMonths = [1];
@@ -1380,7 +1424,8 @@ function ensureDefaults() {
 function resetProgress() {
   if (!confirm("Reset ALL progress? This cannot be undone.")) return;
   playerState = defaultState();
-  saveProgress(); // clears cloud doc too
+  try { localStorage.removeItem(LS_KEY); } catch(e) {}
+  saveProgress();
   renderBothRoadmaps();
   updatePlayerStatsUI();
   updateTrackStats();
@@ -1392,15 +1437,29 @@ async function fetchCloudProgress() {
   try {
     const doc = await db.collection('userProgress').doc(currentUser.uid).get();
     if (doc.exists) {
-      playerState = { ...defaultState(), ...doc.data() }; // always merge into fresh defaults
+      const cloudData = doc.data();
+      // Merge strategy: use whichever state has more completed quests (most progress)
+      const localKeys  = Object.keys(playerState.completedQuests || {}).length;
+      const cloudKeys  = Object.keys(cloudData.completedQuests  || {}).length;
+      const cloudTs    = cloudData._lastSaved || 0;
+      const localTs    = playerState._lastSaved || 0;
+
+      // Prefer cloud if it has MORE quests, OR same quests but is newer
+      if (cloudKeys > localKeys || (cloudKeys === localKeys && cloudTs >= localTs)) {
+        playerState = { ...defaultState(), ...cloudData };
+      }
+      // else keep local (it's ahead)
     } else {
-      playerState = defaultState(); // brand new user
-      saveProgress(); // save initial state to Firestore
+      // Brand new user in Firestore — local state (if any) is the truth
+      // Just write local state to cloud
+      saveProgress();
     }
     ensureDefaults();
-    updateStreak(); // check if streak broke while they were away
+    updateStreak();
     checkUnlocks();
-    checkLevelUp();  // ensure level matches XP in case of any state drift
+    checkLevelUp();
+    // Sync whatever we decided is canonical back to both stores
+    saveProgress();
     renderBothRoadmaps();
     updatePlayerStatsUI();
     updateTrackStats();
@@ -1408,6 +1467,7 @@ async function fetchCloudProgress() {
     renderAchievements();
   } catch(e) {
     console.error("Failed to fetch cloud progress:", e);
+    // Fall through — localStorage data is already displayed, no data loss
   }
 }
 
@@ -1806,7 +1866,25 @@ authResetInlineBtn.addEventListener('click', async () => {
   }
 });
 
-function resetAuthModal() {
+// ── Google Sign-In ──
+async function handleGoogleSignIn() {
+  const googleBtn = document.getElementById('google-signin-btn');
+  if (googleBtn) { googleBtn.disabled = true; googleBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Connecting...'; }
+  try {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    await auth.signInWithPopup(provider);
+    authModal.classList.remove('show');
+    resetAuthModal();
+  } catch(err) {
+    if (err.code !== 'auth/popup-closed-by-user') {
+      showAuthError(AUTH_ERRORS[err.code] || `Google sign-in failed. (${err.code})`);
+    }
+  } finally {
+    if (googleBtn) { googleBtn.disabled = false; googleBtn.innerHTML = '<img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width:18px;height:18px;"> Continue with Google'; }
+  }
+}
+
+// Google button is wired inside init() — see event listener setup below
   isLoginMode = true;
   authModalTitle.innerText = "Cloud Save";
   authSubmitTextEl.innerText = "Log In";
@@ -1825,8 +1903,12 @@ function resetAuthModal() {
   authResetInlineBtn.style.background = '';
   authResetInlineBtn.style.borderColor = '';
   authResetInlineBtn.style.color = '';
-  // Clear fields
-  authEmailInput.value = '';
+  // Pre-fill email if we remember it
+  try {
+    const lastEmail = localStorage.getItem('sdeQuestLastEmail');
+    if (lastEmail) authEmailInput.value = lastEmail;
+    else authEmailInput.value = '';
+  } catch(e) { authEmailInput.value = ''; }
   authPasswordInput.value = '';
   authPasswordInput.type = 'password';
   authPasswordInput.setAttribute('autocomplete', 'current-password');
@@ -1855,23 +1937,27 @@ function toggleAuthMode() {
 
 // Maps Firebase error codes → human-readable messages
 const AUTH_ERRORS = {
-  'auth/invalid-credential':     'Incorrect email or password. Use the button below to reset your password.',
+  'auth/invalid-credential':     'Incorrect email or password. Forgotten your password? Use the reset button below — it only takes 10 seconds.',
   'auth/user-not-found':         'No account found with this email. Try signing up instead.',
-  'auth/wrong-password':         'Incorrect password. Use the button below to reset it.',
+  'auth/wrong-password':         'Incorrect password. Use the reset button below to set a new one.',
   'auth/email-already-in-use':   'An account with this email already exists. Try logging in.',
   'auth/weak-password':          'Password must be at least 6 characters.',
   'auth/invalid-email':          'Please enter a valid email address.',
-  'auth/too-many-requests':      'Too many failed attempts. Wait a few minutes, or reset your password below.',
+  'auth/too-many-requests':      'Too many failed attempts. Wait a few minutes, or use the reset button below.',
   'auth/network-request-failed': 'Network error. Check your internet connection and try again.',
   'auth/user-disabled':          'This account has been disabled. Contact support.',
-  'auth/operation-not-allowed':  'Email/password sign-in is not enabled. Contact support.',
+  'auth/operation-not-allowed':  'Email/password sign-in is not enabled. Try Google sign-in instead.',
+  'auth/popup-closed-by-user':   'Sign-in window was closed. Please try again.',
+  'auth/popup-blocked':          'Pop-up was blocked by your browser. Allow pop-ups for this site.',
+  'auth/account-exists-with-different-credential': 'An account already exists with this email but with a different sign-in method. Try email/password or Google.',
 };
 
-// Codes that warrant showing the inline reset-email button
+// ALWAYS show reset button for password failures (not just on 2nd try)
 const SHOW_RESET_FOR = new Set([
   'auth/invalid-credential',
   'auth/wrong-password',
   'auth/too-many-requests',
+  'auth/user-not-found',
 ]);
 
 function setAuthLoading(loading) {

@@ -61,7 +61,11 @@
             <button id="reset-btn" class="icon-btn tooltip" title="Reset Progress">
                 <i class="fa-solid fa-rotate-right"></i>
             </button>
-            <button id="auth-btn" class="icon-btn tooltip" title="Cloud Save">
+            <div id="save-indicator" class="save-indicator tooltip" title="Progress saved locally. Log in to enable cloud backup.">
+                <i class="fa-solid fa-floppy-disk"></i>
+                <span class="tooltiptext">Saved locally</span>
+            </div>
+            <button id="auth-btn" class="icon-btn tooltip" title="Log in to enable Cloud Save across devices">
                 <i class="fa-solid fa-cloud-arrow-up"></i>
             </button>
             <button id="logout-btn" class="icon-btn tooltip" style="display:none;" title="Log Out">
@@ -169,9 +173,17 @@
             <div class="modal-header" style="text-align:center;">
                 <div style="font-size:3rem; margin-bottom:1rem;">☁️</div>
                 <h2 id="auth-modal-title">Cloud Save</h2>
-                <p>Sync your progress across devices.</p>
+                <p>Sync your progress across devices. Your local progress is always safe.</p>
             </div>
-            <div id="auth-form" style="display:flex; flex-direction:column; gap:12px; margin-top:20px;">
+
+            <!-- Google Sign-In (easiest — no password to forget) -->
+            <button id="google-signin-btn" class="google-signin-btn" type="button">
+                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width:18px;height:18px;"> Continue with Google
+            </button>
+
+            <div class="auth-divider"><span>or use email</span></div>
+
+            <div id="auth-form" style="display:flex; flex-direction:column; gap:12px;">
                 <input type="email" id="auth-email" placeholder="Email Address" class="auth-input" autocomplete="email" spellcheck="false" autocapitalize="none">
                 <div style="position:relative;">
                     <input type="password" id="auth-password" placeholder="Password" class="auth-input" autocomplete="current-password" style="padding-right: 44px;" spellcheck="false">
