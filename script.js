@@ -1165,7 +1165,7 @@ function countCompletedMonths(s, data) {
 // ═══════════════════════════════════════════════════════════════════════
 const firebaseConfig = {
   apiKey: "AIzaSyCPOVNgif3smdzyX5I_Du2Q0bXknssrEto",
-  authDomain: "sde-levelling.firebaseapp.com",
+  authDomain: "sde-levelling.web.app",        // must match the domain you're hosted on
   projectId: "sde-levelling",
   storageBucket: "sde-levelling.firebasestorage.app",
   messagingSenderId: "30870143922",
@@ -1279,6 +1279,24 @@ const tabContents      = document.querySelectorAll('.tab-content');
 let _authResolved = false; // true once Firebase confirms session status
 
 function init() {
+  // 0. Handle Google redirect result FIRST — if user just came back from Google sign-in
+  //    getRedirectResult resolves once and is null if no redirect happened.
+  auth.getRedirectResult().then(result => {
+    if (result && result.user) {
+      // Redirect sign-in succeeded — onAuthStateChanged will fire and handle the rest
+      authModal.classList.remove('show');
+      resetAuthModal();
+    }
+  }).catch(err => {
+    console.error('[Redirect Result Error]', err.code, err.message);
+    if (err.code && err.code !== 'auth/no-auth-event') {
+      // Show auth modal with error if redirect failed
+      resetAuthModal();
+      authModal.classList.add('show');
+      showAuthError(AUTH_ERRORS[err.code] || `Google sign-in failed. (${err.code})`);
+    }
+  });
+
   // 1. Load from localStorage IMMEDIATELY for instant first paint
   loadLocalProgress();
   updateStreakUI();
@@ -1866,25 +1884,21 @@ authResetInlineBtn.addEventListener('click', async () => {
   }
 });
 
-// ── Google Sign-In ──
-async function handleGoogleSignIn() {
+// ── Google Sign-In — uses redirect (more reliable than popup on deployed sites) ──
+function handleGoogleSignIn() {
   const googleBtn = document.getElementById('google-signin-btn');
   if (googleBtn) {
     googleBtn.disabled = true;
-    googleBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="font-size:1rem;"></i> Connecting to Google...';
+    googleBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="font-size:1rem;"></i> Redirecting to Google...';
   }
   try {
     const provider = new firebase.auth.GoogleAuthProvider();
-    provider.setCustomParameters({ prompt: 'select_account' }); // always show account picker
-    await auth.signInWithPopup(provider);
-    authModal.classList.remove('show');
-    resetAuthModal();
+    provider.setCustomParameters({ prompt: 'select_account' });
+    // Redirect — page will leave and come back. onAuthStateChanged handles the result.
+    auth.signInWithRedirect(provider);
   } catch(err) {
     console.error('[Google Auth Error]', err.code, err.message);
-    if (err.code !== 'auth/popup-closed-by-user' && err.code !== 'auth/cancelled-popup-request') {
-      showAuthError(AUTH_ERRORS[err.code] || `Google sign-in failed. (${err.code})`);
-    }
-  } finally {
+    showAuthError(AUTH_ERRORS[err.code] || `Google sign-in failed. (${err.code})`);
     if (googleBtn) {
       googleBtn.disabled = false;
       googleBtn.innerHTML = `<span class="g-logo"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="G"></span> Continue with Google`;
