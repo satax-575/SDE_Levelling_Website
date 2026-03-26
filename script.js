@@ -1121,29 +1121,316 @@ const dsaRoadmapData = [
   }
 ];
 
+
+// ═══════════════════════════════════════════════════════════════════════
+//  TOPIC META — Focused learning tips & difficulty for every topic
+//  Looked up by title in renderQuests(). Keeps roadmap data clean.
+// ═══════════════════════════════════════════════════════════════════════
+const TOPIC_META = {
+  // ── SDE Month 1: Programming Foundations ──
+  "How Computers Work: CPU, RAM, Storage & Binary": { difficulty:"beginner", tip:"🎯 Watch Crash Course ep.1-4 only (20 min total). Key insight: everything — text, images, your code — is just 0s and 1s stored in memory cells." },
+  "Variables, Data Types & Type Systems": { difficulty:"beginner", tip:"🎯 Use Python Tutor on every code example you write this week. Watching memory allocate/deallocate visually is worth 10× reading about it." },
+  "Operators: Arithmetic, Comparison, Logical & Bitwise": { difficulty:"beginner", tip:"🎯 Master ==, !=, &&, ||, ! first. Skip bitwise operators (&, |, ^, <<, >>) for now — revisit them in the DSA track where they're truly needed." },
+  "Control Flow: if/else, switch, and Ternary": { difficulty:"beginner", tip:"🎯 Practice: code FizzBuzz and a letter-grade calculator. If you can write nested if/else confidently, you're ready for the next topic." },
+  "Loops: for, while, do-while, and Iteration Patterns": { difficulty:"beginner", tip:"🎯 The for loop is your workhorse. Practice: print a multiplication table, sum an array, find the max value. These 3 patterns cover 80% of loop problems." },
+  "Functions, Parameters, Return Values & Pure Functions": { difficulty:"beginner", tip:"🎯 A pure function = same input always gives same output, no side effects. This mental model is the foundation of clean, testable code." },
+  "Scope, Closures & the Execution Context": { difficulty:"intermediate", tip:"🎯 Read Lydia Hallie's scope article — the animated GIFs explain it better than any text. Closures will click naturally once scope makes sense." },
+  "Terminal & CLI Essentials (bash, zsh, file navigation)": { difficulty:"beginner", tip:"🎯 Learn just 10 commands first: ls, cd, mkdir, touch, cp, mv, rm, cat, grep, pwd. Master these before anything else — everything else you can look up." },
+  "Git Fundamentals: init, add, commit, log, diff": { difficulty:"beginner", tip:"🎯 Use Learn Git Branching (interactive site) — it's the single best git resource. Focus: init, add, commit, status, log. Branch operations come in Month 2." },
+  "Problem Solving Mindset: Pseudocode & Decomposition": { difficulty:"beginner", tip:"🎯 Before writing ANY code, spend 3-5 min writing pseudocode. This single habit separates good programmers from great ones. Practice on 3 Advent of Code Day 1 puzzles." },
+
+  // ── SDE Month 2: OOP & Version Control ──
+  "Classes, Objects & Constructors": { difficulty:"beginner", tip:"🎯 Read Refactoring Guru OOP intro (5 min), then immediately code a BankAccount class with deposit/withdraw/balance methods. Reading without coding doesn't stick." },
+  "Encapsulation & Data Hiding (getters/setters, private fields)": { difficulty:"beginner", tip:"🎯 The golden rule: never directly access raw properties from outside a class. Always use methods. Prevents invalid state — e.g., age should never be negative." },
+  "Inheritance, Method Overriding & super()": { difficulty:"intermediate", tip:"🎯 Key test: if you can say 'A IS-A B', inheritance is valid. Car IS-A Vehicle ✓. Car IS-A Engine ✗ (that's composition). Focus on method overriding examples." },
+  "Polymorphism: compile-time vs runtime": { difficulty:"intermediate", tip:"🎯 One-liner: one interface, many implementations. A Shape has area() — but Circle and Rectangle calculate it differently. That IS polymorphism. Focus on runtime (method overriding)." },
+  "Abstraction, Interfaces & Abstract Classes": { difficulty:"intermediate", tip:"🎯 Read the Stack Overflow answer — it's concise and authoritative. Core rule: interfaces define WHAT to do, abstract classes define WHAT + partial HOW." },
+  "SOLID Principles with Real Examples": { difficulty:"intermediate", tip:"🎯 Start with just S (Single Responsibility) and O (Open/Closed). These two cover 80% of real code quality issues. Read the FreeCodeCamp article end-to-end with examples." },
+  "Design Patterns: Singleton, Factory, Observer, Strategy": { difficulty:"intermediate", tip:"🎯 Learn only 3 patterns now: Singleton (one instance), Factory (create objects), Observer (notify listeners). Read Refactoring Guru for each. Skip the rest until Month 8+." },
+  "Git Branching Strategies (Gitflow, trunk-based)": { difficulty:"beginner", tip:"🎯 Gitflow model: main (production), develop (staging), feature/* (your work). This is the industry standard. Use Learn Git Branching interactive to practice branching." },
+  "Pull Requests, Code Reviews & Collaboration Best Practices": { difficulty:"beginner", tip:"🎯 Read Google's code review guide — it's the gold standard. Key rule: one PR = one logical change. Review your own code before submitting. Think about the reviewer's time." },
+  "Resolving Merge Conflicts & Git Rebase vs Merge": { difficulty:"intermediate", tip:"🎯 Practice: create a feature branch, make conflicting changes on main, then resolve it. Doing this once is worth reading about it 10 times. For beginners: always merge, learn rebase later." },
+
+  // ── SDE Month 3: Basic Data Structures ──
+  "Arrays & Dynamic Arrays (ArrayList/Vector)": { difficulty:"beginner", tip:"🎯 Do LeetCode Arrays 101 first 5 exercises. Master: index access O(1), iteration, in-place modification. Two-pointer concept starts here." },
+  "Strings, String Manipulation & Common Algorithms": { difficulty:"beginner", tip:"🎯 Learn these 5 ops cold: reverse, find substring, split by delimiter, replace, count occurrences. These appear in 30% of easy interview problems." },
+  "Linked Lists: Singly & Doubly (traversal, insertion, deletion)": { difficulty:"intermediate", tip:"🎯 Draw every pointer operation on paper first — always. Use VisuAlgo. Key operations: insert at head O(1), delete a node, reverse the list. These 3 are interview favorites." },
+  "Stacks: LIFO principle, implementations, applications": { difficulty:"beginner", tip:"🎯 Implement a stack yourself using an array before using a built-in. Key insight: the call stack in your debugger IS a stack — function calls push, returns pop." },
+  "Queues: FIFO, Deque, Circular Queue": { difficulty:"beginner", tip:"🎯 Think: a line at a store. First person in, first out. Implement array-based queue first. Key ops: enqueue (add to back), dequeue (remove from front)." },
+  "Hash Tables: Hashing, Collision Resolution (chaining, open addressing)": { difficulty:"intermediate", tip:"🎯 Watch CS50 hash tables video (10 min) — it's the clearest explanation. This is the most important DS for interviews. O(1) lookup changes how you solve problems." },
+  "HashMaps & HashSets in Practice (frequency counting, deduplication)": { difficulty:"intermediate", tip:"🎯 The two must-know patterns: (1) frequency count — count char occurrences in a string. (2) seen-set — check if element exists in O(1). These appear in ~30% of easy LeetCode problems." },
+  "Big-O Notation: Time & Space Complexity Analysis": { difficulty:"beginner", tip:"🎯 Memorize this order: O(1) < O(log n) < O(n) < O(n log n) < O(n²) < O(2ⁿ). Focus on analyzing loops: single loop = O(n), nested loops = O(n²), halving loop = O(log n)." },
+  "Amortized Analysis & when to use which data structure": { difficulty:"advanced", tip:"🎯 Key insight: dynamic array doubling is O(n) occasionally but O(1) amortized. Don't overthink — just know it exists and what it means for ArrayList performance." },
+  "LeetCode Practice: Easy Array/String/HashMap Problems (target 30)": { difficulty:"intermediate", tip:"🎯 Do in this order: Two Sum → Contains Duplicate → Valid Anagram → Best Time to Buy Stock → Product of Array Except Self → Group Anagrams. These build on each other." },
+
+  // ── SDE Month 4: Algorithmic Thinking ──
+  "Algorithm Design Strategies Overview": { difficulty:"beginner", tip:"🎯 Read Khan Academy's algorithm intro (15 min). Key: every algorithm must be correct, terminate, and be efficient. That's the triple constraint." },
+  "Recursion Deep Dive: call stack, tree recursion, memoization intro": { difficulty:"intermediate", tip:"🎯 Use Python Tutor to visualize the call stack. Master these 3 before anything: factorial, fibonacci, power(x,n). Every recursion = base case + recursive case. Never skip drawing the tree." },
+  "Sorting Algorithms: Bubble, Selection, Insertion, Merge, Quick, Heap": { difficulty:"intermediate", tip:"🎯 Watch VisuAlgo animations for all algorithms. You MUST implement QuickSort and MergeSort from scratch — these are interview essentials. Focus 80% time on these two." },
+  "Searching: Linear Search, Binary Search & its variants": { difficulty:"intermediate", tip:"🎯 Binary search is trickier than it looks. Use this template always: lo=0, hi=n-1, while(lo<=hi), mid=lo+(hi-lo)/2. Memorize it. Practice: write it 10 times from scratch." },
+  "Two Pointers: opposite ends, same direction, fast/slow": { difficulty:"intermediate", tip:"🎯 Two patterns: (1) opposite ends — palindrome check, two sum in sorted array. (2) same direction — remove duplicates, fast/slow (cycle detection). Practice both patterns separately." },
+  "Sliding Window: fixed size, variable size, multi-window": { difficulty:"intermediate", tip:"🎯 Fixed window first: max sum of k elements. Variable window next: longest substring without repeating characters. These two patterns cover 90% of sliding window problems." },
+  "Greedy Algorithms: activity selection, interval scheduling": { difficulty:"intermediate", tip:"🎯 Greedy only works when 'take the locally best option' provably leads to global optimum. Activity Selection is the textbook example. Always ask: 'is greedy correct here, or do I need DP?'" },
+  "Divide and Conquer: paradigm, merge sort analysis, master theorem": { difficulty:"intermediate", tip:"🎯 MergeSort IS divide and conquer. Split → solve recursively → merge. This exact pattern appears in: merge K sorted lists, closest pair of points, count inversions." },
+  "Backtracking: N-Queens, Sudoku Solver, Subsets, Permutations": { difficulty:"intermediate", tip:"🎯 Template: for each choice → make choice → recurse → UNDO choice. The 4 must-know problems: subsets, permutations, combination sum, N-Queens. NeetCode playlist explains all 4 perfectly." },
+  "Dynamic Programming Intro: Fibonacci, Climbing Stairs, Memoization vs Tabulation": { difficulty:"intermediate", tip:"🎯 Watch NeetCode DP intro first (23 min). Golden rule: if problem asks 'how many ways' or 'min/max amount', think DP. Start: Climbing Stairs → House Robber → Coin Change." },
+
+  // ── SDE Month 5: Advanced Data Structures ──
+  "Binary Trees: properties, terminology, full/complete/perfect": { difficulty:"intermediate", tip:"🎯 Know these terms cold: root, leaf, parent, child, height, depth. Perfect tree of height h has 2^(h+1)-1 nodes. The LeetCode Binary Tree Card covers all properties clearly." },
+  "BST: Insert, Delete, Search, Predecessor/Successor": { difficulty:"intermediate", tip:"🎯 BST invariant: left < node < right at every node. Practice BST Visualizer to see animations. Deletion is the hardest op — study the 3 cases carefully (leaf, one child, two children)." },
+  "Tree Traversals: Inorder, Preorder, Postorder, Level-Order (BFS)": { difficulty:"intermediate", tip:"🎯 Know all 4 traversals by heart: inorder=sorted BST output, preorder=serialize/copy tree, postorder=delete tree, level-order=BFS. Know when each is useful." },
+  "Self-Balancing Trees: AVL Trees & Red-Black Trees (concepts)": { difficulty:"advanced", tip:"🎯 Understand conceptually how rotations maintain balance. Implementing from scratch is rarely asked in interviews. Focus on: why balance matters, height guarantee O(log n)." },
+  "Heaps & Priority Queues: max-heap, min-heap, heapify": { difficulty:"intermediate", tip:"🎯 Heap invariant: parent ≥ children (max-heap). Key ops: insert O(log n), extract-max O(log n), peek O(1). Use priority_queue in C++, heapq in Python." },
+  "Tries (Prefix Trees): insert, search, startsWith, word dictionary": { difficulty:"intermediate", tip:"🎯 Implement Trie from scratch on LeetCode #208 — every node is a char, every root-to-leaf path is a word. The go-to structure for prefix/autocomplete problems." },
+  "Graphs: Adjacency Matrix, Adjacency List, Edge List representations": { difficulty:"intermediate", tip:"🎯 Adjacency list = default choice. Space: O(V+E) vs O(V²) for matrix. Use matrix only when graph is dense (many edges) or you need O(1) edge existence check." },
+  "BFS: level-order traversal, shortest path in unweighted graph": { difficulty:"intermediate", tip:"🎯 BFS always finds shortest path in unweighted graphs. Template: queue + visited set + level counter. Must-know problems: Number of Islands, Word Ladder, Rotting Oranges." },
+  "DFS: connected components, cycle detection, topological sort": { difficulty:"intermediate", tip:"🎯 DFS key applications: cycle detection, topological sort, connected components, path finding. Master recursive first, then iterative with explicit stack." },
+  "Shortest Path Algorithms: Dijkstra, Bellman-Ford, Floyd-Warshall": { difficulty:"advanced", tip:"🎯 Dijkstra: no negative edges, min-heap, O((V+E)log V). Bellman-Ford: allows negatives, O(VE), detects negative cycles. Floyd-Warshall: all pairs O(V³). Know when to pick each." },
+
+  // ── SDE Month 6: Web & Networking ──
+  "How the Internet Works: TCP/IP, DNS, HTTP Lifecycle": { difficulty:"beginner", tip:"🎯 Read MDN's How the Web Works (10 min). Focus on the DNS resolution + TCP handshake + HTTP request/response lifecycle. This is what happens on every single page load." },
+  "HTTP/HTTPS: methods, status codes, headers, cookies": { difficulty:"beginner", tip:"🎯 Memorize: 200 OK, 201 Created, 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found, 500 Internal Error. You'll use these codes every day as a backend engineer." },
+  "Browser Rendering: DOM, CSSOM, Reflow, Repaint, Critical Path": { difficulty:"intermediate", tip:"🎯 Critical Rendering Path sequence: HTML→DOM, CSS→CSSOM, DOM+CSSOM→Render Tree, Layout, Paint. This knowledge drives performance optimization decisions." },
+  "HTML5 Semantic Structuring & Accessibility (ARIA)": { difficulty:"beginner", tip:"🎯 Use semantic elements (header, nav, main, article, section, footer) instead of generic divs. Better SEO, better accessibility, better readability. Read MDN ARIA basics page." },
+  "CSS3: Box Model, Flexbox, Grid, Animations & Custom Properties": { difficulty:"beginner", tip:"🎯 Master Flexbox first (1D layouts). Then CSS Grid (2D layouts). Play Flexbox Froggy and Grid Garden — these games teach both faster than any article or tutorial." },
+  "JavaScript: DOM Manipulation, Events & the Event Delegation Pattern": { difficulty:"intermediate", tip:"🎯 Event delegation is key: attach ONE listener to a parent element instead of many to children. Prevents memory leaks and handles dynamically added elements automatically." },
+  "Async JavaScript: Promises, async/await, Fetch API": { difficulty:"intermediate", tip:"🎯 async/await is syntactic sugar over Promises. Always wrap in try/catch. Practice: fetch data from JSONPlaceholder API (jsonplaceholder.typicode.com) — free, no API key needed." },
+  "The Event Loop, Microtask Queue & Macrotask Queue": { difficulty:"advanced", tip:"🎯 Watch Jake Archibald's JSConf video (35 min) — the clearest event loop explanation ever made. Key insight: microtasks (Promises) run before macrotasks (setTimeout) in the same tick." },
+  "Web Storage: localStorage, sessionStorage, cookies vs IndexedDB": { difficulty:"beginner", tip:"🎯 localStorage: persists forever. sessionStorage: cleared on tab close. Cookies: sent with every HTTP request (use for auth tokens). IndexedDB: large structured data." },
+  "Build & Deploy: Webpack/Vite basics, npm scripts, Netlify/Vercel": { difficulty:"intermediate", tip:"🎯 Vite is the modern standard — much faster than Webpack. Run: npm create vite@latest. Deploy to Netlify by dragging your dist/ folder. That's a real deployed app in 5 minutes." },
+
+  // ── SDE Month 7: Databases & SQL ──
+  "Relational Model: Tables, Rows, Columns, Keys, Relationships": { difficulty:"beginner", tip:"🎯 Do ALL of SQLBolt (18 interactive lessons, ~2 hours). It is the best SQL learning resource bar none — better than any video or article. Do not skip exercises." },
+  "SQL CRUD: SELECT, INSERT, UPDATE, DELETE": { difficulty:"beginner", tip:"🎯 ALWAYS use WHERE with UPDATE and DELETE. 'UPDATE users SET role=admin' (without WHERE) updates EVERY user. This mistake has caused real production disasters." },
+  "Filtering, Sorting, Grouping: WHERE, ORDER BY, GROUP BY, HAVING": { difficulty:"beginner", tip:"🎯 GROUP BY changes the unit of analysis. HAVING filters groups (like WHERE but for aggregates). Practice: find customers with more than 3 orders using GROUP BY + HAVING." },
+  "Aggregate Functions: COUNT, SUM, AVG, MAX, MIN, DISTINCT": { difficulty:"beginner", tip:"🎯 Do Mode Analytics Intermediate SQL. These functions are in virtually every data analytics interview. Practice computing average order value, top customers, revenue by month." },
+  "SQL Joins: INNER, LEFT, RIGHT, FULL OUTER, CROSS, SELF": { difficulty:"intermediate", tip:"🎯 Practice on Visual SQL Joins tool. 90% of real-world queries use INNER JOIN and LEFT JOIN. Master these two first. CROSS JOIN is rare — mostly used for generating combinations." },
+  "Subqueries, CTEs (WITH clause) & Window Functions": { difficulty:"advanced", tip:"🎯 Window functions (ROW_NUMBER, RANK, LAG, LEAD) are the biggest differentiator in SQL interviews. Mode Analytics window functions tutorial is the clearest explanation — read it fully." },
+  "Database Design & Normalization: 1NF, 2NF, 3NF, BCNF": { difficulty:"intermediate", tip:"🎯 3NF is the standard for OLTP databases. Simple test: every non-key column must depend ONLY on the primary key (not on other non-key columns). Read FreeCodeCamp normalization article." },
+  "ACID Properties & Transactions (BEGIN, COMMIT, ROLLBACK)": { difficulty:"intermediate", tip:"🎯 ACID = Atomicity (all-or-nothing), Consistency, Isolation, Durability. Classic example: bank transfer. If any step fails, the entire transaction rolls back. Money never disappears." },
+  "Indexing: B-Tree index, composite index, index on expressions, EXPLAIN": { difficulty:"advanced", tip:"🎯 Use The Index, Luke is the best indexing resource (free book). Rule of thumb: add an index on any column frequently in WHERE, JOIN ON, or ORDER BY. Check with EXPLAIN." },
+  "SQL Practice: LeetCode SQL 50 + HackerRank SQL (Advanced)": { difficulty:"intermediate", tip:"🎯 Do all 50 problems in LeetCode SQL 50. Then StrataScratch for real company questions (Airbnb, Netflix, Uber). DataLemur is the best for interview-focused SQL practice." },
+
+  // ── SDE Month 8: Backend Engineering ──
+  "Backend Frameworks: Node/Express, Spring Boot, Django/FastAPI overview": { difficulty:"intermediate", tip:"🎯 Pick ONE framework and go deep. Express.js if you know JS. FastAPI if you know Python. Spring Boot for Java. Don't try to learn multiple — depth beats breadth here." },
+  "RESTful API Design: Resources, HTTP Verbs, Statelessness, Versioning": { difficulty:"intermediate", tip:"🎯 Key constraints: stateless (no session on server), resources identified by URLs (/users/123), HTTP verbs have specific meaning (GET=read, POST=create, PUT=replace, PATCH=partial update)." },
+  "Request/Response Lifecycle, Routing & Controllers": { difficulty:"intermediate", tip:"🎯 The pattern: Router receives request → Controller handles logic → Service does work → Repository accesses DB. This separation of concerns is universal across all frameworks." },
+  "Middleware Pattern: logging, validation, rate limiting, CORS": { difficulty:"intermediate", tip:"🎯 Middleware order matters: logger → auth check → rate limiter → validator → handler. Helmet.js adds 11 security headers with one line of code — always use it in production." },
+  "Authentication: Sessions, JWT, OAuth 2.0, Refresh Tokens": { difficulty:"intermediate", tip:"🎯 JWT = encoded payload (NOT encrypted) + signature. Never store sensitive data in JWT. Access tokens in memory, refresh tokens in HttpOnly cookies. Read JWT.io introduction fully." },
+  "Password Security: Hashing (bcrypt), Salting, OWASP guidelines": { difficulty:"intermediate", tip:"🎯 Never store plain passwords. Use bcrypt with at least 10 salt rounds. Read OWASP Password Storage Cheat Sheet — it's the definitive reference and covers all edge cases." },
+  "ORM & Query Builders: Prisma, Sequelize, SQLAlchemy": { difficulty:"intermediate", tip:"🎯 Prisma is the best modern ORM — schema-first, type-safe, catches a whole class of bugs at compile time. Read the Prisma Getting Started guide fully (it's well written)." },
+  "Input Validation, Sanitization & Error Handling Strategies": { difficulty:"intermediate", tip:"🎯 Validate EVERY input — never trust client data. Always return consistent error format: {status, message, errors[]}. Joi or Zod for validation. Never expose stack traces in production." },
+  "API Testing: Postman, cURL, and writing Integration Tests": { difficulty:"intermediate", tip:"🎯 Learn these 5 Postman operations: GET/POST/PUT/DELETE requests, setting headers, request body (JSON), environment variables, saving collections. Then write at least 3 integration tests." },
+  "API Documentation: Swagger/OpenAPI, Markdown READMEs": { difficulty:"beginner", tip:"🎯 Your API README must include: what it does, how to set up locally, all endpoints with examples. Swagger/OpenAPI generates interactive docs from your code — use it in production projects." },
+
+  // ── SDE Month 9: System Design ──
+  "Client-Server Architecture": { difficulty:"intermediate", tip:"🎯 Read the System Design Primer README — it's the best free SD resource. Start with 'How to approach a system design interview question' section. Then study each concept it links to." },
+  "Vertical vs Horizontal Scaling": { difficulty:"intermediate", tip:"🎯 Vertical = bigger machine (limited, single point of failure). Horizontal = more machines (unlimited, needs load balancer). Most modern systems scale horizontally." },
+  "Load Balancing and API Gateways": { difficulty:"intermediate", tip:"🎯 Load balancer algorithms: Round Robin (default), Least Connections (smarter), IP Hash (sticky sessions). Nginx is the most common open-source option. API Gateway adds auth, rate limiting, routing." },
+  "Caching Strategies": { difficulty:"intermediate", tip:"🎯 Cache invalidation is the hard problem. Three strategies: write-through (sync), write-back (async), cache-aside (app manages). Redis is the standard cache. Know TTL and eviction policies." },
+  "Content Delivery Networks (CDN)": { difficulty:"beginner", tip:"🎯 CDN = copies of your static assets (images, JS, CSS) on servers worldwide. Users get files from the nearest server. Cloudflare and AWS CloudFront are the main providers." },
+  "Monolithic vs Microservices Architectures": { difficulty:"intermediate", tip:"🎯 Read Martin Fowler's microservices article (it's the definitive reference). Key tradeoff: microservices give scalability + independent deployment, but add operational complexity. Start monolith, split when needed." },
+  "Database Sharding and Replication": { difficulty:"advanced", tip:"🎯 Replication = copies for read scale + failover. Sharding = split data across DBs for write scale. They solve different problems. Master-slave is the most common replication pattern." },
+  "Message Queues and Event-Driven Arch.": { difficulty:"advanced", tip:"🎯 Message queues decouple systems — producer sends, consumer processes later. Kafka for high throughput, RabbitMQ for complex routing. Key benefits: async, durable, retryable, decoupled." },
+
+  // ── SDE Month 10: Cloud & DevOps ──
+  "Cloud Providers Overview": { difficulty:"beginner", tip:"🎯 AWS leads (31%). Focus on 5 core services first: EC2 (virtual machines), S3 (object storage), RDS (managed databases), Lambda (serverless), IAM (identity and access management)." },
+  "Virtual Machines vs Containers": { difficulty:"beginner", tip:"🎯 Container = isolated process with its own filesystem (lightweight, starts in ms). VM = full OS on hypervisor (heavy, starts in minutes). Docker = containers. Most modern apps use containers." },
+  "Docker Fundamentals": { difficulty:"intermediate", tip:"🎯 Do Docker 101 Tutorial end-to-end (1-2 hours). Key concepts: image (blueprint), container (running instance), Dockerfile (recipe), registry (Docker Hub). Run the tutorial — don't just read it." },
+  "Docker Compose for multi-container apps": { difficulty:"intermediate", tip:"🎯 docker-compose.yml runs your app + database + cache with one command (docker compose up). Learn: up, down, logs, ps, exec. This is how every modern dev environment is set up." },
+  "Continuous Integration & Deployment": { difficulty:"intermediate", tip:"🎯 CI = auto-test every code push. CD = auto-deploy if tests pass. This pipeline catches bugs before users see them. The ROI is enormous. Every team uses this." },
+  "GitHub Actions / GitLab CI Basics": { difficulty:"intermediate", tip:"🎯 Create .github/workflows/ci.yml. Simple pipeline: on push → install deps → run tests → build. This is industry standard. Start with the GitHub Actions quickstart guide." },
+  "Linux Basics and Bash Scripting": { difficulty:"intermediate", tip:"🎯 Bash essentials: variables, if statements, for loops, chmod +x, pipe (|), redirect (>), grep. These 8 concepts cover 90% of scripts you'll ever need to write." },
+  "Observability: Logging, Metrics (Prometheus), Tracing, Dashboards (Grafana)": { difficulty:"advanced", tip:"🎯 The 4 golden signals: latency, traffic, errors, saturation. Prometheus scrapes metrics, Grafana visualizes them. Set up a simple dashboard for your capstone project." },
+  "Infrastructure as Code: Terraform basics, concepts, AWS example": { difficulty:"advanced", tip:"🎯 IaC means your infrastructure is version-controlled like code. Terraform is the standard tool. Even knowing the basics differentiates you significantly in interviews." },
+
+  // ── SDE Month 11: Specialized Topics & Security ──
+  "NoSQL Databases: Document (MongoDB), Key-Value (Redis), Column (Cassandra)": { difficulty:"intermediate", tip:"🎯 Use cases: MongoDB for flexible schema (user profiles), Redis for caching/sessions (sub-millisecond), Cassandra for time-series at scale. Knowing WHEN to use each is the key skill." },
+  "When to use SQL vs NoSQL: data model & access patterns": { difficulty:"intermediate", tip:"🎯 SQL: ACID, strict schema, complex queries (analytics, finance). NoSQL: flexible schema, horizontal scale, simple patterns (social feeds, IoT). Neither is universally better." },
+  "WebSockets & Server-Sent Events: real-time architecture": { difficulty:"intermediate", tip:"🎯 WebSocket = persistent bidirectional connection. Socket.io handles reconnection + fallbacks automatically. Use Server-Sent Events if you only need server→client push (simpler)." },
+  "GraphQL vs REST: schemas, resolvers, queries, mutations, subscriptions": { difficulty:"intermediate", tip:"🎯 GraphQL strength: clients request exactly what they need (no over/under-fetching). Weakness: caching harder than REST. Read How to GraphQL tutorial fully — it's the best free resource." },
+  "gRPC & Protocol Buffers: when to use gRPC vs REST": { difficulty:"advanced", tip:"🎯 gRPC uses HTTP/2 + Protocol Buffers → 5-10x faster than JSON REST for internal services. Use REST for public APIs, gRPC for internal microservice-to-microservice communication." },
+  "Web Security: OWASP Top 10, SQL Injection, XSS, CSRF": { difficulty:"intermediate", tip:"🎯 Read OWASP Top 10 list fully (30 min). Then do PortSwigger SQL Injection and XSS labs — hands-on practice is essential. Security knowledge is a major differentiator." },
+  "Auth Security: CORS, HTTPS, CSP, Secure Cookies, HSTS": { difficulty:"intermediate", tip:"🎯 CORS: server must explicitly allow cross-origin requests. HSTS: forces HTTPS. CSP: whitelist approved content sources. All three are essential for any production app." },
+  "Rate Limiting, DDoS Mitigation & API Throttling": { difficulty:"intermediate", tip:"🎯 Implement rate limiting on ALL public APIs from day one: 100 req/min per IP is a safe default. Cloudflare handles DDoS at network level — use it for any public-facing project." },
+  "Serverless Computing: AWS Lambda, Vercel Functions, Edge Functions": { difficulty:"intermediate", tip:"🎯 Serverless = no server management, charged per invocation (not per hour). Perfect for event-driven workloads. Not suitable for long-running processes or low-latency requirements." },
+  "Search Systems: Elasticsearch & Full-Text Search Concepts": { difficulty:"advanced", tip:"🎯 Full-text search needs an inverted index (Elasticsearch). For small datasets, PostgreSQL full-text search is sufficient — don't over-engineer. Know when each is appropriate." },
+
+  // ── SDE Month 12: Capstone & Interview Prep ──
+  "Build a Full-Stack Capstone Project (with CI/CD + cloud deployment)": { difficulty:"intermediate", tip:"🎯 Your capstone must show: full-stack (frontend + backend + DB), authentication, cloud deployment, CI/CD pipeline, and a polished README. These 5 = production-ready portfolio project." },
+  "System Design Mock Interviews (Timed Practice)": { difficulty:"advanced", tip:"🎯 Practice saying your thought process OUT LOUD. Interviewers evaluate HOW you think, not just the answer. Use Pramp for free peer practice — aim for 5 mock sessions minimum." },
+  "DSA Practice: NeetCode 150 + Blind 75": { difficulty:"intermediate", tip:"🎯 Do NeetCode 150 in order: Arrays → Two Pointers → Sliding Window → Stack → Binary Search → Linked List → Trees → Heap → Graphs → DP. This sequence builds skills progressively." },
+  "Behavioral Interviews: STAR Method, Leadership Principles, Storytelling": { difficulty:"beginner", tip:"🎯 STAR format: Situation (brief) → Task (your role) → Action (what YOU specifically did) → Result (quantified impact). Prep 5-7 stories covering different leadership principles." },
+  "Competitive Programming for Interview Edge: Codeforces, CSES": { difficulty:"advanced", tip:"🎯 Codeforces Div 2 A-B = LeetCode Easy/Medium. Solve 50+ CSES problems. This experience differentiates you from candidates who only did LeetCode." },
+  "Resume, LinkedIn & Portfolio: ATS optimization, project showcase": { difficulty:"beginner", tip:"🎯 ATS tip: use keywords from the job description verbatim. Quantify every achievement. One page for <3 years experience. Harvard OCS guide is the gold standard — follow it exactly." },
+  "Contributing to Open Source: Find good first issues, fork, PR": { difficulty:"beginner", tip:"🎯 Filter GitHub issues by 'good-first-issue' label. Your first PR just needs to be helpful — fix a typo, improve docs, add a test. Start small. The contribution history matters." },
+  "Writing Great READMEs & Technical Documentation": { difficulty:"beginner", tip:"🎯 README structure: description → demo GIF/screenshot → tech stack → local setup → API docs → contributing. A great README is your storefront — spend time on it." },
+  "Job Search Strategy: outreach, referrals, company research, timing": { difficulty:"beginner", tip:"🎯 Referrals get 5-10x higher callback rate. Spend 20% time applying online, 80% networking. LinkedIn connections, alumni network, local meetups — these are your highest-ROI activities." },
+  "Salary Negotiation & Offer Evaluation (RSUs, vesting, total comp)": { difficulty:"beginner", tip:"🎯 Never give a number first. 'What are you making?' → 'I'm focused on finding the right role. What's the budgeted range?' Read Haseeb's negotiation guide — it's the best on the internet." },
+
+  // ── DSA Month 3: Mathematical Foundations ──
+  "Big-O, Big-Ω, Big-Θ: formal definitions, deriving complexity from code": { difficulty:"intermediate", tip:"🎯 Know the Big-O Cheat Sheet cold. Practice deriving complexity by counting loop iterations. The most common mistakes: forgetting log n for tree operations, missing O(n) for string concatenation." },
+  "Modular Arithmetic: mod operator, properties, overflow prevention": { difficulty:"intermediate", tip:"🎯 Key property: (a+b)%M = ((a%M)+(b%M))%M. Always use long long and take mod after every operation in CP. This prevents overflow in problems with large numbers." },
+  "Number Theory: GCD (Euclidean algorithm), LCM, Coprime numbers": { difficulty:"intermediate", tip:"🎯 Implement Euclidean GCD from memory: gcd(a,b) = gcd(b, a%b), base: gcd(a,0)=a. LCM(a,b) = a*b/gcd(a,b). These appear in 20%+ of CP problems." },
+  "Prime Numbers: Sieve of Eratosthenes, Primality Testing, Factorization": { difficulty:"intermediate", tip:"🎯 Implement Sieve once and memorize it — you'll use it in dozens of CP problems. The sieve finds ALL primes up to N in O(n log log n). Faster than trial division for large N." },
+  "Bit Manipulation: AND, OR, XOR, NOT, shifts — common tricks": { difficulty:"intermediate", tip:"🎯 Must-know tricks: n&(n-1) removes lowest set bit, n&(-n) isolates lowest set bit, x^x=0, x^0=x. These tricks solve problems in O(1) that loops solve in O(n)." },
+  "Combinatorics: nCr, nPr, Pascal's Triangle, Inclusion-Exclusion": { difficulty:"intermediate", tip:"🎯 Compute nCr with Pascal's Triangle to avoid overflow. Inclusion-Exclusion: |A∪B| = |A|+|B|-|A∩B|. Focus on these two — they appear most often in CP contests." },
+  "Recursion Mastery: tree of recursive calls, memoization, when NOT to recurse": { difficulty:"intermediate", tip:"🎯 Do LeetCode Recursion I Card fully. Always draw the recursion tree. When you see exponential recursion (fibonacci without memo), add memoization immediately." },
+  "Backtracking: State Space Trees, Pruning — Subsets, Permutations, N-Queens": { difficulty:"intermediate", tip:"🎯 NeetCode backtracking video is essential viewing. The template: choose → explore → unchoose. Pruning (early termination) is what makes backtracking practical." },
+  "Prefix Sums & Difference Arrays: range query, 2D prefix sum": { difficulty:"intermediate", tip:"🎯 Prefix sum enables O(1) range sum queries after O(n) preprocessing. Difference array enables O(1) range updates. Both are essential competitive programming tools." },
+  "Practice: 30 Problems — Bit Manipulation, Math, Recursion on LeetCode/CSES": { difficulty:"intermediate", tip:"🎯 CSES Mathematics section is the best for this. LeetCode Math tag has 500+ problems — filter by Easy first. Target: 30 problems solved before moving to Month 4." },
+
+  // ── DSA Month 4: Arrays, Hashing & Two Pointers ──
+  "Sliding Window — Fixed Size: Max sum subarray of size k": { difficulty:"intermediate", tip:"🎯 Template: maintain a window of exactly k elements. Add new element, remove oldest. Compute answer. Practice until you can code this from scratch in 5 minutes." },
+  "Sliding Window — Variable Size: Longest Substring Without Repeating": { difficulty:"intermediate", tip:"🎯 Template: expand window (move right), when invalid → shrink (move left). The HashSet/HashMap tracks window contents. This problem is a perfect template for all variable-window problems." },
+  "Two Pointers — Opposite Ends: Two Sum II, Container with Most Water": { difficulty:"intermediate", tip:"🎯 Works only when array is sorted or you can reason about moving each pointer. Container with Most Water is the quintessential example — understand why greedy pointer movement works." },
+  "Two Pointers — Same Direction: Remove Duplicates, Move Zeros": { difficulty:"beginner", tip:"🎯 One pointer tracks the 'write position', the other scans forward. Remove Duplicates from Sorted Array (LeetCode #26) is the canonical example — code it from scratch." },
+  "Hash Maps in Practice: Two Sum, Group Anagrams, Top K Frequent": { difficulty:"intermediate", tip:"🎯 These 3 problems cover the 3 main hashmap patterns. Two Sum: value→index lookup. Group Anagrams: sorted-key grouping. Top K Frequent: frequency counting + heap." },
+  "Hash Sets: Contains Duplicate, Happy Number, Intersection of Arrays": { difficulty:"beginner", tip:"🎯 HashSet = O(1) membership check. Contains Duplicate is the simplest use. Happy Number shows cycle detection with a set. Master these before moving to harder problems." },
+  "Sorting Algorithms Deep Dive: QuickSort, MergeSort — implement from scratch": { difficulty:"intermediate", tip:"🎯 Implement both from memory. QuickSort: partition around pivot, recurse on halves. MergeSort: split in half, sort each, merge. Understand why MergeSort is O(n log n) always but QuickSort is O(n²) worst case." },
+  "Binary Search Patterns: Classic, Search in Rotated Array, Find Minimum": { difficulty:"intermediate", tip:"🎯 The template: lo=0, hi=n-1, while(lo<=hi), mid=lo+(hi-lo)/2. For rotated array: determine which half is sorted, then decide where target could be. Draw this on paper first." },
+  "Binary Search on Answer: Capacity to Ship, Koko Eating Bananas": { difficulty:"advanced", tip:"🎯 Key insight: binary search isn't just for arrays — binary search on the ANSWER. Ask: 'is it possible with value X?' If this is monotonic (no→yes→yes), binary search works." },
+  "Boss Battle: Complete NeetCode 150 — Arrays & Hashing Section (9 problems)": { difficulty:"intermediate", tip:"🎯 These 9 problems are: Contains Duplicate, Valid Anagram, Two Sum, Group Anagrams, Top K Frequent, Encode/Decode Strings, Product Except Self, Valid Sudoku, Longest Consecutive. Do ALL of them." },
+
+  // ── DSA Month 5: Linked Lists, Stacks & Queues ──
+  "Singly Linked List: Node struct, insert at head/tail/position, delete, reverse": { difficulty:"intermediate", tip:"🎯 Draw every pointer operation on paper — always. VisuAlgo is essential for visualization. Reverse linked list is the most-asked linked list problem — master it recursively AND iteratively." },
+  "Doubly Linked List & Circular Linked List: implementation, LRU Cache concept": { difficulty:"intermediate", tip:"🎯 LRU Cache (LeetCode #146) combines a doubly linked list + hashmap. This is a hard problem but worth understanding deeply — it appears in real interviews at top companies." },
+  "Fast & Slow Pointers (Floyd's Cycle Detection): detect cycle, find middle": { difficulty:"intermediate", tip:"🎯 Fast pointer moves 2, slow moves 1. If cycle exists, they meet. This elegant technique also finds the middle of a list in one pass — no length calculation needed." },
+  "Classic Linked List Problems: Merge Two Sorted, Reorder, Remove Nth from End": { difficulty:"intermediate", tip:"🎯 These 3 problems teach key techniques: dummy head node, two-pass vs one-pass, and pointer manipulation patterns. Solve each 3 times until effortless." },
+  "Stack: Array-based and Node-based implementation in C++": { difficulty:"beginner", tip:"🎯 Implement both versions from scratch. Array-based is simpler. Node-based uses dynamic memory. Understand tradeoffs: array = cache-friendly, node = dynamic size." },
+  "Classic Stack Problems: Valid Parentheses, Min Stack, Evaluate RPN": { difficulty:"intermediate", tip:"🎯 Valid Parentheses teaches the core stack pattern. Min Stack teaches the 'dual-stack' trick. Evaluate RPN teaches how stacks model expression evaluation. All 3 are interview classics." },
+  "Monotonic Stack: Next Greater Element, Daily Temperatures, Largest Rectangle": { difficulty:"advanced", tip:"🎯 Monotonic stack maintains elements in increasing or decreasing order. When you push, pop all elements that violate the monotonicity. Daily Temperatures is the perfect intro problem." },
+  "Queue: BFS applications, circular queue, deque (double-ended queue)": { difficulty:"intermediate", tip:"🎯 deque (double-ended queue) supports O(1) push/pop from both ends. It's the foundation of the sliding window maximum algorithm. std::deque in C++ is your tool." },
+  "Monotonic Deque: Sliding Window Maximum — O(n) solution": { difficulty:"advanced", tip:"🎯 Sliding Window Maximum (LeetCode #239) is a hard problem but the solution is elegant. The deque stores indices of potentially useful elements. Study NeetCode's explanation carefully." },
+  "Boss Battle: NeetCode 150 — Stack & Linked List sections (complete both)": { difficulty:"intermediate", tip:"🎯 Stack section: 7 problems. Linked List section: 11 problems. Total: 18 problems. Complete all before moving on. These patterns appear in 25%+ of real coding interviews." },
+
+  // ── DSA Month 6: Trees, Heaps & Tries ──
+  "Binary Tree: Struct in C++, construction, height, diameter, level count": { difficulty:"intermediate", tip:"🎯 LeetCode Binary Tree Card is the best structured resource. Implement TreeNode struct yourself. Height, diameter, and level count are the 3 foundational tree recursion problems." },
+  "DFS Traversals: Recursive & Iterative (Inorder, Preorder, Postorder)": { difficulty:"intermediate", tip:"🎯 Recursive = simple and clean. Iterative uses an explicit stack. Know BOTH — some interviews specifically ask for iterative. Inorder of BST gives sorted output (critical insight)." },
+  "BFS / Level Order: queue-based traversal, zigzag, right side view": { difficulty:"intermediate", tip:"🎯 BFS template: while queue not empty → dequeue → process → enqueue children. Level separator technique: process all nodes at current level before adding next level." },
+  "BST Operations: Search, Insert, Delete — and BST validation": { difficulty:"intermediate", tip:"🎯 Validate BST (LeetCode #98) is a classic trap — you can't just check left < node < right for each node alone. You need to pass min/max bounds down through the recursion." },
+  "Classic Tree Problems: Lowest Common Ancestor, Diameter, Max Path Sum": { difficulty:"advanced", tip:"🎯 These 3 problems teach: post-order thinking (process children before parent), passing values up the tree, and using a global variable for the answer. Essential patterns for any tree problem." },
+  "Segment Trees: Build, Point Update, Range Query — O(log n) operations": { difficulty:"advanced", tip:"🎯 Segment tree enables O(log n) range queries with O(log n) point updates. Competitive programming essential. CP-Algorithms has the clearest explanation. Implement from scratch once." },
+  "Binary Indexed Tree (Fenwick Tree): prefix sums with updates in O(log n)": { difficulty:"advanced", tip:"🎯 BIT is simpler to code than a segment tree for prefix sum problems. Key operation: i += i & (-i) to move to parent, i -= i & (-i) to move to next responsibility. Implement once to understand." },
+  "Heaps: Max-heap/Min-heap, heapify, heap sort — priority_queue in C++": { difficulty:"intermediate", tip:"🎯 priority_queue<int> = max-heap by default in C++. priority_queue<int,vector<int>,greater<int>> = min-heap. Know how to use both. Heap sort is O(n log n) in-place — good to know." },
+  "Heap Problems: K Largest Elements, Merge K Sorted Lists, Task Scheduler": { difficulty:"advanced", tip:"🎯 K Largest = min-heap of size K (counterintuitive but correct — the min-heap tracks the K largest seen so far). Merge K Sorted = min-heap on (value, list_index, element_index)." },
+  "Trie: Implement from scratch, word search, prefix matching, autocomplete": { difficulty:"intermediate", tip:"🎯 Every Trie node has children[26] and isEndOfWord flag. Implement all 3 operations: insert, search, startsWith. LeetCode #208 is the canonical implementation problem — solve it cold." },
+
+  // ── DSA Month 7: Graphs ──
+  "Graph Theory Basics: Vertices, Edges, Directed/Undirected, Weighted, Cycles": { difficulty:"intermediate", tip:"🎯 Know graph types: directed/undirected, weighted/unweighted, cyclic/acyclic. DAG (Directed Acyclic Graph) = topological sort candidate. These distinctions determine which algorithm to use." },
+  "Graph Representation in Code: Adjacency List with unordered_map/vector": { difficulty:"intermediate", tip:"🎯 Default: vector<vector<int>> adj(n). For weighted: vector<vector<pair<int,int>>> adj(n). Adjacency list is preferred over matrix unless the graph is dense." },
+  "BFS on Graphs: Shortest Path, Level-Order, Connected Components": { difficulty:"intermediate", tip:"🎯 BFS template: queue + visited array + optional distance array. Always mark visited when ENQUEUING (not when processing) to avoid duplicates. Number of Islands is the essential practice problem." },
+  "DFS on Graphs: Traversal, Connected Components, Path Finding": { difficulty:"intermediate", tip:"🎯 DFS template: mark visited → process → recurse on unvisited neighbors. Recursive or iterative (explicit stack). Key: use a visited array to prevent infinite loops in cyclic graphs." },
+  "Cycle Detection: in directed graphs (DFS colors), in undirected (Union-Find)": { difficulty:"advanced", tip:"🎯 Directed graphs: DFS with 3 colors (white/gray/black). Gray = currently in DFS stack. If you reach a gray node, cycle exists. Undirected: Union-Find is cleaner." },
+  "Topological Sort: Kahn's Algorithm (BFS) and DFS-based approach": { difficulty:"advanced", tip:"🎯 Topological sort only works on DAGs. Kahn's: use in-degree counts, BFS from 0-in-degree nodes. DFS: push to stack after all neighbors processed. Course Schedule II is the standard practice problem." },
+  "Union-Find (Disjoint Set Union): path compression, union by rank": { difficulty:"intermediate", tip:"🎯 With path compression + union by rank, operations are near O(1) (O(α(n)) inverse Ackermann). DSU solves: connected components, cycle detection, Kruskal's MST. Implement from scratch." },
+  "Dijkstra's Algorithm: min-heap implementation, time complexity": { difficulty:"advanced", tip:"🎯 Template: min-heap of (distance, node), dist array initialized to INF. At each step: pop min, skip if already processed, update neighbors. Network Delay Time (LeetCode #743) is the best practice problem." },
+  "Minimum Spanning Tree: Prim's and Kruskal's algorithms": { difficulty:"advanced", tip:"🎯 Kruskal's: sort edges by weight + DSU to avoid cycles. Prim's: min-heap on vertices. Both give the same result. Kruskal's is usually simpler to implement. Min Cost to Connect All Points is good practice." },
+  "Boss Battle: NeetCode 150 — Graphs section + CSES Graph Problems (15 problems)": { difficulty:"advanced", tip:"🎯 NeetCode 150 graph section has 13 problems covering all key patterns. After completing, do CSES Graph Algorithms section. These 25+ problems will make you confident with any graph problem." },
+
+  // ── DSA Month 8: Dynamic Programming ──
+  "DP Fundamentals: Optimal Substructure, Overlapping Subproblems, State Design": { difficulty:"intermediate", tip:"🎯 Two tests for DP: (1) optimal substructure — optimal solution built from optimal sub-solutions, (2) overlapping subproblems — same subproblem solved multiple times. Both must be true." },
+  "1D DP: Climbing Stairs, House Robber, Decode Ways, Word Break": { difficulty:"intermediate", tip:"🎯 Start with Climbing Stairs → Fibonacci → House Robber → Decode Ways. Each problem builds on the previous. The state definition is the key insight — define dp[i] clearly before coding." },
+  "Kadane's Algorithm: Maximum Subarray — the foundation of 1D DP": { difficulty:"intermediate", tip:"🎯 Kadane's is O(n) DP: dp[i] = max(nums[i], dp[i-1]+nums[i]). It's the most elegant DP algorithm. Understand it deeply — it's asked directly and as a subroutine in harder problems." },
+  "2D DP: Unique Paths, Minimum Path Sum, LCS, Edit Distance": { difficulty:"intermediate", tip:"🎯 2D DP: dp[i][j] usually depends on dp[i-1][j], dp[i][j-1], or dp[i-1][j-1]. Draw the DP table on paper first. Edit Distance and LCS are THE classic interview 2D DP problems." },
+  "Knapsack Variations: 0/1 Knapsack, Unbounded Knapsack, Subset Sum": { difficulty:"advanced", tip:"🎯 0/1 Knapsack: each item used 0 or 1 times. Unbounded: each item used any number of times (Coin Change). Subset Sum: can we reach target T? Recognize which variant you have." },
+  "DP on Strings: Longest Palindromic Substring, Palindrome Partitioning": { difficulty:"advanced", tip:"🎯 Longest Palindromic Substring: expand from center in O(n²). Or use Manacher's algorithm in O(n). Understand expand-from-center first — it's the interview-expected approach." },
+  "Interval DP: Matrix Chain Multiplication, Burst Balloons, Stone Merge": { difficulty:"advanced", tip:"🎯 Interval DP: dp[i][j] = best answer for subarray [i...j]. Enumerate all split points k and combine dp[i][k] + dp[k+1][j]. Burst Balloons is the canonical example." },
+  "DP with States: State Machine DP — Buy and Sell Stock series": { difficulty:"advanced", tip:"🎯 Stock problems use state machines: state = (day, transactions_left, holding_or_not). Define transitions between states. Solve stocks 1→2→3→4 in order — each adds complexity." },
+  "DP Optimization: Space optimization (rolling array), printing the solution": { difficulty:"advanced", tip:"🎯 2D DP can often be compressed to 1D (O(n) space) by observing that dp[i][j] only depends on previous row. Always mention this optimization in interviews after getting the correct O(n²) solution." },
+  "Boss Battle: Complete NeetCode 150 — 1D DP + 2D DP sections (23 problems)": { difficulty:"advanced", tip:"🎯 These 23 problems cover every DP pattern you'll encounter in interviews. Complete all before moving to Month 9. For each problem: define state, write recurrence, then code." },
+
+  // ── DSA Month 9: Advanced Algorithms ──
+  "Greedy Algorithm Design: Exchange Arguments, proving optimality": { difficulty:"advanced", tip:"🎯 Greedy proof technique: assume optimal solution differs from greedy solution at some point, then show swapping doesn't make it worse. This 'exchange argument' is the standard proof method." },
+  "Greedy Classics: Activity Selection, Jump Game, Gas Station, Job Scheduling": { difficulty:"intermediate", tip:"🎯 Jump Game (LeetCode #55) is the quintessential greedy problem. Track max reachable index. Gas Station shows circular array greedy. Solve these before harder greedy problems." },
+  "Bitmask DP: Travelling Salesman Problem, Counting Paths through all nodes": { difficulty:"advanced", tip:"🎯 Bitmask DP: use an integer's bits to represent a subset. dp[mask][i] = best answer visiting nodes in 'mask', ending at node i. TSP is O(n² × 2ⁿ) — feasible for n≤20." },
+  "DP on Trees: Rerooting technique, diameter, max independent set on tree": { difficulty:"advanced", tip:"🎯 Tree DP: define dp[node] = answer for subtree rooted at node. Process children first (post-order). Rerooting: run DP twice — once from any root, once to reroot for each node." },
+  "String Algorithms: KMP Pattern Matching — O(n+m) search": { difficulty:"advanced", tip:"🎯 KMP is O(n+m) vs O(nm) for brute force. Key: build the failure function (prefix function) first. CP-Algorithms KMP article is the definitive explanation — read it fully." },
+  "Z-Algorithm & Rabin-Karp: alternative string matching approaches": { difficulty:"advanced", tip:"🎯 Z-array: z[i] = length of longest substring starting at i that is also a prefix of the string. Rabin-Karp uses rolling hash for O(n+m) average. Z-algorithm is simpler to implement than KMP." },
+  "Trie Advanced: Aho-Corasick, Suffix Array, Suffix Automaton (concepts)": { difficulty:"advanced", tip:"🎯 These are advanced CP topics. Aho-Corasick: multi-pattern matching in O(n+m+matches). Suffix Array: all suffixes sorted — essential for string problems. Read CP-Algorithms explanations." },
+  "Segment Tree with Lazy Propagation: range updates, range queries": { difficulty:"advanced", tip:"🎯 Lazy propagation delays updates to save time. Instead of updating all nodes in a range, mark the parent as 'lazy' and propagate when needed. Reduces range update from O(n) to O(log n)." },
+  "Sparse Table: Range Minimum Query (RMQ) in O(1) query, O(n log n) build": { difficulty:"advanced", tip:"🎯 Sparse Table gives O(1) RMQ queries after O(n log n) preprocessing. Works only for idempotent operations (min, max, gcd). Faster than segment tree when only queries, no updates." },
+  "Divide and Conquer Optimization: DP with Divide & Conquer optimization trick": { difficulty:"advanced", tip:"🎯 D&C optimization reduces O(n²) DP to O(n log n) when the opt function (argmin) is monotone. Advanced CP topic. Read the CP-Algorithms article and study the examples carefully." },
+
+  // ── DSA Month 10: Interview Mastery ──
+  "Interview Framework: how to approach any problem — 5-step method": { difficulty:"intermediate", tip:"🎯 The 5 steps: (1) Clarify constraints, (2) State examples, (3) Brute force first, (4) Optimize, (5) Code + test. Always state your time/space complexity after coding. Never jump straight to code." },
+  "Hard Graph Problems: Alien Dictionary, Critical Connections, Swim in Water": { difficulty:"advanced", tip:"🎯 Alien Dictionary requires building a graph from word ordering then topological sort. Critical Connections uses Tarjan's bridge-finding algorithm. These test deep graph mastery." },
+  "Hard DP Problems: Regular Expression Matching, Wildcard Matching, Best Time to Buy & Sell IV": { difficulty:"advanced", tip:"🎯 Regex Matching is a famous DP hard problem. The key: handle '.' and '*' as special cases in the recurrence. Trace through small examples before coding." },
+  "Competitive Programming Contests: Codeforces Div 2 A-D, AtCoder Beginner Contests": { difficulty:"advanced", tip:"🎯 Codeforces Div 2 A-B = LeetCode Easy/Medium. C = Medium/Hard. Participating in even 5 contests significantly improves your speed and pattern recognition under pressure." },
+  "Mock Interview Practice: untimed then timed — Pramp, Interviewing.io": { difficulty:"intermediate", tip:"🎯 Phase 1: solve problems untimed, talk through your thinking. Phase 2: 45-min timed. Phase 3: Interviewing.io for real engineer feedback. The jump from coding to interviewing is real — practice it." },
+  "Complete NeetCode 150: finish all remaining sections": { difficulty:"intermediate", tip:"🎯 If you've completed previous boss battles, you should have 80+ problems done. Focus on remaining: Tries, Math & Geometry, Advanced Graphs, Greedy. Complete all 150 before any FAANG application." },
+  "System Design for SDEs: URL Shortener, Parking Lot, Rate Limiter": { difficulty:"advanced", tip:"🎯 For each design: start with requirements → capacity estimation → high-level design → deep dive into 2-3 components → discuss tradeoffs. ByteByteGo YouTube is the best free resource for this." },
+  "Advanced C++ for Interviews: move semantics, smart pointers, templates basics": { difficulty:"advanced", tip:"🎯 Interviewers at systems companies (Google, Meta, Citadel) DO ask C++ specifics. Understand: unique_ptr vs shared_ptr, move vs copy, template basics. CppCon talks are the best resource." },
+  "Competitive Programming Resources: CLRS, CP Handbook, Competitive Programmer's Handbook": { difficulty:"advanced", tip:"🎯 CP Handbook (free PDF) covers 90% of what you need for Div 2. CLRS is the theoretical bible — read selectively (chapters on sorting, DP, graph algorithms). USACO Guide has a great learning path." },
+  "Final Boss: 5 Mock Interviews + Review All Weak Areas + DSA Portfolio": { difficulty:"advanced", tip:"🎯 Create a GitHub repo of clean, well-commented solutions to 150+ problems. Organize by topic. This portfolio shows employers you can write readable, maintainable code under pressure." }
+};
 // ═══════════════════════════════════════════════════════════════════════
 //  ACHIEVEMENTS SYSTEM
 // ═══════════════════════════════════════════════════════════════════════
 const ACHIEVEMENTS = [
-  { id: "first_blood", icon: "🩸", name: "First Blood", desc: "Complete your very first quest.", condition: s => Object.keys(s.completedQuests).length >= 1 },
-  { id: "bookworm", icon: "📚", name: "Bookworm", desc: "Complete 10 quests.", condition: s => Object.keys(s.completedQuests).length >= 10 },
-  { id: "grinder", icon: "⚙️", name: "The Grinder", desc: "Complete 25 quests.", condition: s => Object.keys(s.completedQuests).length >= 25 },
-  { id: "century", icon: "💯", name: "Centurion", desc: "Complete 50 quests.", condition: s => Object.keys(s.completedQuests).length >= 50 },
-  { id: "dedicated", icon: "🎖️", name: "Dedicated", desc: "Complete 100 quests.", condition: s => Object.keys(s.completedQuests).length >= 100 },
-  { id: "month_champ", icon: "🏆", name: "Month Champion", desc: "Complete any full month.", condition: s => completedAnyMonth(s) },
-  { id: "half_sde", icon: "🛤️", name: "Halfway There", desc: "Complete 6 SDE months.", condition: s => countCompletedMonths(s, roadmapData) >= 6 },
-  { id: "sde_complete", icon: "🚀", name: "SDE Graduate", desc: "Complete all 12 SDE months.", condition: s => countCompletedMonths(s, roadmapData) >= 12 },
-  { id: "dsa_initiate", icon: "⚡", name: "DSA Initiate", desc: "Complete DSA Month 1 (C++ Foundations).", condition: s => isMonthComplete(s, "dsa-1", dsaRoadmapData) },
-  { id: "cpp_master", icon: "🔧", name: "C++ Craftsman", desc: "Complete both C++ months.", condition: s => isMonthComplete(s, "dsa-1", dsaRoadmapData) && isMonthComplete(s, "dsa-2", dsaRoadmapData) },
-  { id: "algo_adept", icon: "🧮", name: "Algorithm Adept", desc: "Complete 5 DSA months.", condition: s => countCompletedMonths(s, dsaRoadmapData) >= 5 },
-  { id: "graph_god", icon: "🕸️", name: "Graph God", desc: "Complete the Graphs DSA month.", condition: s => isMonthComplete(s, "dsa-7", dsaRoadmapData) },
-  { id: "dp_wizard", icon: "💎", name: "DP Wizard", desc: "Complete the Dynamic Programming month.", condition: s => isMonthComplete(s, "dsa-8", dsaRoadmapData) },
-  { id: "dsa_complete", icon: "👑", name: "DSA Master", desc: "Complete all 10 DSA months.", condition: s => countCompletedMonths(s, dsaRoadmapData) >= 10 },
-  { id: "legend", icon: "🌟", name: "Legend", desc: "Complete ALL months on both tracks.", condition: s => countCompletedMonths(s, roadmapData) >= 12 && countCompletedMonths(s, dsaRoadmapData) >= 10 },
-  { id: "streak_7", icon: "🔥", name: "On Fire", desc: "Maintain a 7-day streak.", condition: s => (s.streak || 0) >= 7 },
-  { id: "streak_30", icon: "🌋", name: "Unstoppable", desc: "Maintain a 30-day streak.", condition: s => (s.streak || 0) >= 30 },
-  { id: "level_5", icon: "⭐", name: "Rising Star", desc: "Reach Level 5.", condition: s => s.level >= 5 },
-  { id: "level_10", icon: "🌠", name: "Senior Engineer", desc: "Reach Level 10.", condition: s => s.level >= 10 },
+  // ── Quest Count Milestones ──
+  { id: "first_blood",  icon: "🩸", name: "First Blood",      desc: "Complete your very first quest.", condition: s => Object.keys(s.completedQuests).length >= 1 },
+  { id: "quests_5",     icon: "✋", name: "Getting Started",   desc: "Complete 5 quests.", condition: s => Object.keys(s.completedQuests).length >= 5 },
+  { id: "bookworm",     icon: "📚", name: "Bookworm",          desc: "Complete 10 quests.", condition: s => Object.keys(s.completedQuests).length >= 10 },
+  { id: "quests_20",    icon: "📖", name: "In the Zone",       desc: "Complete 20 quests.", condition: s => Object.keys(s.completedQuests).length >= 20 },
+  { id: "grinder",      icon: "⚙️", name: "The Grinder",      desc: "Complete 30 quests.", condition: s => Object.keys(s.completedQuests).length >= 30 },
+  { id: "quests_50",    icon: "💪", name: "Halfway Hustler",   desc: "Complete 50 quests.", condition: s => Object.keys(s.completedQuests).length >= 50 },
+  { id: "century",      icon: "💯", name: "Centurion",         desc: "Complete 75 quests.", condition: s => Object.keys(s.completedQuests).length >= 75 },
+  { id: "dedicated",    icon: "🎖️", name: "Dedicated",        desc: "Complete 100 quests.", condition: s => Object.keys(s.completedQuests).length >= 100 },
+  { id: "quests_150",   icon: "🏅", name: "Quest Conqueror",   desc: "Complete 150 quests.", condition: s => Object.keys(s.completedQuests).length >= 150 },
+  { id: "quests_all",   icon: "🌌", name: "Everything",        desc: "Complete every single quest on both tracks.", condition: s => Object.keys(s.completedQuests).length >= 220 },
+
+  // ── SDE Track Milestones ──
+  { id: "sde_month1",   icon: "🌱", name: "Root Node",         desc: "Complete SDE Month 1: Programming Foundations.", condition: s => isMonthComplete(s, 1, roadmapData) },
+  { id: "sde_month2",   icon: "🧱", name: "Object Builder",    desc: "Complete SDE Month 2: OOP & Version Control.", condition: s => isMonthComplete(s, 2, roadmapData) },
+  { id: "sde_month3",   icon: "🗃️", name: "Data Sculptor",    desc: "Complete SDE Month 3: Basic Data Structures.", condition: s => isMonthComplete(s, 3, roadmapData) },
+  { id: "sde_month4",   icon: "🧠", name: "Algorithm Thinker", desc: "Complete SDE Month 4: Algorithmic Thinking.", condition: s => isMonthComplete(s, 4, roadmapData) },
+  { id: "sde_month5",   icon: "🌳", name: "Tree Whisperer",    desc: "Complete SDE Month 5: Advanced Data Structures.", condition: s => isMonthComplete(s, 5, roadmapData) },
+  { id: "sde_month6",   icon: "🌐", name: "Web Weaver",        desc: "Complete SDE Month 6: Web & Networking.", condition: s => isMonthComplete(s, 6, roadmapData) },
+  { id: "sde_month7",   icon: "🗄️", name: "Data Wrangler",    desc: "Complete SDE Month 7: Databases & SQL.", condition: s => isMonthComplete(s, 7, roadmapData) },
+  { id: "sde_month8",   icon: "⚙️", name: "API Architect",    desc: "Complete SDE Month 8: Backend Engineering.", condition: s => isMonthComplete(s, 8, roadmapData) },
+  { id: "sde_month9",   icon: "🏗️", name: "System Thinker",   desc: "Complete SDE Month 9: System Design.", condition: s => isMonthComplete(s, 9, roadmapData) },
+  { id: "sde_month10",  icon: "☁️", name: "Cloud Rider",       desc: "Complete SDE Month 10: Cloud & DevOps.", condition: s => isMonthComplete(s, 10, roadmapData) },
+  { id: "sde_month11",  icon: "🔐", name: "Security Guardian", desc: "Complete SDE Month 11: Specialized & Security.", condition: s => isMonthComplete(s, 11, roadmapData) },
+  { id: "month_champ",  icon: "🏆", name: "Month Champion",    desc: "Complete any full month on either track.", condition: s => completedAnyMonth(s) },
+  { id: "half_sde",     icon: "🛤️", name: "Halfway There",    desc: "Complete 6 SDE months.", condition: s => countCompletedMonths(s, roadmapData) >= 6 },
+  { id: "sde_nine",     icon: "🔝", name: "Almost There",      desc: "Complete 9 SDE months.", condition: s => countCompletedMonths(s, roadmapData) >= 9 },
+  { id: "sde_complete", icon: "🚀", name: "SDE Graduate",      desc: "Complete all 12 SDE months.", condition: s => countCompletedMonths(s, roadmapData) >= 12 },
+  { id: "fullstack_trio",icon:"🔗", name: "Full Stack Trifecta",desc: "Complete SDE Months 6 (Web), 7 (SQL), and 8 (Backend).", condition: s => isMonthComplete(s,6,roadmapData) && isMonthComplete(s,7,roadmapData) && isMonthComplete(s,8,roadmapData) },
+
+  // ── DSA Track Milestones ──
+  { id: "dsa_initiate",  icon: "⚡", name: "DSA Initiate",     desc: "Complete DSA Month 1: C++ Foundations.", condition: s => isMonthComplete(s, "dsa-1", dsaRoadmapData) },
+  { id: "cpp_master",    icon: "🔧", name: "C++ Craftsman",    desc: "Complete both C++ months (DSA 1 & 2).", condition: s => isMonthComplete(s,"dsa-1",dsaRoadmapData) && isMonthComplete(s,"dsa-2",dsaRoadmapData) },
+  { id: "math_wizard",   icon: "🧮", name: "Math Wizard",      desc: "Complete DSA Month 3: Math & Recursion.", condition: s => isMonthComplete(s, "dsa-3", dsaRoadmapData) },
+  { id: "pattern_master",icon: "🎯", name: "Pattern Master",   desc: "Complete DSA Month 4: Arrays, Hashing & Two Pointers.", condition: s => isMonthComplete(s, "dsa-4", dsaRoadmapData) },
+  { id: "pointer_pro",   icon: "🔗", name: "Pointer Pro",      desc: "Complete DSA Month 5: Linked Lists, Stacks & Queues.", condition: s => isMonthComplete(s, "dsa-5", dsaRoadmapData) },
+  { id: "tree_lord",     icon: "🌲", name: "Tree Lord",        desc: "Complete DSA Month 6: Trees, Heaps & Tries.", condition: s => isMonthComplete(s, "dsa-6", dsaRoadmapData) },
+  { id: "graph_god",     icon: "🕸️", name: "Graph God",        desc: "Complete DSA Month 7: Graphs.", condition: s => isMonthComplete(s, "dsa-7", dsaRoadmapData) },
+  { id: "dp_wizard",     icon: "💎", name: "DP Wizard",        desc: "Complete DSA Month 8: Dynamic Programming.", condition: s => isMonthComplete(s, "dsa-8", dsaRoadmapData) },
+  { id: "algo_adept",    icon: "🧮", name: "Algorithm Adept",  desc: "Complete 5 DSA months.", condition: s => countCompletedMonths(s, dsaRoadmapData) >= 5 },
+  { id: "dsa_seven",     icon: "🎖️", name: "Seven Strong",    desc: "Complete 7 DSA months.", condition: s => countCompletedMonths(s, dsaRoadmapData) >= 7 },
+  { id: "dsa_complete",  icon: "👑", name: "DSA Master",       desc: "Complete all 10 DSA months.", condition: s => countCompletedMonths(s, dsaRoadmapData) >= 10 },
+  { id: "legend",        icon: "🌟", name: "Legend",           desc: "Complete ALL months on both tracks.", condition: s => countCompletedMonths(s, roadmapData) >= 12 && countCompletedMonths(s, dsaRoadmapData) >= 10 },
+
+  // ── Streak Achievements ──
+  { id: "streak_3",   icon: "🔥", name: "Spark",         desc: "Maintain a 3-day learning streak.", condition: s => (s.streak||0) >= 3 },
+  { id: "streak_7",   icon: "🔥", name: "On Fire",       desc: "Maintain a 7-day streak.", condition: s => (s.streak||0) >= 7 },
+  { id: "streak_14",  icon: "💥", name: "Blazing",       desc: "Maintain a 14-day streak.", condition: s => (s.streak||0) >= 14 },
+  { id: "streak_30",  icon: "🌋", name: "Unstoppable",   desc: "Maintain a 30-day streak.", condition: s => (s.streak||0) >= 30 },
+  { id: "streak_60",  icon: "☄️", name: "Force of Nature",desc: "Maintain a 60-day streak.", condition: s => (s.streak||0) >= 60 },
+
+  // ── Level Achievements ──
+  { id: "level_3",  icon: "⭐",  name: "First Stars",      desc: "Reach Level 3.", condition: s => s.level >= 3 },
+  { id: "level_5",  icon: "⭐",  name: "Rising Star",      desc: "Reach Level 5.", condition: s => s.level >= 5 },
+  { id: "level_7",  icon: "💫",  name: "Shooting Star",    desc: "Reach Level 7.", condition: s => s.level >= 7 },
+  { id: "level_10", icon: "🌠",  name: "Senior Engineer",  desc: "Reach Level 10.", condition: s => s.level >= 10 },
+  { id: "level_12", icon: "🌌",  name: "Principal",        desc: "Reach Level 12.", condition: s => s.level >= 12 },
+
+  // ── Special Achievements ──
+  { id: "both_started", icon: "🎭", name: "Double Threat",   desc: "Start both the SDE and DSA tracks.", condition: s => Object.keys(s.completedQuests).some(k=>k.startsWith('dsa')) && Object.keys(s.completedQuests).some(k=>!k.startsWith('dsa')) },
+  { id: "note_taker",   icon: "📝", name: "Note Taker",      desc: "Write notes on 10 different topics.", condition: s => Object.keys(s.notes||{}).length >= 10 },
+  { id: "bookmarker",   icon: "🔖", name: "Bookmarker",      desc: "Bookmark 5 topics to revisit.", condition: s => Object.keys(s.bookmarkedQuests||{}).length >= 5 },
+  { id: "deep_diver",   icon: "🤿", name: "Deep Diver",      desc: "Write notes on 25 different topics.", condition: s => Object.keys(s.notes||{}).length >= 25 },
 ];
 
 function completedAnyMonth(s) {
@@ -1205,7 +1492,9 @@ function defaultState() {
     unlockedDsaMonths: ["dsa-1"],
     achievements: [],
     streak: 0,
-    lastActivityDate: null
+    lastActivityDate: null,
+    notes: {},            // key = "monthId-questIndex", value = note string
+    bookmarkedQuests: {}  // key = "monthId-questIndex", value = true
   };
 }
 
@@ -1437,6 +1726,8 @@ function ensureDefaults() {
   if (!playerState.unlockedDsaMonths) playerState.unlockedDsaMonths = ["dsa-1"];
   if (!playerState.achievements) playerState.achievements = [];
   if (!playerState.streak) playerState.streak = 0;
+  if (!playerState.notes) playerState.notes = {};
+  if (!playerState.bookmarkedQuests) playerState.bookmarkedQuests = {};
 }
 
 function resetProgress() {
@@ -1758,27 +2049,70 @@ function renderQuests(month, track) {
   month.topics.forEach((topicObj, index) => {
     const key = `${month.id}-${index}`;
     const done = !!playerState.completedQuests[key];
+    const bookmarked = !!(playerState.bookmarkedQuests && playerState.bookmarkedQuests[key]);
+    const savedNote = (playerState.notes && playerState.notes[key]) || '';
     if (done) doneCount++;
 
-    const item = document.createElement('div');
-    item.className = `quest-item ${done ? 'completed' : ''} ${track === 'dsa' ? 'dsa-quest' : ''}`;
+    // Look up metadata (tip + difficulty) from TOPIC_META
+    const meta = TOPIC_META[topicObj.title] || {};
+    const diff = meta.difficulty || null;
+    const tip  = meta.tip || null;
 
+    // Difficulty badge
+    const diffLabels = { beginner: '🟢 Beginner', intermediate: '🟡 Intermediate', advanced: '🔴 Advanced' };
+    const diffHtml = diff ? `<span class="difficulty-badge diff-${diff}">${diffLabels[diff]}</span>` : '';
+
+    // Tip banner
+    const tipHtml = tip ? `<div class="quest-tip"><i class="fa-solid fa-lightbulb"></i> ${tip}</div>` : '';
+
+    // Resources with type detection
     let resourcesHtml = '';
     if (topicObj.resources && topicObj.resources.length > 0) {
-      const links = topicObj.resources.map(r =>
-        `<a href="${r.url}" target="_blank" rel="noopener" class="resource-link" onclick="event.stopPropagation()">
-          <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.7rem;"></i> ${r.name}
-        </a>`
-      ).join('');
-      resourcesHtml = `<div class="quest-resources"><div class="resources-title"><i class="fa-solid fa-book-open"></i> Learning Resources</div>${links}</div>`;
+      const links = topicObj.resources.map(r => {
+        const n = r.name;
+        let typeIcon = '🔗', typeCls = 'res-generic';
+        if (n.startsWith('🎬') || /video|watch|youtube|playlist/i.test(n)) { typeIcon='🎬'; typeCls='res-video'; }
+        else if (n.startsWith('📖') || /book|guide|docs|tutorial|read|chapter|reference|learncpp/i.test(n)) { typeIcon='📖'; typeCls='res-read'; }
+        else if (n.startsWith('🔧') || /interactive|visuali|game|froggy|garden|playground/i.test(n)) { typeIcon='🔧'; typeCls='res-interactive'; }
+        else if (n.startsWith('🏋️') || n.startsWith('📝') || /leetcode|hackerrank|cses|codeforces|practice|problem|exercise/i.test(n)) { typeIcon='🏋️'; typeCls='res-practice'; }
+        else if (/tip:/i.test(n)) { typeIcon='💡'; typeCls='res-tip'; }
+        return `<a href="${r.url}" target="_blank" rel="noopener" class="resource-link ${typeCls}" onclick="event.stopPropagation()">
+          <span class="res-type-icon">${typeIcon}</span><span class="res-name">${r.name}</span>
+        </a>`;
+      }).join('');
+
+      // Notes section inside resources panel
+      const notesSection = `
+        <div class="quest-notes-section">
+          <div class="notes-label"><i class="fa-solid fa-pencil"></i> My Notes <span class="notes-hint">(saves automatically)</span></div>
+          <textarea class="quest-notes-input" placeholder="Key takeaways, code snippets, questions to revisit..." rows="3" data-key="${key}">${savedNote}</textarea>
+        </div>`;
+
+      resourcesHtml = `<div class="quest-resources">
+        <div class="resources-title"><i class="fa-solid fa-book-open"></i> Learning Resources</div>
+        ${links}
+        ${notesSection}
+      </div>`;
     }
+
+    const item = document.createElement('div');
+    item.className = `quest-item ${done ? 'completed' : ''} ${bookmarked ? 'is-bookmarked' : ''} ${track === 'dsa' ? 'dsa-quest' : ''}`;
 
     item.innerHTML = `
       <div class="quest-header">
         <div class="quest-checkbox tooltip" title="Mark complete"><i class="fa-solid fa-check"></i></div>
-        <div class="quest-content"><div class="quest-title">${topicObj.title}</div></div>
+        <div class="quest-content">
+          <div class="quest-title-row">
+            <div class="quest-title">${topicObj.title}</div>
+            ${diffHtml}
+          </div>
+          ${tipHtml}
+        </div>
         <div class="quest-meta">
           <span class="quest-xp">+${xpPerQ} XP</span>
+          <button class="bookmark-btn${bookmarked ? ' active' : ''}" title="${bookmarked ? 'Remove bookmark' : 'Bookmark to revisit'}" onclick="event.stopPropagation()">
+            <i class="fa-${bookmarked ? 'solid' : 'regular'} fa-bookmark"></i>
+          </button>
           ${resourcesHtml ? '<i class="fa-solid fa-chevron-down expand-icon"></i>' : ''}
         </div>
       </div>
@@ -1789,10 +2123,31 @@ function renderQuests(month, track) {
       e.stopPropagation();
       toggleQuest(month.id, index, item, track);
     });
+
+    item.querySelector('.bookmark-btn').addEventListener('click', e => {
+      e.stopPropagation();
+      toggleBookmark(month.id, index, item);
+    });
+
     if (resourcesHtml) {
       item.querySelector('.quest-header').addEventListener('click', () => {
         item.classList.toggle('expanded');
       });
+      // Auto-save notes
+      const notesInput = item.querySelector('.quest-notes-input');
+      if (notesInput) {
+        notesInput.addEventListener('click', e => e.stopPropagation());
+        notesInput.addEventListener('input', () => {
+          if (!playerState.notes) playerState.notes = {};
+          if (notesInput.value.trim()) {
+            playerState.notes[key] = notesInput.value;
+          } else {
+            delete playerState.notes[key];
+          }
+          checkAchievements(); // check note-taking achievements
+          saveProgress();
+        });
+      }
     }
 
     questList.appendChild(item);
@@ -1840,6 +2195,30 @@ function toggleQuest(monthId, questIndex, el, track) {
 function updateModalProgress(done, total) {
   modalProgressText.innerText = `${done}/${total} Quests Completed`;
   modalProgressFill.style.width = `${(done / total) * 100}%`;
+}
+
+function toggleBookmark(monthId, questIndex, el) {
+  const key = `${monthId}-${questIndex}`;
+  if (!playerState.bookmarkedQuests) playerState.bookmarkedQuests = {};
+  const wasBookmarked = !!playerState.bookmarkedQuests[key];
+  if (wasBookmarked) {
+    delete playerState.bookmarkedQuests[key];
+    el.classList.remove('is-bookmarked');
+  } else {
+    playerState.bookmarkedQuests[key] = true;
+    el.classList.add('is-bookmarked');
+    // small animation
+    el.style.transform = 'translateX(4px)';
+    setTimeout(() => el.style.transform = '', 200);
+  }
+  const btn = el.querySelector('.bookmark-btn');
+  if (btn) {
+    btn.classList.toggle('active', !wasBookmarked);
+    const icon = btn.querySelector('i');
+    if (icon) icon.className = wasBookmarked ? 'fa-regular fa-bookmark' : 'fa-solid fa-bookmark';
+  }
+  checkAchievements();
+  saveProgress();
 }
 
 // ═══════════════════════════════════════════════════════════════════════

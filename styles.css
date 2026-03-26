@@ -835,3 +835,225 @@ body {
 
 /* Selection */
 ::selection { background: var(--primary-dim); color: var(--primary); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   NEW FEATURES: Tips, Difficulty Badges, Bookmarks, Notes, Resource Types
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Quest tip banner ── */
+.quest-tip {
+    font-size: 0.8rem;
+    color: #c4b5fd;
+    background: rgba(139, 92, 246, 0.08);
+    border-left: 3px solid rgba(139, 92, 246, 0.5);
+    border-radius: 0 6px 6px 0;
+    padding: 7px 10px;
+    margin-top: 6px;
+    line-height: 1.5;
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+}
+.quest-tip i {
+    color: #a78bfa;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+.quest-item.completed .quest-tip {
+    opacity: 0.45;
+}
+
+/* ── Quest title row (title + difficulty side by side) ── */
+.quest-title-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* ── Difficulty badges ── */
+.difficulty-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+    font-family: var(--font-code);
+}
+.diff-beginner {
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+.diff-intermediate {
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+.diff-advanced {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* ── Bookmark button ── */
+.bookmark-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    padding: 3px 5px;
+    border-radius: 4px;
+    transition: var(--transition);
+    line-height: 1;
+    flex-shrink: 0;
+}
+.bookmark-btn:hover { color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+.bookmark-btn.active { color: #f59e0b; }
+.quest-item.is-bookmarked { border-color: rgba(245, 158, 11, 0.35) !important; }
+.quest-item.is-bookmarked::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 0 14px 14px 0;
+    border-color: transparent #f59e0b transparent transparent;
+    border-radius: 0 var(--radius-sm) 0 0;
+}
+
+/* ── Resource link type icons ── */
+.resource-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 7px 10px;
+    background: rgba(0, 229, 255, 0.04);
+    border-radius: 6px;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+    line-height: 1.4;
+}
+.resource-link:hover {
+    background: rgba(0, 229, 255, 0.1);
+    border-color: rgba(0, 229, 255, 0.25);
+    transform: translateX(3px);
+}
+.res-type-icon {
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    line-height: 1.4;
+}
+.res-name { flex: 1; }
+.resource-link.res-video { color: #f87171; }
+.resource-link.res-video:hover { background: rgba(248,113,113,0.08); border-color: rgba(248,113,113,0.25); }
+.resource-link.res-interactive { color: #34d399; }
+.resource-link.res-interactive:hover { background: rgba(52,211,153,0.08); border-color: rgba(52,211,153,0.25); }
+.resource-link.res-practice { color: #a78bfa; }
+.resource-link.res-practice:hover { background: rgba(167,139,250,0.08); border-color: rgba(167,139,250,0.25); }
+.resource-link.res-tip { color: #fbbf24; font-style: italic; cursor: default; pointer-events: none; }
+.resource-link.res-tip:hover { transform: none; }
+
+/* ── Notes section ── */
+.quest-notes-section {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed rgba(255,255,255,0.08);
+}
+.notes-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.notes-hint {
+    font-weight: 400;
+    opacity: 0.6;
+    font-size: 0.72rem;
+}
+.quest-notes-input {
+    width: 100%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    color: var(--text-main);
+    font-family: var(--font-code);
+    font-size: 0.8rem;
+    padding: 8px 10px;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    line-height: 1.5;
+    min-height: 70px;
+}
+.quest-notes-input:focus {
+    border-color: rgba(139, 92, 246, 0.4);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.08);
+}
+.quest-notes-input::placeholder { color: rgba(148,163,184,0.4); }
+
+/* ── Resources title in quest modal ── */
+.resources-title {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ── Quest item position relative for bookmark corner ── */
+.quest-item { position: relative; overflow: hidden; }
+
+/* ── Expanded quest item gets a subtle background shift ── */
+.quest-item.expanded {
+    background: rgba(255,255,255,0.05);
+}
+
+/* ── Resources panel gap adjustment ── */
+.quest-resources {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0 45px 4px 45px;
+    margin-top: 2px;
+    border-top: 1px dashed rgba(255,255,255,0.07);
+    padding-top: 10px;
+}
+.quest-item.expanded .quest-resources { display: flex; }
+
+/* ── Achievement grid enhancements for more items ── */
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+    padding-right: 4px;
+    overflow-y: auto;
+    max-height: 65vh;
+}
+.achievements-modal-content { max-width: 720px; }
+
+/* Achievement category headers via CSS counters — not needed but card looks better */
+.achievement-card.unlocked {
+    border-color: rgba(255, 215, 0, 0.35);
+    background: rgba(255, 215, 0, 0.04);
+}
+.achievement-card.locked {
+    opacity: 0.5;
+    filter: grayscale(0.6);
+}
+
