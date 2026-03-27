@@ -41,7 +41,8 @@ const roadmapData = [
       { title: "Terminal & CLI Essentials (bash, zsh, file navigation)", resources: [
         { name: "Ubuntu Terminal for Beginners", url: "https://ubuntu.com/tutorials/command-line-for-beginners" },
         { name: "The Linux Command Line (Free Book)", url: "https://linuxcommand.org/tlcl.php" },
-        { name: "OverTheWire: Bandit (hands-on Linux)", url: "https://overthewire.org/wargames/bandit/" }
+        { name: "OverTheWire: Bandit (hands-on Linux)", url: "https://overthewire.org/wargames/bandit/" },
+        { name: "💎 Explain Shell — paste any command, get it explained visually", url: "https://explainshell.com/" }
       ]},
       { title: "Git Fundamentals: init, add, commit, log, diff", resources: [
         { name: "GitHub: Git Handbook", url: "https://guides.github.com/introduction/git-handbook/" },
@@ -51,6 +52,7 @@ const roadmapData = [
       { title: "Problem Solving Mindset: Pseudocode & Decomposition", resources: [
         { name: "How to Think Like a Programmer", url: "https://www.freecodecamp.org/news/how-to-think-like-a-programmer-lessons-in-problem-solving-d1d8bf1de7d2/" },
         { name: "Polya's Problem Solving Techniques", url: "https://math.berkeley.edu/~gmelvin/polya.pdf" },
+        { name: "💎 MIT: The Missing Semester of CS Education (CLI, Git, scripting — gold)", url: "https://missing.csail.mit.edu/" },
         { name: "Advent of Code (Beginner Puzzles)", url: "https://adventofcode.com/" }
       ]}
     ]
@@ -83,11 +85,12 @@ const roadmapData = [
       { title: "SOLID Principles with Real Examples", resources: [
         { name: "FreeCodeCamp: SOLID in Plain English", url: "https://www.freecodecamp.org/news/solid-principles-explained-in-plain-english/" },
         { name: "SOLID Design Principles (DigitalOcean)", url: "https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design" },
-        { name: "Uncle Bob: Clean Code (book)", url: "https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882" }
+        { name: "Uncle Bob: Clean Code (book)", url: "https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882" },
+        { name: "💎 Kevlin Henney: Seven Ineffective Coding Habits — eye-opening talk (video)", url: "https://www.youtube.com/watch?v=ZsHMHukIlJY" }
       ]},
       { title: "Design Patterns: Singleton, Factory, Observer, Strategy", resources: [
         { name: "Refactoring Guru: Design Patterns (Free)", url: "https://refactoring.guru/design-patterns" },
-        { name: "JavaScript Design Patterns", url: "https://www.patterns.dev/posts/classic-design-patterns/" }
+        { name: "JavaScript Design Patterns", url: "https://www.patterns.dev/vanilla" }
       ]},
       { title: "Git Branching Strategies (Gitflow, trunk-based)", resources: [
         { name: "Atlassian: Git Branching Workflows", url: "https://www.atlassian.com/git/tutorials/using-branches" },
@@ -114,14 +117,14 @@ const roadmapData = [
         { name: "GeeksforGeeks: Array Data Structure", url: "https://www.geeksforgeeks.org/array-data-structure/" }
       ]},
       { title: "Strings, String Manipulation & Common Algorithms", resources: [
-        { name: "HackerRank: Strings Domain", url: "https://www.hackerrank.com/domains/algorithms?filters%5Bsubdomains%5D%5B%5D=strings" },
+        { name: "HackerRank: Strings Domain", url: "https://www.hackerrank.com/domains/algorithms/strings" },
         { name: "Regex101 — Test Regular Expressions", url: "https://regex101.com/" },
         { name: "LeetCode: Top String Problems", url: "https://leetcode.com/tag/string/" }
       ]},
       { title: "Linked Lists: Singly & Doubly (traversal, insertion, deletion)", resources: [
         { name: "VisuAlgo: Linked List", url: "https://visualgo.net/en/list" },
         { name: "LeetCode: Linked List Card", url: "https://leetcode.com/explore/learn/card/linked-list/" },
-        { name: "GeeksforGeeks: Linked List", url: "https://www.geeksforgeeks.org/data-structures/linked-list/" }
+        { name: "GeeksforGeeks: Linked List", url: "https://www.geeksforgeeks.org/linked-list-data-structure/" }
       ]},
       { title: "Stacks: LIFO principle, implementations, applications", resources: [
         { name: "GeeksforGeeks: Stack Data Structure", url: "https://www.geeksforgeeks.org/stack-data-structure/" },
@@ -144,10 +147,11 @@ const roadmapData = [
       { title: "Big-O Notation: Time & Space Complexity Analysis", resources: [
         { name: "Big-O Cheat Sheet", url: "https://www.bigocheatsheet.com/" },
         { name: "FreeCodeCamp: Big O Notation Explained", url: "https://www.freecodecamp.org/news/big-o-cheat-sheet-time-complexity-chart/" },
-        { name: "MIT 6.006: Complexity Lecture", url: "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/video_galleries/lecture-videos/" }
+        { name: "MIT 6.006: Complexity Lecture", url: "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/video_galleries/lecture-videos/" },
+        { name: "💎 Algorithms by Jeff Erickson — free textbook used at UIUC (chapter 0 for complexity)", url: "https://jeffe.cs.illinois.edu/teaching/algorithms/" }
       ]},
       { title: "Amortized Analysis & when to use which data structure", resources: [
-        { name: "MIT: Amortized Analysis", url: "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2015/pages/lecture-notes/" },
+        { name: "MIT: Amortized Analysis", url: "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/pages/lecture-notes/" },
         { name: "GeeksforGeeks: Amortized Analysis", url: "https://www.geeksforgeeks.org/analysis-algorithm-set-5-amortized-analysis-introduction/" }
       ]},
       { title: "LeetCode Practice: Easy Array/String/HashMap Problems (target 30)", resources: [
@@ -169,7 +173,8 @@ const roadmapData = [
       { title: "Recursion Deep Dive: call stack, tree recursion, memoization intro", resources: [
         { name: "FreeCodeCamp: Recursion Explained", url: "https://www.freecodecamp.org/news/understanding-recursion-in-programming/" },
         { name: "Python Tutor: Visualize Recursion", url: "https://pythontutor.com/" },
-        { name: "LeetCode: Recursion I Card", url: "https://leetcode.com/explore/learn/card/recursion-i/" }
+        { name: "LeetCode: Recursion I Card", url: "https://leetcode.com/explore/learn/card/recursion-i/" },
+        { name: "💎 Computerphile: Programming with Functions + Recursion (4-part series, crystal clear)", url: "https://www.youtube.com/watch?v=IjD3NI_mDY8" }
       ]},
       { title: "Sorting Algorithms: Bubble, Selection, Insertion, Merge, Quick, Heap", resources: [
         { name: "VisuAlgo: Sorting Visualizer", url: "https://visualgo.net/en/sorting" },
@@ -177,12 +182,12 @@ const roadmapData = [
         { name: "CS50: Shorts on Sorting", url: "https://cs50.harvard.edu/x/2024/weeks/3/" }
       ]},
       { title: "Searching: Linear Search, Binary Search & its variants", resources: [
-        { name: "TopCoder: Binary Search Tutorial", url: "https://www.topcoder.com/thrive/articles/Binary%20Search" },
+        { name: "TopCoder: Binary Search Tutorial", url: "https://www.topcoder.com/thrive/articles/Binary+Search" },
         { name: "LeetCode: Binary Search Card", url: "https://leetcode.com/explore/learn/card/binary-search/" },
-        { name: "CP-Algorithms: Binary Search", url: "https://cp-algorithms.com/num_methods/binary_search.html" }
+        { name: "CP-Algorithms: Binary Search", url: "https://cp-algorithms.com/sequences/binary-search.html" }
       ]},
       { title: "Two Pointers: opposite ends, same direction, fast/slow", resources: [
-        { name: "LeetCode: Two Pointers Technique", url: "https://leetcode.com/articles/two-pointer-technique/" },
+        { name: "LeetCode: Two Pointers Technique", url: "https://leetcode.com/explore/learn/card/array-and-string/205/array-two-pointer-technique/" },
         { name: "NeetCode: Two Pointers Video", url: "https://www.youtube.com/watch?v=VEPCm3BCtik" }
       ]},
       { title: "Sliding Window: fixed size, variable size, multi-window", resources: [
@@ -201,7 +206,7 @@ const roadmapData = [
       { title: "Backtracking: N-Queens, Sudoku Solver, Subsets, Permutations", resources: [
         { name: "LeetCode: Backtracking Card", url: "https://leetcode.com/tag/backtracking/" },
         { name: "NeetCode: Backtracking Playlist", url: "https://www.youtube.com/playlist?list=PLot-Xpze53ldBT_7QA8NVot219jFNr_GI" },
-        { name: "CP-Algorithms: Backtracking", url: "https://cp-algorithms.com/" }
+        { name: "Algorithm Design Canvas (ThinkLikeAProgrammer)", url: "https://www.slideshare.net/slideshow/think-like-a-programmer/23783982" }
       ]},
       { title: "Dynamic Programming Intro: Fibonacci, Climbing Stairs, Memoization vs Tabulation", resources: [
         { name: "NeetCode: DP for Beginners", url: "https://www.youtube.com/watch?v=73r3KWiEvyk" },
@@ -221,7 +226,7 @@ const roadmapData = [
       ]},
       { title: "BST: Insert, Delete, Search, Predecessor/Successor", resources: [
         { name: "BST Visualizer (usfca.edu)", url: "https://www.cs.usfca.edu/~galles/visualization/BST.html" },
-        { name: "CP-Algorithms: BST", url: "https://cp-algorithms.com/data_structures/treap.html" }
+        { name: "CP-Algorithms: BST", url: "https://cp-algorithms.com/data_structures/segment_tree.html" }
       ]},
       { title: "Tree Traversals: Inorder, Preorder, Postorder, Level-Order (BFS)", resources: [
         { name: "GeeksforGeeks: Tree Traversals", url: "https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/" },
@@ -243,7 +248,7 @@ const roadmapData = [
       ]},
       { title: "Graphs: Adjacency Matrix, Adjacency List, Edge List representations", resources: [
         { name: "Khan Academy: Representing Graphs", url: "https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/representing-graphs" },
-        { name: "CP-Algorithms: Graph Representation", url: "https://cp-algorithms.com/graph/breadth-first-search.html" }
+        { name: "CP-Algorithms: Graph Representation", url: "https://cp-algorithms.com/graph/descriptor.html" }
       ]},
       { title: "BFS: level-order traversal, shortest path in unweighted graph", resources: [
         { name: "VisuAlgo: Graph BFS/DFS", url: "https://visualgo.net/en/dfsbfs" },
@@ -268,7 +273,8 @@ const roadmapData = [
       { title: "How the Internet Works: TCP/IP, DNS, HTTP Lifecycle", resources: [
         { name: "MDN: How the Web Works", url: "https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/How_the_Web_works" },
         { name: "How DNS Works (Comic)", url: "https://howdns.works/" },
-        { name: "Cloudflare: What is the Internet?", url: "https://www.cloudflare.com/learning/network-layer/how-does-the-internet-work/" }
+        { name: "Cloudflare: What is the Internet?", url: "https://www.cloudflare.com/learning/network-layer/how-does-the-internet-work/" },
+        { name: "💎 Julia Evans: Networking! Ack! (free zine — best networking intro ever made)", url: "https://wizardzines.com/zines/networking/" }
       ]},
       { title: "HTTP/HTTPS: methods, status codes, headers, cookies", resources: [
         { name: "MDN: HTTP Overview", url: "https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview" },
@@ -276,7 +282,7 @@ const roadmapData = [
         { name: "Postman: HTTP Tutorial", url: "https://learning.postman.com/docs/getting-started/introduction/" }
       ]},
       { title: "Browser Rendering: DOM, CSSOM, Reflow, Repaint, Critical Path", resources: [
-        { name: "web.dev: How Browsers Work", url: "https://web.dev/howbrowserswork/" },
+        { name: "web.dev: How Browsers Work", url: "https://developer.chrome.com/blog/inside-browser-part1/" },
         { name: "MDN: Critical Rendering Path", url: "https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path" }
       ]},
       { title: "HTML5 Semantic Structuring & Accessibility (ARIA)", resources: [
@@ -296,7 +302,8 @@ const roadmapData = [
       ]},
       { title: "Async JavaScript: Promises, async/await, Fetch API", resources: [
         { name: "JavaScript.info: Promises", url: "https://javascript.info/promise-basics" },
-        { name: "MDN: Using Fetch", url: "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" }
+        { name: "MDN: Using Fetch", url: "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" },
+        { name: "💎 javascript.info: Async/Await — the single best written tutorial on async JS", url: "https://javascript.info/async-await" }
       ]},
       { title: "The Event Loop, Microtask Queue & Macrotask Queue", resources: [
         { name: "Jake Archibald: In The Loop (JSConf)", url: "https://www.youtube.com/watch?v=cCOL7MC4Pl0" },
@@ -330,7 +337,7 @@ const roadmapData = [
         { name: "Leetcode: SQL 50 Study Plan", url: "https://leetcode.com/studyplan/top-sql-50/" }
       ]},
       { title: "Aggregate Functions: COUNT, SUM, AVG, MAX, MIN, DISTINCT", resources: [
-        { name: "Mode: Intermediate SQL", url: "https://mode.com/sql-tutorial/intro-to-aggregations/" },
+        { name: "Mode: Intermediate SQL", url: "https://mode.com/sql-tutorial/sql-aggregate-functions/" },
         { name: "HackerRank: SQL Aggregation", url: "https://www.hackerrank.com/domains/sql" }
       ]},
       { title: "SQL Joins: INNER, LEFT, RIGHT, FULL OUTER, CROSS, SELF", resources: [
@@ -339,7 +346,8 @@ const roadmapData = [
       ]},
       { title: "Subqueries, CTEs (WITH clause) & Window Functions", resources: [
         { name: "Mode: Advanced SQL — Window Functions", url: "https://mode.com/sql-tutorial/sql-window-functions/" },
-        { name: "PostgreSQL: Window Functions Tutorial", url: "https://www.postgresql.org/docs/current/tutorial-window.html" }
+        { name: "PostgreSQL: Window Functions Tutorial", url: "https://www.postgresql.org/docs/current/tutorial-window.html" },
+        { name: "💎 Benn Stancil: The Most Useful (and Underused) SQL Functions — practical window function use cases", url: "https://mode.com/sql-tutorial/sql-window-functions/" }
       ]},
       { title: "Database Design & Normalization: 1NF, 2NF, 3NF, BCNF", resources: [
         { name: "FreeCodeCamp: DB Normalization", url: "https://www.freecodecamp.org/news/database-normalization-1nf-2nf-3nf-table-examples/" },
@@ -356,7 +364,7 @@ const roadmapData = [
       { title: "SQL Practice: LeetCode SQL 50 + HackerRank SQL (Advanced)", resources: [
         { name: "LeetCode: Top SQL 50", url: "https://leetcode.com/studyplan/top-sql-50/" },
         { name: "StrataScratch: Real SQL Interview Questions", url: "https://www.stratascratch.com/" },
-        { name: "DataLemur: SQL Interview Questions", url: "https://datalemur.com/sql-tutorial" }
+        { name: "DataLemur: SQL Interview Questions", url: "https://datalemur.com/questions?category=SQL" }
       ]}
     ]
   },
@@ -372,7 +380,7 @@ const roadmapData = [
       ]},
       { title: "RESTful API Design: Resources, HTTP Verbs, Statelessness, Versioning", resources: [
         { name: "REST API Tutorial", url: "https://restfulapi.net/" },
-        { name: "Microsoft: REST API Design Best Practices", url: "https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-design" }
+        { name: "Microsoft: REST API Design Best Practices", url: "https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design" }
       ]},
       { title: "Request/Response Lifecycle, Routing & Controllers", resources: [
         { name: "Express: Routing Guide", url: "https://expressjs.com/en/guide/routing.html" },
@@ -385,7 +393,8 @@ const roadmapData = [
       { title: "Authentication: Sessions, JWT, OAuth 2.0, Refresh Tokens", resources: [
         { name: "JWT.io: Introduction", url: "https://jwt.io/introduction" },
         { name: "Auth0: OAuth 2.0 Explained", url: "https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow" },
-        { name: "Passport.js: Node Authentication", url: "https://www.passportjs.org/docs/" }
+        { name: "Passport.js: Node Authentication", url: "https://www.passportjs.org/docs/" },
+        { name: "💎 The Copenhagen Book — free, concise guide to web app auth by the Lucia author", url: "https://thecopenhagenbook.com/" }
       ]},
       { title: "Password Security: Hashing (bcrypt), Salting, OWASP guidelines", resources: [
         { name: "OWASP: Password Storage Cheat Sheet", url: "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html" },
@@ -397,7 +406,7 @@ const roadmapData = [
       ]},
       { title: "Input Validation, Sanitization & Error Handling Strategies", resources: [
         { name: "Joi: Input Validation Library", url: "https://joi.dev/api/" },
-        { name: "Joyent: Error Handling in Node.js", url: "https://www.joyent.com/node-js/production/design/errors" }
+        { name: "Joyent: Error Handling in Node.js", url: "https://www.tritondatacenter.com/node-js/production/design/errors" }
       ]},
       { title: "API Testing: Postman, cURL, and writing Integration Tests", resources: [
         { name: "Postman Learning Center", url: "https://learning.postman.com/" },
@@ -416,7 +425,9 @@ const roadmapData = [
     topics: [
       { title: "System Design Basics & Interview Framework (RESHADED)", resources: [
         { name: "System Design Primer (GitHub)", url: "https://github.com/donnemartin/system-design-primer" },
-        { name: "ByteByteGo: System Design Interview (Newsletter)", url: "https://blog.bytebytego.com/" }
+        { name: "ByteByteGo: System Design Interview (Newsletter)", url: "https://blog.bytebytego.com/" },
+        { name: "💎 High Scalability Blog — real architecture of YouTube, Twitter, Amazon (case studies)", url: "http://highscalability.com/all-time-favorites/" },
+        { name: "💎 Designing Data-Intensive Applications (DDIA) — the system design bible (free chapter 1)", url: "https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/" }
       ]},
       { title: "Vertical vs Horizontal Scaling: when to choose what", resources: [
         { name: "GeeksforGeeks: Horizontal vs Vertical Scaling", url: "https://www.geeksforgeeks.org/horizontal-and-vertical-scaling-in-databases/" },
@@ -428,7 +439,7 @@ const roadmapData = [
       ]},
       { title: "Caching: In-memory (Redis/Memcached), Cache-aside, Write-through, TTL", resources: [
         { name: "AWS: Caching Best Practices", url: "https://aws.amazon.com/caching/best-practices/" },
-        { name: "Redis: Introduction", url: "https://redis.io/docs/getting-started/" },
+        { name: "Redis: Introduction", url: "https://redis.io/docs/latest/get-started/" },
         { name: "ByteByteGo: Top Caching Strategies", url: "https://blog.bytebytego.com/p/top-caching-strategies" }
       ]},
       { title: "CDN: How CDNs work, edge servers, cache invalidation", resources: [
@@ -543,7 +554,7 @@ const roadmapData = [
         { name: "AWS: API Gateway Throttling", url: "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-request-throttling.html" }
       ]},
       { title: "Serverless Computing: AWS Lambda, Vercel Functions, Edge Functions", resources: [
-        { name: "SST.dev: What is Serverless?", url: "https://sst.dev/chapters/what-is-serverless.html" },
+        { name: "SST.dev: What is Serverless?", url: "https://guide.sst.dev/chapters/what-is-serverless.html" },
         { name: "AWS Lambda: Getting Started", url: "https://docs.aws.amazon.com/lambda/latest/dg/getting-started.html" }
       ]},
       { title: "Search Systems: Elasticsearch & Full-Text Search Concepts", resources: [
@@ -562,13 +573,14 @@ const roadmapData = [
         { name: "Build a Portfolio: Scrimba Guide", url: "https://scrimba.com/articles/react-projects-for-beginners/" }
       ]},
       { title: "System Design Mock Interviews (Timed Practice)", resources: [
-        { name: "Pramp: Free Mock Interviews", url: "https://www.pramp.com/" },
+        { name: "Pramp: Free Mock Interviews", url: "https://www.tryexponent.com/pramp" },
         { name: "Exponent: System Design Course", url: "https://www.tryexponent.com/courses/system-design-interview" }
       ]},
       { title: "DSA Practice: NeetCode 150 + Blind 75", resources: [
         { name: "NeetCode.io Roadmap", url: "https://neetcode.io/roadmap" },
         { name: "Blind 75 List", url: "https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questions" },
-        { name: "LeetCode Patterns (Sean Prashad)", url: "https://seanprashad.com/leetcode-patterns/" }
+        { name: "LeetCode Patterns (Sean Prashad)", url: "https://seanprashad.com/leetcode-patterns/" },
+        { name: "💎 Striver's SDE Sheet — 191 curated problems, used by 100k+ Indian engineers", url: "https://takeuforward.org/interviews/strivers-sde-sheet-top-coding-interview-problems/" }
       ]},
       { title: "Behavioral Interviews: STAR Method, Leadership Principles, Storytelling", resources: [
         { name: "Amazon: Leadership Principles", url: "https://www.amazon.jobs/content/en/our-workplace/leadership-principles" },
@@ -615,7 +627,7 @@ const dsaRoadmapData = [
       { title: "Dev Environment: GCC/G++, VS Code, Competitive Companion Extension", resources: [
         { name: "VS Code: C++ Setup Guide", url: "https://code.visualstudio.com/docs/languages/cpp" },
         { name: "OnlineGDB (Browser C++ IDE)", url: "https://www.onlinegdb.com/online_c++_compiler" },
-        { name: "Codeforces: Getting Started Blog", url: "https://codeforces.com/blog/entry/47824" }
+        { name: "Codeforces: Getting Started Blog", url: "https://codeforces.com/blog/entry/65133" }
       ]},
       { title: "Your First Program: Hello World, Compilation Steps, Execution", resources: [
         { name: "📖 LearnCPP Ch.1.1-1.9 — Statements, structure, compilation (read in order)", url: "https://www.learncpp.com/cpp-tutorial/statements-and-the-structure-of-a-program/" },
@@ -636,7 +648,7 @@ const dsaRoadmapData = [
       { title: "Operators: Arithmetic, Relational, Logical, Bitwise, Assignment, Ternary", resources: [
         { name: "📖 LearnCPP Ch.6.1-6.7 — Operators (focus: precedence table)", url: "https://www.learncpp.com/cpp-tutorial/operator-precedence-and-associativity/" },
         { name: "📖 LearnCPP Ch.6.21 — Bitwise operators specifically", url: "https://www.learncpp.com/cpp-tutorial/bitwise-operators/" },
-        { name: "🔧 Bitwise Visualizer — watch bits flip in real time", url: "https://bitwisecmd.com/" }
+        { name: "🔧 Bitwise Visualizer — watch bits flip in real time", url: "https://visualize-it.github.io/bitwise/simulation.html" }
       ]},
       { title: "Control Flow: if/else, switch, ternary — nested conditions", resources: [
         { name: "📖 LearnCPP Ch.8.1-8.8 — Control flow introduction (read all 8 sections)", url: "https://www.learncpp.com/cpp-tutorial/control-flow-introduction/" },
@@ -654,14 +666,15 @@ const dsaRoadmapData = [
         { name: "🎬 The Cherno: C++ Functions (14 min)", url: "https://www.youtube.com/watch?v=V9zuox47zr0" }
       ]},
       { title: "Arrays and 2D Arrays: declaration, traversal, common patterns", resources: [
-        { name: "📖 LearnCPP Ch.17.1-17.6 — Arrays (read sections 17.1 to 17.6 only)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-arrays-part-i/" },
+        { name: "📖 LearnCPP Ch.17.1-17.6 — Arrays (read sections 17.1 to 17.6 only)", url: "https://www.learncpp.com/cpp-tutorial/arrays-part-i/" },
         { name: "📝 Tip: Prefer std::vector over raw arrays in modern C++. Use arrays only when size is fixed.", url: "https://www.learncpp.com/cpp-tutorial/an-introduction-to-stdvector/" },
         { name: "📖 GeeksforGeeks: C++ Arrays with examples", url: "https://www.geeksforgeeks.org/arrays-in-c-cpp/" }
       ]},
       { title: "Practice: HackerRank C++ Basics + First 20 LeetCode Easy (Brute Force OK)", resources: [
         { name: "HackerRank: C++ Domain", url: "https://www.hackerrank.com/domains/cpp" },
         { name: "LeetCode: Easy Problems", url: "https://leetcode.com/problemset/?difficulty=EASY" },
-        { name: "CSES: Introductory Problems", url: "https://cses.fi/problemset/list/" }
+        { name: "CSES: Introductory Problems", url: "https://cses.fi/problemset/list/" },
+        { name: "💎 Exercism: C++ Track — mentored practice with real feedback from experienced devs", url: "https://exercism.org/tracks/cpp" }
       ]}
     ]
   },
@@ -691,13 +704,14 @@ const dsaRoadmapData = [
         { name: "📝 Tip: Use stoi() to convert string to int, to_string() for int to string. Use stringstream for parsing.", url: "https://en.cppreference.com/w/cpp/string/basic_string" }
       ]},
       { title: "STL Vector: dynamic array, push_back, emplace_back, iterators, sort", resources: [
-        { name: "📖 LearnCPP Ch.16.1-16.8 — std::vector (the complete vector chapter)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-stdvector-and-list-constructors/" },
+        { name: "📖 LearnCPP Ch.16.1-16.8 — std::vector (the complete vector chapter)", url: "https://www.learncpp.com/cpp-tutorial/an-introduction-to-stdvector/" },
         { name: "📝 Tip: Use emplace_back() not push_back() — constructs in place, slightly faster. Reserve capacity with reserve().", url: "https://en.cppreference.com/w/cpp/container/vector" },
         { name: "📖 CPP Reference: std::vector method reference", url: "https://en.cppreference.com/w/cpp/container/vector" }
       ]},
       { title: "STL Map & Unordered_map: insertion, lookup, iteration — O(log n) vs O(1)", resources: [
         { name: "CPP Reference: std::map", url: "https://en.cppreference.com/w/cpp/container/map" },
-        { name: "GeeksforGeeks: Map vs Unordered_map", url: "https://www.geeksforgeeks.org/map-vs-unordered_map-c/" }
+        { name: "GeeksforGeeks: Map vs Unordered_map", url: "https://www.geeksforgeeks.org/map-vs-unordered_map-c/" },
+        { name: "💎 HackingCPP — visual cheat sheets for every STL container with complexity tables", url: "https://hackingcpp.com/cpp/std/containers.html" }
       ]},
       { title: "STL Set & Unordered_set, Stack, Queue, Deque, Priority_queue", resources: [
         { name: "CPP Reference: Containers Overview", url: "https://en.cppreference.com/w/cpp/container" },
@@ -744,7 +758,8 @@ const dsaRoadmapData = [
       { title: "Bit Manipulation: AND, OR, XOR, NOT, shifts — common tricks", resources: [
         { name: "GeeksforGeeks: Bit Manipulation Tricks", url: "https://www.geeksforgeeks.org/bit-tricks-competitive-programming/" },
         { name: "LeetCode: Bit Manipulation Problems", url: "https://leetcode.com/tag/bit-manipulation/" },
-        { name: "CP-Algorithms: Bit Manipulation", url: "https://cp-algorithms.com/algebra/bit-manipulation.html" }
+        { name: "CP-Algorithms: Bit Manipulation", url: "https://cp-algorithms.com/algebra/binary-exp.html" },
+        { name: "💎 Sean Anderson's Bit Twiddling Hacks — legendary collection of O(1) bit tricks used in real compilers", url: "https://graphics.stanford.edu/~seander/bithacks.html" }
       ]},
       { title: "Combinatorics: nCr, nPr, Pascal's Triangle, Inclusion-Exclusion", resources: [
         { name: "CP-Algorithms: Combinatorics", url: "https://cp-algorithms.com/combinatorics/binomial-coefficients.html" },
@@ -922,7 +937,7 @@ const dsaRoadmapData = [
     estimatedWeeks: 3, badge: "🕸️",
     topics: [
       { title: "Graph Representations: Adjacency List, Matrix, Edge List — build in C++", resources: [
-        { name: "CP-Algorithms: Graph Representations", url: "https://cp-algorithms.com/graph/breadth-first-search.html" },
+        { name: "CP-Algorithms: Graph Basics & Representations", url: "https://cp-algorithms.com/graph/descriptor.html" },
         { name: "Khan Academy: Graph Representation", url: "https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/representing-graphs" }
       ]},
       { title: "BFS: Level traversal, Shortest Path (unweighted), Multi-source BFS", resources: [
@@ -966,7 +981,8 @@ const dsaRoadmapData = [
       { title: "Boss Battle: Complete NeetCode 150 Graphs + 20 CSES Graph Problems", resources: [
         { name: "NeetCode 150: Graphs", url: "https://neetcode.io/practice" },
         { name: "CSES: Graph Algorithms", url: "https://cses.fi/problemset/list/" },
-        { name: "Codeforces: Graphs Tag", url: "https://codeforces.com/problemset?tags=graphs" }
+        { name: "Codeforces: Graphs Tag", url: "https://codeforces.com/problemset?tags=graphs" },
+        { name: "💎 William Fiset: Graph Theory Algorithms (full playlist, 36 videos, extremely clear)", url: "https://www.youtube.com/playlist?list=PLDV1Zeh2NRsDGO4--qE8yH72HFL1Km93P" }
       ]}
     ]
   },
@@ -977,7 +993,9 @@ const dsaRoadmapData = [
     topics: [
       { title: "DP Philosophy: Optimal Substructure + Overlapping Subproblems, Top-Down vs Bottom-Up", resources: [
         { name: "NeetCode: DP for Beginners", url: "https://www.youtube.com/watch?v=73r3KWiEvyk" },
-        { name: "FreeCodeCamp: DP Explained", url: "https://www.freecodecamp.org/news/demystifying-dynamic-programming-3efafb8d4296/" }
+        { name: "FreeCodeCamp: DP Explained", url: "https://www.freecodecamp.org/news/demystifying-dynamic-programming-3efafb8d4296/" },
+        { name: "💎 Errichto: Dynamic Programming — 3-part tutorial series (best DP intro for CP, by a Codeforces Grandmaster)", url: "https://www.youtube.com/watch?v=YBSt1jYwVfU" },
+        { name: "💎 Atcoder DP Contest — 26 classic DP problems in perfect difficulty order (A→Z)", url: "https://atcoder.jp/contests/dp/tasks" }
       ]},
       { title: "1D DP: Fibonacci, Climbing Stairs, House Robber, Min Cost Climbing Stairs", resources: [
         { name: "LeetCode: Climbing Stairs", url: "https://leetcode.com/problems/climbing-stairs/" },
@@ -1040,7 +1058,7 @@ const dsaRoadmapData = [
         { name: "Codeforces Blog: Bitmask DP", url: "https://codeforces.com/blog/entry/47094" }
       ]},
       { title: "DP on Trees: Rerooting technique, diameter, max independent set on tree", resources: [
-        { name: "CP-Algorithms: DP on Trees", url: "https://cp-algorithms.com/graph/tree_painting.html" },
+        { name: "CP-Algorithms: DP on Trees", url: "https://cp-algorithms.com/dynamic_programming/tree-dp.html" },
         { name: "Codeforces Blog: DP on Trees", url: "https://codeforces.com/blog/entry/20935" }
       ]},
       { title: "String Algorithms: KMP Pattern Matching — O(n+m) search", resources: [
@@ -1092,7 +1110,7 @@ const dsaRoadmapData = [
         { name: "CSES: Full Problem Set", url: "https://cses.fi/problemset/" }
       ]},
       { title: "Mock Interview Practice: untimed then timed — Pramp, Interviewing.io", resources: [
-        { name: "Pramp: Free Peer Interviews", url: "https://www.pramp.com/" },
+        { name: "Pramp: Free Peer Interviews", url: "https://www.tryexponent.com/pramp" },
         { name: "Interviewing.io: Anonymous Mock Interviews", url: "https://interviewing.io/" }
       ]},
       { title: "Complete NeetCode 150: finish all remaining sections", resources: [
@@ -1110,7 +1128,9 @@ const dsaRoadmapData = [
       { title: "Competitive Programming Resources: CLRS, CP Handbook, Competitive Programmer's Handbook", resources: [
         { name: "Competitive Programmer's Handbook (Free PDF)", url: "https://cses.fi/book/book.pdf" },
         { name: "CP-Algorithms Encyclopedia", url: "https://cp-algorithms.com/" },
-        { name: "USACO Guide", url: "https://usaco.guide/" }
+        { name: "USACO Guide", url: "https://usaco.guide/" },
+        { name: "💎 KACTL — KTH Algorithm Competition Template Library (battle-tested contest code)", url: "https://github.com/kth-competitive-programming/kactl" },
+        { name: "💎 Codeforces EDU Section — structured algorithm courses with visualizations, totally free", url: "https://codeforces.com/edu/courses" }
       ]},
       { title: "Final Boss: 5 Mock Interviews + Review All Weak Areas + DSA Portfolio", resources: [
         { name: "LeetCode: Company-Tagged Problems", url: "https://leetcode.com/problemset/" },
@@ -1722,12 +1742,13 @@ function loadLocalProgress() {
 }
 
 function ensureDefaults() {
-  if (!playerState.unlockedMonths) playerState.unlockedMonths = [1];
+  if (!playerState.unlockedMonths)    playerState.unlockedMonths    = [1];
   if (!playerState.unlockedDsaMonths) playerState.unlockedDsaMonths = ["dsa-1"];
-  if (!playerState.achievements) playerState.achievements = [];
-  if (!playerState.streak) playerState.streak = 0;
-  if (!playerState.notes) playerState.notes = {};
-  if (!playerState.bookmarkedQuests) playerState.bookmarkedQuests = {};
+  if (!playerState.achievements)      playerState.achievements      = [];
+  // Use explicit null/undefined check — 0 is a valid streak value, must not overwrite it
+  if (playerState.streak == null)     playerState.streak            = 0;
+  if (!playerState.notes)             playerState.notes             = {};
+  if (!playerState.bookmarkedQuests)  playerState.bookmarkedQuests  = {};
 }
 
 function resetProgress() {
@@ -1827,8 +1848,13 @@ function getRequiredXP(level) { return Math.floor(BASE_XP_REQUIREMENT * Math.pow
 function getTitle(level) { return LEVEL_TITLES[Math.min(level - 1, LEVEL_TITLES.length - 1)]; }
 
 function checkLevelUp() {
+  // Collect all level-ups first, then animate them one by one
+  let levelsGained = 0;
   while (playerState.xp >= getRequiredXP(playerState.level)) {
     playerState.level++;
+    levelsGained++;
+  }
+  if (levelsGained > 0) {
     showLevelUpNotification();
   }
 }
@@ -2189,7 +2215,55 @@ function toggleQuest(monthId, questIndex, el, track) {
 
   updatePlayerStatsUI();
   updateTrackStats();
-  renderBothRoadmaps();
+  // Only re-render the single card that changed, not all 22 cards
+  updateSingleCard(monthId, track);
+}
+
+// Lightweight card updater — avoids full re-render on every quest click
+function updateSingleCard(monthId, track) {
+  const container = track === 'dsa' ? dsaContainer : sdeContainer;
+  const data      = track === 'dsa' ? dsaRoadmapData : roadmapData;
+  const unlockedList = track === 'sde' ? playerState.unlockedMonths : playerState.unlockedDsaMonths;
+  const month     = data.find(m => String(m.id) === String(monthId));
+  if (!month) return;
+
+  const xpPerQ = track === 'dsa' ? DSA_XP_PER_QUEST : SDE_XP_PER_QUEST;
+  const totalQ = month.topics.length;
+  let doneQ = 0;
+  month.topics.forEach((_, q) => { if (playerState.completedQuests[`${month.id}-${q}`]) doneQ++; });
+  const isComplete = doneQ === totalQ;
+  const pct = (doneQ / totalQ) * 100;
+
+  // Find the card in the DOM by index in the container
+  const idx = data.findIndex(m => String(m.id) === String(monthId));
+  const cards = container.querySelectorAll('.month-card');
+  const card = cards[idx];
+  if (!card) return;
+
+  // Update classes
+  card.classList.toggle('completed', isComplete);
+
+  // Update progress bar and quest count
+  const bar = card.querySelector('.mini-bar-fill');
+  if (bar) bar.style.width = `${pct}%`;
+  const footer = card.querySelector('.card-footer span');
+  if (footer) footer.innerText = `${doneQ}/${totalQ} Quests`;
+
+  // Update status icon (lock/unlock/check)
+  const isUnlocked = unlockedList.some(u => String(u) === String(month.id));
+  const statusArea = card.querySelector('.status-icon');
+  if (statusArea && !month.badge) {
+    statusArea.innerHTML = isComplete
+      ? '<i class="fa-solid fa-circle-check"></i>'
+      : (isUnlocked ? '<i class="fa-solid fa-lock-open"></i>' : '<i class="fa-solid fa-lock"></i>');
+  }
+
+  // If a new month just unlocked, do a full re-render (rare, worth the cost)
+  const prevUnlocked = unlockedList.length;
+  checkUnlocks();
+  if (unlockedList.length !== prevUnlocked) {
+    renderBothRoadmaps();
+  }
 }
 
 function updateModalProgress(done, total) {
