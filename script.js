@@ -681,7 +681,7 @@ const dsaRoadmapData = [
   {
     id: "dsa-2", title: "C++ Advanced — Pointers, Strings & STL",
     description: "Master C++'s most powerful features: pointers, references, string operations, and the full STL toolkit.",
-    estimatedWeeks: 3, badge: "🔧",
+    estimatedWeeks: 2, badge: "🔧",
     topics: [
       { title: "Pointers: address-of (&), dereference (*), pointer arithmetic, nullptr", resources: [
         { name: "📖 LearnCPP Ch.9.6-9.12 — Introduction to Pointers (read in order)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-pointers/" },
@@ -727,12 +727,6 @@ const dsaRoadmapData = [
         { name: "📝 Tip: Sort vector of pairs by 2nd element: sort(v.begin(),v.end(),[](auto&a,auto&b){return a.second<b.second;})", url: "https://www.geeksforgeeks.org/sorting-vector-of-pairs-in-c-set-1-sort-by-first-and-second/" },
         { name: "📖 CPP Reference: std::pair", url: "https://en.cppreference.com/w/cpp/utility/pair" }
       ]},
-      { title: "Structs & Custom Types: defining Node, Edge, Point — the building block of all DS", resources: [
-        { name: "📖 LearnCPP Ch.13.1-13.5 — Introduction to Structs (essential — read all 5 sections)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-structs-members-and-member-selection/" },
-        { name: "📖 Programiz: C++ Structs with examples", url: "https://www.programiz.com/cpp-programming/structure" },
-        { name: "📝 Tip: You will write 'struct Node { int val; Node* next; };' hundreds of times. Memorize this pattern — it is used for linked lists, trees, and graphs.", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-structs-members-and-member-selection/" },
-        { name: "📖 CPP Reference: Struct declaration", url: "https://en.cppreference.com/w/cpp/language/class" }
-      ]},
       { title: "Practice: 30 LeetCode Easy/Medium with STL — Arrays, HashMap, Sorting", resources: [
         { name: "NeetCode: Arrays & Hashing Problems", url: "https://neetcode.io/roadmap" },
         { name: "CSES: Sorting and Searching", url: "https://cses.fi/problemset/list/" },
@@ -743,7 +737,7 @@ const dsaRoadmapData = [
   {
     id: "dsa-3", title: "Mathematical Foundations & Recursion",
     description: "The math that every competitive programmer needs. Number theory, combinatorics, and recursion mastery.",
-    estimatedWeeks: 3, badge: "🧮",
+    estimatedWeeks: 2, badge: "🧮",
     topics: [
       { title: "Big-O, Big-Ω, Big-Θ: formal definitions, deriving complexity from code", resources: [
         { name: "Big-O Cheat Sheet", url: "https://www.bigocheatsheet.com/" },
@@ -752,12 +746,6 @@ const dsaRoadmapData = [
       { title: "Modular Arithmetic: mod operator, properties, overflow prevention", resources: [
         { name: "CP-Algorithms: Modular Arithmetic", url: "https://cp-algorithms.com/algebra/module-inverse.html" },
         { name: "Codeforces Blog: Modular Arithmetic Tutorial", url: "https://codeforces.com/blog/entry/72527" }
-      ]},
-      { title: "Binary Exponentiation (Fast Power): compute a^b % mod in O(log b) — essential for CP", resources: [
-        { name: "📖 CP-Algorithms: Binary Exponentiation — the definitive explanation", url: "https://cp-algorithms.com/algebra/binary-exp.html" },
-        { name: "📖 GeeksforGeeks: Modular Exponentiation", url: "https://www.geeksforgeeks.org/modular-exponentiation-power-in-modular-arithmetic/" },
-        { name: "📝 Tip: Template to memorize — long long power(long long a, long long b, long long mod) { long long res=1; a%=mod; while(b>0){if(b&1)res=res*a%mod; a=a*a%mod; b>>=1;} return res; }", url: "https://cp-algorithms.com/algebra/binary-exp.html" },
-        { name: "LeetCode: Pow(x, n) — practice problem for binary exponentiation", url: "https://leetcode.com/problems/powx-n/" }
       ]},
       { title: "Number Theory: GCD (Euclidean algorithm), LCM, Coprime numbers", resources: [
         { name: "CP-Algorithms: GCD & LCM", url: "https://cp-algorithms.com/algebra/euclid-algorithm.html" },
@@ -920,17 +908,13 @@ const dsaRoadmapData = [
         { name: "NeetCode: Trees Playlist", url: "https://www.youtube.com/playlist?list=PLot-Xpze53ldg4pN6PfzoJY57_iiFqcc" },
         { name: "LeetCode: Tree Tag", url: "https://leetcode.com/tag/tree/" }
       ]},
-      { title: "Self-Balancing Trees: AVL Trees & Red-Black Trees — concepts & why balance matters", resources: [
-        { name: "VisuAlgo: AVL Tree Visualization — watch rotations in real time", url: "https://visualgo.net/en/bst" },
-        { name: "GFG: AVL Tree — insertion, deletion, rotations", url: "https://www.geeksforgeeks.org/avl-tree-set-1-insertion/" },
-        { name: "📝 Tip: You will NOT implement AVL/Red-Black from scratch in interviews. Focus on WHY they exist: without balancing, a BST degenerates to O(n). Balanced = guaranteed O(log n).", url: "https://visualgo.net/en/bst" },
-        { name: "MIT 6.006: Lecture on Balanced BSTs", url: "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/video_galleries/lecture-videos/" }
+      { title: "Segment Trees: Build, Point Update, Range Query — O(log n) operations", resources: [
+        { name: "CP-Algorithms: Segment Tree", url: "https://cp-algorithms.com/data_structures/segment_tree.html" },
+        { name: "Codeforces Blog: Segment Tree Tutorial", url: "https://codeforces.com/blog/entry/18051" }
       ]},
-      { title: "Tree DP Introduction: Maximum Path Sum, House Robber III, diameter via post-order", resources: [
-        { name: "LeetCode: Binary Tree Maximum Path Sum", url: "https://leetcode.com/problems/binary-tree-maximum-path-sum/" },
-        { name: "LeetCode: House Robber III", url: "https://leetcode.com/problems/house-robber-iii/" },
-        { name: "📝 Tip: Tree DP = define a function that returns info about a subtree, process children first (post-order), then combine. This exact pattern solves 90% of hard tree problems.", url: "https://leetcode.com/problems/binary-tree-maximum-path-sum/" },
-        { name: "NeetCode: Binary Tree Maximum Path Sum (explained)", url: "https://www.youtube.com/watch?v=Hr5cWUld4vU" }
+      { title: "Binary Indexed Tree (Fenwick Tree): prefix sums with updates in O(log n)", resources: [
+        { name: "CP-Algorithms: Fenwick Tree", url: "https://cp-algorithms.com/data_structures/fenwick.html" },
+        { name: "GeeksforGeeks: BIT", url: "https://www.geeksforgeeks.org/binary-indexed-tree-or-fenwick-tree-2/" }
       ]},
       { title: "Heaps: Max-heap/Min-heap, heapify, heap sort — priority_queue in C++", resources: [
         { name: "VisuAlgo: Binary Heap", url: "https://visualgo.net/en/heap" },
@@ -1018,13 +1002,6 @@ const dsaRoadmapData = [
         { name: "LeetCode: House Robber", url: "https://leetcode.com/problems/house-robber/" },
         { name: "NeetCode: 1D DP Playlist", url: "https://www.youtube.com/playlist?list=PLot-Xpze53leavjnIai9le35esHs0XBIZ" }
       ]},
-      { title: "Kadane's Algorithm: Maximum Subarray — O(n) DP, most elegant algorithm in interviews", resources: [
-        { name: "LeetCode: Maximum Subarray (solve this first)", url: "https://leetcode.com/problems/maximum-subarray/" },
-        { name: "NeetCode: Maximum Subarray — Kadane's explained", url: "https://www.youtube.com/watch?v=5WZl3MMT0Eg" },
-        { name: "📝 Tip: dp[i] = max(nums[i], dp[i-1] + nums[i]). The choice: start fresh at nums[i], or extend previous subarray. This exact two-choice structure IS dynamic programming.", url: "https://leetcode.com/problems/maximum-subarray/" },
-        { name: "LeetCode: Maximum Product Subarray — Kadane's variant (must solve)", url: "https://leetcode.com/problems/maximum-product-subarray/" },
-        { name: "LeetCode: Maximum Sum Circular Subarray — harder Kadane variant", url: "https://leetcode.com/problems/maximum-sum-circular-subarray/" }
-      ]},
       { title: "1D DP Hard: House Robber II (circular), Decode Ways, Longest Palindromic Substring", resources: [
         { name: "LeetCode: House Robber II", url: "https://leetcode.com/problems/house-robber-ii/" },
         { name: "LeetCode: Decode Ways", url: "https://leetcode.com/problems/decode-ways/" }
@@ -1065,7 +1042,7 @@ const dsaRoadmapData = [
   {
     id: "dsa-9", title: "Advanced Algorithms — Greedy, Advanced DP & Strings",
     description: "Greedy proofs, bitmask DP, advanced string algorithms. This is where experts are made.",
-    estimatedWeeks: 4, badge: "🏹",
+    estimatedWeeks: 3, badge: "🏹",
     topics: [
       { title: "Greedy Algorithm Design: Exchange Arguments, proving optimality", resources: [
         { name: "MIT 6.006: Greedy Algorithms Lecture", url: "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/" },
@@ -1083,18 +1060,6 @@ const dsaRoadmapData = [
       { title: "DP on Trees: Rerooting technique, diameter, max independent set on tree", resources: [
         { name: "CP-Algorithms: DP on Trees", url: "https://cp-algorithms.com/dynamic_programming/tree-dp.html" },
         { name: "Codeforces Blog: DP on Trees", url: "https://codeforces.com/blog/entry/20935" }
-      ]},
-      { title: "Segment Tree (Basic): Build, Point Update, Range Sum/Min/Max Query", resources: [
-        { name: "CP-Algorithms: Segment Tree", url: "https://cp-algorithms.com/data_structures/segment_tree.html" },
-        { name: "Codeforces Blog: Segment Tree from Scratch", url: "https://codeforces.com/blog/entry/18051" },
-        { name: "📝 Tip: A segment tree on array of size n uses 4*n space. Build in O(n), query and update both O(log n). Start with range sum, then range min/max.", url: "https://cp-algorithms.com/data_structures/segment_tree.html" },
-        { name: "💎 Codeforces EDU: Segment Tree Part 1 — interactive course with problems", url: "https://codeforces.com/edu/course/2/lesson/4" }
-      ]},
-      { title: "Fenwick Tree (BIT): prefix sum with point updates in O(log n) — simpler than Segment Tree", resources: [
-        { name: "CP-Algorithms: Fenwick Tree", url: "https://cp-algorithms.com/data_structures/fenwick.html" },
-        { name: "GeeksforGeeks: Binary Indexed Tree", url: "https://www.geeksforgeeks.org/binary-indexed-tree-or-fenwick-tree-2/" },
-        { name: "📝 Tip: BIT is simpler to code than a segment tree for prefix-sum problems. Key trick: i += (i & -i) moves to parent, i -= (i & -i) moves to next responsibility. Implement once and memorize.", url: "https://cp-algorithms.com/data_structures/fenwick.html" },
-        { name: "CSES: Dynamic Range Sum Queries — best practice problem for BIT", url: "https://cses.fi/problemset/task/1648" }
       ]},
       { title: "String Algorithms: KMP Pattern Matching — O(n+m) search", resources: [
         { name: "CP-Algorithms: KMP", url: "https://cp-algorithms.com/string/kmp.html" },
@@ -1323,13 +1288,9 @@ const TOPIC_META = {
   "Job Search Strategy: outreach, referrals, company research, timing": { difficulty:"beginner", tip:"🎯 Referrals get 5-10x higher callback rate. Spend 20% time applying online, 80% networking. LinkedIn connections, alumni network, local meetups — these are your highest-ROI activities." },
   "Salary Negotiation & Offer Evaluation (RSUs, vesting, total comp)": { difficulty:"beginner", tip:"🎯 Never give a number first. 'What are you making?' → 'I'm focused on finding the right role. What's the budgeted range?' Read Haseeb's negotiation guide — it's the best on the internet." },
 
-  // ── DSA Month 2 extra topics (added) ──
-  "Structs & Custom Types: defining Node, Edge, Point — the building block of all DS": { difficulty:"beginner", tip:"🎯 This is the single most important thing to learn before Month 5. Every data structure you build uses 'struct Node'. Memorize this pattern cold: struct Node { int val; Node* next; Node(int v) : val(v), next(nullptr) {} }; — you will write this hundreds of times for linked lists, trees, and graphs." },
-
   // ── DSA Month 3: Mathematical Foundations ──
   "Big-O, Big-Ω, Big-Θ: formal definitions, deriving complexity from code": { difficulty:"intermediate", tip:"🎯 Know the Big-O Cheat Sheet cold. Practice deriving complexity by counting loop iterations. The most common mistakes: forgetting log n for tree operations, missing O(n) for string concatenation." },
   "Modular Arithmetic: mod operator, properties, overflow prevention": { difficulty:"intermediate", tip:"🎯 Key property: (a+b)%M = ((a%M)+(b%M))%M. Always use long long and take mod after every operation in CP. This prevents overflow in problems with large numbers." },
-  "Binary Exponentiation (Fast Power): compute a^b % mod in O(log b) — essential for CP": { difficulty:"intermediate", tip:"🎯 The template is short — memorize it. It appears in combinatorics (computing nCr % mod using Fermat's little theorem), matrix exponentiation, and any problem asking for 'answer mod 10^9+7'. LeetCode Pow(x,n) is the entry-level version — solve it first." },
   "Number Theory: GCD (Euclidean algorithm), LCM, Coprime numbers": { difficulty:"intermediate", tip:"🎯 Implement Euclidean GCD from memory: gcd(a,b) = gcd(b, a%b), base: gcd(a,0)=a. LCM(a,b) = a*b/gcd(a,b). These appear in 20%+ of CP problems." },
   "Prime Numbers: Sieve of Eratosthenes, Primality Testing, Factorization": { difficulty:"intermediate", tip:"🎯 Implement Sieve once and memorize it — you'll use it in dozens of CP problems. The sieve finds ALL primes up to N in O(n log log n). Faster than trial division for large N." },
   "Bit Manipulation: AND, OR, XOR, NOT, shifts — common tricks": { difficulty:"intermediate", tip:"🎯 Must-know tricks: n&(n-1) removes lowest set bit, n&(-n) isolates lowest set bit, x^x=0, x^0=x. These tricks solve problems in O(1) that loops solve in O(n)." },
@@ -1369,8 +1330,8 @@ const TOPIC_META = {
   "BFS / Level Order: queue-based traversal, zigzag, right side view": { difficulty:"intermediate", tip:"🎯 BFS template: while queue not empty → dequeue → process → enqueue children. Level separator technique: process all nodes at current level before adding next level." },
   "BST Operations: Search, Insert, Delete — and BST validation": { difficulty:"intermediate", tip:"🎯 Validate BST (LeetCode #98) is a classic trap — you can't just check left < node < right for each node alone. You need to pass min/max bounds down through the recursion." },
   "Classic Tree Problems: Lowest Common Ancestor, Diameter, Max Path Sum": { difficulty:"advanced", tip:"🎯 These 3 problems teach: post-order thinking (process children before parent), passing values up the tree, and using a global variable for the answer. Essential patterns for any tree problem." },
-  "Self-Balancing Trees: AVL Trees & Red-Black Trees — concepts & why balance matters": { difficulty:"intermediate", tip:"🎯 You will NOT implement these from scratch in interviews. Understand WHY they exist: a degenerate BST (sorted input) degenerates to O(n). Rotations restore O(log n) guarantee. Watch VisuAlgo, understand rotations conceptually — that's enough for 99% of interviews." },
-  "Tree DP Introduction: Maximum Path Sum, House Robber III, diameter via post-order": { difficulty:"advanced", tip:"🎯 The Tree DP template: (1) define what your function returns for a subtree, (2) recurse on left + right children, (3) combine results at current node, (4) update global answer if needed. Max Path Sum is the hardest 'easy' tree problem — it requires tracking both the path-through-root answer and the path-within-subtree answer simultaneously." },
+  "Segment Trees: Build, Point Update, Range Query — O(log n) operations": { difficulty:"advanced", tip:"🎯 Segment tree enables O(log n) range queries with O(log n) point updates. Competitive programming essential. CP-Algorithms has the clearest explanation. Implement from scratch once." },
+  "Binary Indexed Tree (Fenwick Tree): prefix sums with updates in O(log n)": { difficulty:"advanced", tip:"🎯 BIT is simpler to code than a segment tree for prefix sum problems. Key operation: i += i & (-i) to move to parent, i -= i & (-i) to move to next responsibility. Implement once to understand." },
   "Heaps: Max-heap/Min-heap, heapify, heap sort — priority_queue in C++": { difficulty:"intermediate", tip:"🎯 priority_queue<int> = max-heap by default in C++. priority_queue<int,vector<int>,greater<int>> = min-heap. Know how to use both. Heap sort is O(n log n) in-place — good to know." },
   "Heap Problems: K Largest Elements, Merge K Sorted Lists, Task Scheduler": { difficulty:"advanced", tip:"🎯 K Largest = min-heap of size K (counterintuitive but correct — the min-heap tracks the K largest seen so far). Merge K Sorted = min-heap on (value, list_index, element_index)." },
   "Trie: Implement from scratch, word search, prefix matching, autocomplete": { difficulty:"intermediate", tip:"🎯 Every Trie node has children[26] and isEndOfWord flag. Implement all 3 operations: insert, search, startsWith. LeetCode #208 is the canonical implementation problem — solve it cold." },
@@ -1389,8 +1350,8 @@ const TOPIC_META = {
 
   // ── DSA Month 8: Dynamic Programming ──
   "DP Fundamentals: Optimal Substructure, Overlapping Subproblems, State Design": { difficulty:"intermediate", tip:"🎯 Two tests for DP: (1) optimal substructure — optimal solution built from optimal sub-solutions, (2) overlapping subproblems — same subproblem solved multiple times. Both must be true." },
-  "1D DP: Fibonacci, Climbing Stairs, House Robber, Min Cost Climbing Stairs": { difficulty:"intermediate", tip:"🎯 Start with Climbing Stairs (= Fibonacci with a different story). Then House Robber (can't rob adjacent). Each problem builds on the previous. Define dp[i] as 'max money robbing first i houses' before writing a single line of code." },
-  "Kadane's Algorithm: Maximum Subarray — O(n) DP, most elegant algorithm in interviews": { difficulty:"intermediate", tip:"🎯 dp[i] = max(nums[i], dp[i-1]+nums[i]). Two choices: start fresh at current element, OR extend the previous subarray. The key insight: if the previous subarray sum is negative, throw it away and start fresh. Must also solve Maximum Product Subarray (maintains both max and min due to negatives) and Maximum Sum Circular Subarray." },
+  "1D DP: Climbing Stairs, House Robber, Decode Ways, Word Break": { difficulty:"intermediate", tip:"🎯 Start with Climbing Stairs → Fibonacci → House Robber → Decode Ways. Each problem builds on the previous. The state definition is the key insight — define dp[i] clearly before coding." },
+  "Kadane's Algorithm: Maximum Subarray — the foundation of 1D DP": { difficulty:"intermediate", tip:"🎯 Kadane's is O(n) DP: dp[i] = max(nums[i], dp[i-1]+nums[i]). It's the most elegant DP algorithm. Understand it deeply — it's asked directly and as a subroutine in harder problems." },
   "2D DP: Unique Paths, Minimum Path Sum, LCS, Edit Distance": { difficulty:"intermediate", tip:"🎯 2D DP: dp[i][j] usually depends on dp[i-1][j], dp[i][j-1], or dp[i-1][j-1]. Draw the DP table on paper first. Edit Distance and LCS are THE classic interview 2D DP problems." },
   "Knapsack Variations: 0/1 Knapsack, Unbounded Knapsack, Subset Sum": { difficulty:"advanced", tip:"🎯 0/1 Knapsack: each item used 0 or 1 times. Unbounded: each item used any number of times (Coin Change). Subset Sum: can we reach target T? Recognize which variant you have." },
   "DP on Strings: Longest Palindromic Substring, Palindrome Partitioning": { difficulty:"advanced", tip:"🎯 Longest Palindromic Substring: expand from center in O(n²). Or use Manacher's algorithm in O(n). Understand expand-from-center first — it's the interview-expected approach." },
@@ -1404,8 +1365,6 @@ const TOPIC_META = {
   "Greedy Classics: Activity Selection, Jump Game, Gas Station, Job Scheduling": { difficulty:"intermediate", tip:"🎯 Jump Game (LeetCode #55) is the quintessential greedy problem. Track max reachable index. Gas Station shows circular array greedy. Solve these before harder greedy problems." },
   "Bitmask DP: Travelling Salesman Problem, Counting Paths through all nodes": { difficulty:"advanced", tip:"🎯 Bitmask DP: use an integer's bits to represent a subset. dp[mask][i] = best answer visiting nodes in 'mask', ending at node i. TSP is O(n² × 2ⁿ) — feasible for n≤20." },
   "DP on Trees: Rerooting technique, diameter, max independent set on tree": { difficulty:"advanced", tip:"🎯 Tree DP: define dp[node] = answer for subtree rooted at node. Process children first (post-order). Rerooting: run DP twice — once from any root, once to reroot for each node." },
-  "Segment Tree (Basic): Build, Point Update, Range Sum/Min/Max Query": { difficulty:"advanced", tip:"🎯 Build the segment tree recursively on array [l..r]: base case is a leaf, recursive case splits at mid. Build O(n), update O(log n), query O(log n). Implement Range Sum first, then Range Min — same structure, different merge operation. Use 4*n array size." },
-  "Fenwick Tree (BIT): prefix sum with point updates in O(log n) — simpler than Segment Tree": { difficulty:"advanced", tip:"🎯 BIT uses a clever binary trick: each index i is responsible for range [i - lowbit(i) + 1 ... i] where lowbit(i) = i & (-i). Update: add to i, move to i + lowbit(i). Query: sum from 1..i, move to i - lowbit(i). 10 lines of code total — the most efficient-to-code advanced DS in CP." },
   "String Algorithms: KMP Pattern Matching — O(n+m) search": { difficulty:"advanced", tip:"🎯 KMP is O(n+m) vs O(nm) for brute force. Key: build the failure function (prefix function) first. CP-Algorithms KMP article is the definitive explanation — read it fully." },
   "Z-Algorithm & Rabin-Karp: alternative string matching approaches": { difficulty:"advanced", tip:"🎯 Z-array: z[i] = length of longest substring starting at i that is also a prefix of the string. Rabin-Karp uses rolling hash for O(n+m) average. Z-algorithm is simpler to implement than KMP." },
   "Trie Advanced: Aho-Corasick, Suffix Array, Suffix Automaton (concepts)": { difficulty:"advanced", tip:"🎯 These are advanced CP topics. Aho-Corasick: multi-pattern matching in O(n+m+matches). Suffix Array: all suffixes sorted — essential for string problems. Read CP-Algorithms explanations." },
