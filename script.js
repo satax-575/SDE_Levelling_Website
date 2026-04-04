@@ -182,12 +182,12 @@ const roadmapData = [
         { name: "CS50: Shorts on Sorting", url: "https://cs50.harvard.edu/x/2024/weeks/3/" }
       ]},
       { title: "Searching: Linear Search, Binary Search & its variants", resources: [
-        { name: "TopCoder: Binary Search Tutorial", url: "https://www.topcoder.com/thrive/articles/Binary+Search" },
+        { name: "CP-Algorithms: Binary Search", url: "https://cp-algorithms.com/sequences/binary-search.html" },
         { name: "LeetCode: Binary Search Card", url: "https://leetcode.com/explore/learn/card/binary-search/" },
         { name: "CP-Algorithms: Binary Search", url: "https://cp-algorithms.com/sequences/binary-search.html" }
       ]},
       { title: "Two Pointers: opposite ends, same direction, fast/slow", resources: [
-        { name: "LeetCode: Two Pointers Technique", url: "https://leetcode.com/explore/learn/card/array-and-string/205/array-two-pointer-technique/" },
+        { name: "LeetCode: Two Pointers Technique", url: "https://leetcode.com/tag/two-pointers/" },
         { name: "NeetCode: Two Pointers Video", url: "https://www.youtube.com/watch?v=VEPCm3BCtik" }
       ]},
       { title: "Sliding Window: fixed size, variable size, multi-window", resources: [
@@ -631,8 +631,8 @@ const dsaRoadmapData = [
       ]},
       { title: "Your First Program: Hello World, Compilation Steps, Execution", resources: [
         { name: "📖 LearnCPP Ch.1.1-1.9 — Statements, structure, compilation (read in order)", url: "https://www.learncpp.com/cpp-tutorial/statements-and-the-structure-of-a-program/" },
-        { name: "🎬 C++ Full Course — Bro Code (watch chapters 1-3)", url: "https://www.youtube.com/watch?v=-TkoO8Z07hI" },
-        { name: "📖 CPP Reference: Hello World breakdown", url: "https://en.cppreference.com/w/cpp/language/hello_world" }
+        { name: "🎬 freeCodeCamp: C++ Full Course for Beginners (4h, structured)", url: "https://www.youtube.com/watch?v=GQp1zzTwrIg" },
+        { name: "📖 CPP Reference: main() function — entry point of every C++ program", url: "https://en.cppreference.com/w/cpp/language/main_function" }
       ]},
       { title: "I/O: cin, cout, scanf, printf — and Fast I/O for Competitive Programming", resources: [
         { name: "📖 LearnCPP Ch.1.5 — Introduction to iostream (cout, cin, endl)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-iostream-cout-cin-and-endl/" },
@@ -750,7 +750,7 @@ const dsaRoadmapData = [
         { name: "MIT 6.006: Lecture 1 — Algorithmic Thinking", url: "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/video_galleries/lecture-videos/" }
       ]},
       { title: "Modular Arithmetic: mod operator, properties, overflow prevention", resources: [
-        { name: "CP-Algorithms: Modular Arithmetic", url: "https://cp-algorithms.com/algebra/module-inverse.html" },
+        { name: "CP-Algorithms: Modular Arithmetic", url: "https://cp-algorithms.com/algebra/modular-inverse.html" },
         { name: "Codeforces Blog: Modular Arithmetic Tutorial", url: "https://codeforces.com/blog/entry/72527" }
       ]},
       { title: "Binary Exponentiation (Fast Power): compute a^b % mod in O(log b) — essential for CP", resources: [
@@ -953,7 +953,7 @@ const dsaRoadmapData = [
     estimatedWeeks: 3, badge: "🕸️",
     topics: [
       { title: "Graph Representations: Adjacency List, Matrix, Edge List — build in C++", resources: [
-        { name: "CP-Algorithms: Graph Basics & Representations", url: "https://cp-algorithms.com/graph/descriptor.html" },
+        { name: "CP-Algorithms: Graph Basics & Representations", url: "https://cp-algorithms.com/graph/breadth-first-search.html" },
         { name: "Khan Academy: Graph Representation", url: "https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/representing-graphs" }
       ]},
       { title: "BFS: Level traversal, Shortest Path (unweighted), Multi-source BFS", resources: [
@@ -1145,7 +1145,7 @@ const dsaRoadmapData = [
         { name: "CSES: Full Problem Set", url: "https://cses.fi/problemset/" }
       ]},
       { title: "Mock Interview Practice: untimed then timed — Pramp, Interviewing.io", resources: [
-        { name: "Pramp: Free Peer Interviews", url: "https://www.tryexponent.com/pramp" },
+        { name: "Pramp: Free Peer Mock Interviews", url: "https://www.pramp.com/" },
         { name: "Interviewing.io: Anonymous Mock Interviews", url: "https://interviewing.io/" }
       ]},
       { title: "Complete NeetCode 150: finish all remaining sections", resources: [
@@ -1678,7 +1678,9 @@ function init() {
       if (saveInd) saveInd.style.display = 'flex'; // show local save icon
 
       if (_authResolved) {
-        // Real logout — keep local progress visible, cloud sync disabled
+        // Real logout — wipe state so XP/streak display resets to zero
+        playerState = defaultState();
+        try { localStorage.removeItem(LS_KEY); } catch(e) {}
         renderBothRoadmaps();
         updatePlayerStatsUI();
         updateTrackStats();
