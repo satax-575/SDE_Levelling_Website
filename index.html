@@ -8,11 +8,16 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>SDE Quest — 12-Month Engineering Roadmap</title>
-    <link rel="stylesheet" href="styles.css?v=4">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css?v=6">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
+    <!-- Animated particle canvas -->
+    <canvas id="particle-canvas" style="position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.55;"></canvas>
+
     <div class="bg-grid"></div>
     <div class="bg-orbs">
         <div class="orb orb-1"></div>
@@ -28,7 +33,10 @@
         </div>
 
         <div class="tab-nav">
-            <button class="tab-btn active" data-tab="sde">
+            <button class="tab-btn active" data-tab="dashboard">
+                <i class="fa-solid fa-house"></i> Home
+            </button>
+            <button class="tab-btn" data-tab="sde">
                 <i class="fa-solid fa-laptop-code"></i> SDE Journey
             </button>
             <button class="tab-btn" data-tab="dsa">
@@ -41,6 +49,11 @@
                 <i class="fa-solid fa-fire"></i>
                 <span id="streak-count">0</span>
                 <span class="tooltiptext">Day Streak!</span>
+            </div>
+            <div class="today-xp-badge tooltip" title="XP earned today">
+                <i class="fa-solid fa-bolt"></i>
+                <span id="today-xp-count">0</span>
+                <span class="tooltiptext">XP earned today</span>
             </div>
             <div class="user-info" id="user-info" style="display:none;">
                 <i class="fa-solid fa-circle-check" style="color:var(--success);"></i>
@@ -81,8 +94,15 @@
     <!-- Main Content -->
     <main class="container">
 
+    <!-- Dashboard Tab -->
+        <section id="tab-dashboard" class="tab-content active">
+            <div class="dashboard-container" id="dashboard-content">
+                <!-- Rendered by JS -->
+            </div>
+        </section>
+
         <!-- SDE Tab -->
-        <section id="tab-sde" class="tab-content active">
+        <section id="tab-sde" class="tab-content">
             <div class="section-intro">
                 <div class="intro-badge"><i class="fa-solid fa-rocket"></i> 12-MONTH PROGRAM</div>
                 <h1>Your <span class="gradient-text">Engineering Journey</span></h1>
@@ -129,6 +149,10 @@
                 <div class="month-progress">
                     <span id="modal-progress-text">0/10 Quests Completed</span>
                     <div class="mini-bar-bg"><div class="mini-bar-fill" id="modal-progress-fill"></div></div>
+                </div>
+                <div class="quest-search-wrap">
+                    <i class="fa-solid fa-magnifying-glass quest-search-icon"></i>
+                    <input type="text" id="quest-search-input" class="quest-search-input" placeholder="Search topics…">
                 </div>
             </div>
             <div class="quest-list" id="quest-list"></div>
@@ -223,6 +247,55 @@
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
-    <script src="script.js?v=4"></script>
+    <!-- Particle canvas animation -->
+    <script>
+    (function(){
+      const canvas = document.getElementById('particle-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let W = canvas.width = window.innerWidth;
+      let H = canvas.height = window.innerHeight;
+      window.addEventListener('resize', () => { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; });
+
+      const COLORS = ['#22d3ee','#818cf8','#fb923c','#4ade80','#f43f5e'];
+      const dots = Array.from({length: 55}, () => ({
+        x: Math.random() * W, y: Math.random() * H,
+        vx: (Math.random()-0.5)*0.28, vy: (Math.random()-0.5)*0.28,
+        r: Math.random()*1.5+0.5,
+        color: COLORS[Math.floor(Math.random()*COLORS.length)],
+        alpha: Math.random()*0.5+0.2
+      }));
+
+      function draw() {
+        ctx.clearRect(0,0,W,H);
+        // Draw connecting lines
+        for (let i=0;i<dots.length;i++) {
+          for (let j=i+1;j<dots.length;j++) {
+            const dx=dots[i].x-dots[j].x, dy=dots[i].y-dots[j].y;
+            const dist=Math.sqrt(dx*dx+dy*dy);
+            if (dist<160) {
+              ctx.beginPath();
+              ctx.moveTo(dots[i].x,dots[i].y);
+              ctx.lineTo(dots[j].x,dots[j].y);
+              ctx.strokeStyle=`rgba(34,211,238,${0.04*(1-dist/160)})`;
+              ctx.lineWidth=0.6;
+              ctx.stroke();
+            }
+          }
+          const d=dots[i];
+          ctx.beginPath();
+          ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
+          ctx.fillStyle=d.color+Math.round(d.alpha*255).toString(16).padStart(2,'0');
+          ctx.fill();
+          d.x+=d.vx; d.y+=d.vy;
+          if(d.x<-10)d.x=W+10; if(d.x>W+10)d.x=-10;
+          if(d.y<-10)d.y=H+10; if(d.y>H+10)d.y=-10;
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+    </script>
+    <script src="script.js?v=6"></script>
 </body>
 </html>

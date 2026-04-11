@@ -10,28 +10,32 @@ const roadmapData = [
       { title: "How Computers Work: CPU, RAM, Storage & Binary", resources: [
         { name: "Crash Course Computer Science (Full Series)", url: "https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" },
         { name: "How Computers Work — Khan Academy", url: "https://www.khanacademy.org/computing/code-org/computers-and-the-internet" },
-        { name: "CS50 Week 0: Scratch & Binary", url: "https://cs50.harvard.edu/x/2024/weeks/0/" }
+        { name: "CS50 Week 0: Scratch & Binary", url: "https://cs50.harvard.edu/x/2026/weeks/0/" }
       ]},
       { title: "Variables, Data Types & Type Systems", resources: [
+        { name: "🎬 Bro Code: Python Full Course — Focus: 0:00–0:30 (variables, types, input)", url: "https://www.youtube.com/watch?v=XKHEtdqhLK8", focusTime: "0:00–0:30" },
         { name: "MDN: JavaScript Data Structures", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures" },
         { name: "Python Tutor — Visualize Code Execution", url: "https://pythontutor.com/" },
-        { name: "CS50 Week 1: C Basics", url: "https://cs50.harvard.edu/x/2024/weeks/1/" }
+        { name: "CS50 Week 1: C Basics", url: "https://cs50.harvard.edu/x/2026/weeks/1/" }
       ]},
       { title: "Operators: Arithmetic, Comparison, Logical & Bitwise", resources: [
         { name: "MDN: Expressions and Operators", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_operators" },
-        { name: "Bitwise Operations Visualizer", url: "https://visualize-it.github.io/bitwise/simulation.html" }
+        { name: "Bitwise Operations Visualizer (bitwisecmd.com)", url: "https://bitwisecmd.com/" }
       ]},
       { title: "Control Flow: if/else, switch, and Ternary", resources: [
+        { name: "🎬 Bro Code: Python Full Course — Focus: 0:32–0:55 (if/else, nested conditions, switch)", url: "https://www.youtube.com/watch?v=XKHEtdqhLK8&t=1920", focusTime: "0:32–0:55" },
         { name: "MDN: Control Flow and Error Handling", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling" },
         { name: "FreeCodeCamp: JavaScript Fundamentals", url: "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/" }
       ]},
       { title: "Loops: for, while, do-while, and Iteration Patterns", resources: [
+        { name: "🎬 Bro Code: Python Full Course — Focus: 0:55–1:30 (while, for loops, nested loops)", url: "https://www.youtube.com/watch?v=XKHEtdqhLK8&t=3300", focusTime: "0:55–1:30" },
         { name: "MDN: Loops and Iteration", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration" },
         { name: "Codecademy: Learn JavaScript (Free)", url: "https://www.codecademy.com/learn/introduction-to-javascript" }
       ]},
       { title: "Functions, Parameters, Return Values & Pure Functions", resources: [
+        { name: "🎬 Bro Code: Python Full Course — Focus: 1:30–2:00 (functions, parameters, return values)", url: "https://www.youtube.com/watch?v=XKHEtdqhLK8&t=5400", focusTime: "1:30–2:00" },
         { name: "MDN: Functions Guide", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions" },
-        { name: "CS50 Week 3: Algorithms", url: "https://cs50.harvard.edu/x/2024/weeks/3/" }
+        { name: "CS50 Week 3: Algorithms", url: "https://cs50.harvard.edu/x/2026/weeks/3/" }
       ]},
       { title: "Scope, Closures & the Execution Context", resources: [
         { name: "JavaScript Visualized: Scope (Lydia Hallie)", url: "https://dev.to/lydiahallie/javascript-visualized-scope-chain-13pd" },
@@ -45,13 +49,13 @@ const roadmapData = [
         { name: "💎 Explain Shell — paste any command, get it explained visually", url: "https://explainshell.com/" }
       ]},
       { title: "Git Fundamentals: init, add, commit, log, diff", resources: [
-        { name: "GitHub: Git Handbook", url: "https://guides.github.com/introduction/git-handbook/" },
+        { name: "GitHub: Git Handbook", url: "https://docs.github.com/en/get-started/using-git/about-git" },
         { name: "Learn Git Branching (Interactive)", url: "https://learngitbranching.js.org/" },
         { name: "Pro Git Book (Free)", url: "https://git-scm.com/book/en/v2" }
       ]},
       { title: "Problem Solving Mindset: Pseudocode & Decomposition", resources: [
         { name: "How to Think Like a Programmer", url: "https://www.freecodecamp.org/news/how-to-think-like-a-programmer-lessons-in-problem-solving-d1d8bf1de7d2/" },
-        { name: "Polya's Problem Solving Techniques", url: "https://math.berkeley.edu/~gmelvin/polya.pdf" },
+        { name: "Polya's Problem Solving Techniques (Princeton)", url: "https://www.math.utah.edu/~pa/math/polya.html" },
         { name: "💎 MIT: The Missing Semester of CS Education (CLI, Git, scripting — gold)", url: "https://missing.csail.mit.edu/" },
         { name: "Advent of Code (Beginner Puzzles)", url: "https://adventofcode.com/" }
       ]}
@@ -63,6 +67,7 @@ const roadmapData = [
     estimatedWeeks: 3,
     topics: [
       { title: "Classes, Objects & Constructors", resources: [
+        { name: "🎬 Bro Code: Python Full Course — Focus: 3:00–3:45 (classes, objects, constructors, __init__)", url: "https://www.youtube.com/watch?v=XKHEtdqhLK8&t=10800", focusTime: "3:00–3:45" },
         { name: "Refactoring Guru: What is OOP?", url: "https://refactoring.guru/design-patterns/what-is-oop" },
         { name: "MDN: OOP in JavaScript", url: "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object-oriented_programming" }
       ]},
@@ -71,6 +76,7 @@ const roadmapData = [
         { name: "MDN: Private class features", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields" }
       ]},
       { title: "Inheritance, Method Overriding & super()", resources: [
+        { name: "🎬 Bro Code: Python Full Course — Focus: 3:45–4:20 (inheritance, super(), method overriding)", url: "https://www.youtube.com/watch?v=XKHEtdqhLK8&t=13500", focusTime: "3:45–4:20" },
         { name: "MDN: Inheritance and the prototype chain", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain" },
         { name: "Java Inheritance — Programiz", url: "https://www.programiz.com/java-programming/inheritance" }
       ]},
@@ -90,7 +96,7 @@ const roadmapData = [
       ]},
       { title: "Design Patterns: Singleton, Factory, Observer, Strategy", resources: [
         { name: "Refactoring Guru: Design Patterns (Free)", url: "https://refactoring.guru/design-patterns" },
-        { name: "JavaScript Design Patterns", url: "https://www.patterns.dev/vanilla" }
+        { name: "JavaScript Design Patterns (patterns.dev)", url: "https://www.patterns.dev/posts" }
       ]},
       { title: "Git Branching Strategies (Gitflow, trunk-based)", resources: [
         { name: "Atlassian: Git Branching Workflows", url: "https://www.atlassian.com/git/tutorials/using-branches" },
@@ -122,14 +128,16 @@ const roadmapData = [
         { name: "LeetCode: Top String Problems", url: "https://leetcode.com/tag/string/" }
       ]},
       { title: "Linked Lists: Singly & Doubly (traversal, insertion, deletion)", resources: [
+        { name: "🎬 Bro Code: Data Structures & Algorithms — Focus: 0:25–0:50 (linked list concepts & implementation)", url: "https://www.youtube.com/watch?v=CBYHwZcbD-s&t=1500", focusTime: "0:25–0:50" },
         { name: "VisuAlgo: Linked List", url: "https://visualgo.net/en/list" },
         { name: "LeetCode: Linked List Card", url: "https://leetcode.com/explore/learn/card/linked-list/" },
         { name: "GeeksforGeeks: Linked List", url: "https://www.geeksforgeeks.org/linked-list-data-structure/" }
       ]},
       { title: "Stacks: LIFO principle, implementations, applications", resources: [
+        { name: "🎬 Bro Code: Data Structures & Algorithms — Focus: 0:50–1:10 (stacks: push, pop, peek)", url: "https://www.youtube.com/watch?v=CBYHwZcbD-s&t=3000", focusTime: "0:50–1:10" },
         { name: "GeeksforGeeks: Stack Data Structure", url: "https://www.geeksforgeeks.org/stack-data-structure/" },
         { name: "LeetCode: Stack Problems", url: "https://leetcode.com/tag/stack/" },
-        { name: "CS50: Stacks & Queues", url: "https://cs50.harvard.edu/x/2024/weeks/5/" }
+        { name: "CS50: Stacks & Queues", url: "https://cs50.harvard.edu/x/2026/weeks/5/" }
       ]},
       { title: "Queues: FIFO, Deque, Circular Queue", resources: [
         { name: "GeeksforGeeks: Queue Data Structure", url: "https://www.geeksforgeeks.org/queue-data-structure/" },
@@ -147,11 +155,11 @@ const roadmapData = [
       { title: "Big-O Notation: Time & Space Complexity Analysis", resources: [
         { name: "Big-O Cheat Sheet", url: "https://www.bigocheatsheet.com/" },
         { name: "FreeCodeCamp: Big O Notation Explained", url: "https://www.freecodecamp.org/news/big-o-cheat-sheet-time-complexity-chart/" },
-        { name: "MIT 6.006: Complexity Lecture", url: "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/video_galleries/lecture-videos/" },
+        { name: "MIT 6.006: Complexity Lecture", url: "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/video_galleries/lecture-videos/" },
         { name: "💎 Algorithms by Jeff Erickson — free textbook used at UIUC (chapter 0 for complexity)", url: "https://jeffe.cs.illinois.edu/teaching/algorithms/" }
       ]},
       { title: "Amortized Analysis & when to use which data structure", resources: [
-        { name: "MIT: Amortized Analysis", url: "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/pages/lecture-notes/" },
+        { name: "MIT: Amortized Analysis", url: "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/pages/lecture-notes/" },
         { name: "GeeksforGeeks: Amortized Analysis", url: "https://www.geeksforgeeks.org/analysis-algorithm-set-5-amortized-analysis-introduction/" }
       ]},
       { title: "LeetCode Practice: Easy Array/String/HashMap Problems (target 30)", resources: [
@@ -171,18 +179,20 @@ const roadmapData = [
         { name: "Introduction to Algorithms (CLRS) — Chapter 1", url: "https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/" }
       ]},
       { title: "Recursion Deep Dive: call stack, tree recursion, memoization intro", resources: [
+        { name: "🎬 Bro Code: Python Full Course — Focus: 2:00–2:30 (recursion, base case, call stack visualized)", url: "https://www.youtube.com/watch?v=XKHEtdqhLK8&t=7200", focusTime: "2:00–2:30" },
         { name: "FreeCodeCamp: Recursion Explained", url: "https://www.freecodecamp.org/news/understanding-recursion-in-programming/" },
         { name: "Python Tutor: Visualize Recursion", url: "https://pythontutor.com/" },
         { name: "LeetCode: Recursion I Card", url: "https://leetcode.com/explore/learn/card/recursion-i/" },
         { name: "💎 Computerphile: Programming with Functions + Recursion (4-part series, crystal clear)", url: "https://www.youtube.com/watch?v=IjD3NI_mDY8" }
       ]},
       { title: "Sorting Algorithms: Bubble, Selection, Insertion, Merge, Quick, Heap", resources: [
+        { name: "🎬 Bro Code: Data Structures & Algorithms — Focus: 1:10–1:50 (bubble, insertion, merge, quick sort)", url: "https://www.youtube.com/watch?v=CBYHwZcbD-s&t=4200", focusTime: "1:10–1:50" },
         { name: "VisuAlgo: Sorting Visualizer", url: "https://visualgo.net/en/sorting" },
         { name: "Sorting Algorithms Animations", url: "https://www.toptal.com/developers/sorting-algorithms" },
-        { name: "CS50: Shorts on Sorting", url: "https://cs50.harvard.edu/x/2024/weeks/3/" }
+        { name: "CS50: Shorts on Sorting", url: "https://cs50.harvard.edu/x/2026/weeks/3/" }
       ]},
       { title: "Searching: Linear Search, Binary Search & its variants", resources: [
-        { name: "TopCoder: Binary Search Tutorial", url: "https://www.topcoder.com/thrive/articles/Binary+Search" },
+        { name: "CP-Algorithms: Binary Search", url: "https://cp-algorithms.com/num_methods/binary_search.html" },
         { name: "LeetCode: Binary Search Card", url: "https://leetcode.com/explore/learn/card/binary-search/" },
         { name: "CP-Algorithms: Binary Search", url: "https://cp-algorithms.com/sequences/binary-search.html" }
       ]},
@@ -195,8 +205,8 @@ const roadmapData = [
         { name: "LeetCode: Sliding Window Problems", url: "https://leetcode.com/tag/sliding-window/" }
       ]},
       { title: "Greedy Algorithms: activity selection, interval scheduling", resources: [
-        { name: "Brilliant: Greedy Algorithms", url: "https://brilliant.org/wiki/greedy-algorithm/" },
-        { name: "MIT 6.006: Greedy Algorithms", url: "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/" },
+        { name: "CP-Algorithms: Greedy Algorithms", url: "https://www.geeksforgeeks.org/greedy-algorithms/" },
+        { name: "MIT 6.006: Greedy Algorithms", url: "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/" },
         { name: "LeetCode: Greedy Problems", url: "https://leetcode.com/tag/greedy/" }
       ]},
       { title: "Divide and Conquer: paradigm, merge sort analysis, master theorem", resources: [
@@ -206,7 +216,7 @@ const roadmapData = [
       { title: "Backtracking: N-Queens, Sudoku Solver, Subsets, Permutations", resources: [
         { name: "LeetCode: Backtracking Card", url: "https://leetcode.com/tag/backtracking/" },
         { name: "NeetCode: Backtracking Playlist", url: "https://www.youtube.com/playlist?list=PLot-Xpze53ldBT_7QA8NVot219jFNr_GI" },
-        { name: "Algorithm Design Canvas (ThinkLikeAProgrammer)", url: "https://www.slideshare.net/slideshow/think-like-a-programmer/23783982" }
+        { name: "Think Like a Programmer — book overview & concepts (No Starch Press)", url: "https://nostarch.com/thinklikeaprogrammer" }
       ]},
       { title: "Dynamic Programming Intro: Fibonacci, Climbing Stairs, Memoization vs Tabulation", resources: [
         { name: "NeetCode: DP for Beginners", url: "https://www.youtube.com/watch?v=73r3KWiEvyk" },
@@ -226,7 +236,7 @@ const roadmapData = [
       ]},
       { title: "BST: Insert, Delete, Search, Predecessor/Successor", resources: [
         { name: "BST Visualizer (usfca.edu)", url: "https://www.cs.usfca.edu/~galles/visualization/BST.html" },
-        { name: "CP-Algorithms: BST", url: "https://cp-algorithms.com/data_structures/segment_tree.html" }
+        { name: "CP-Algorithms: BST", url: "https://cp-algorithms.com/data_structures/treap.html" }
       ]},
       { title: "Tree Traversals: Inorder, Preorder, Postorder, Level-Order (BFS)", resources: [
         { name: "GeeksforGeeks: Tree Traversals", url: "https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/" },
@@ -234,7 +244,7 @@ const roadmapData = [
       ]},
       { title: "Self-Balancing Trees: AVL Trees & Red-Black Trees (concepts)", resources: [
         { name: "VisuAlgo: AVL Tree", url: "https://visualgo.net/en/bst" },
-        { name: "MIT 6.006: Balanced BSTs", url: "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/video_galleries/lecture-videos/" }
+        { name: "MIT 6.006: Balanced BSTs", url: "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/video_galleries/lecture-videos/" }
       ]},
       { title: "Heaps & Priority Queues: max-heap, min-heap, heapify", resources: [
         { name: "VisuAlgo: Binary Heap", url: "https://visualgo.net/en/heap" },
@@ -248,7 +258,7 @@ const roadmapData = [
       ]},
       { title: "Graphs: Adjacency Matrix, Adjacency List, Edge List representations", resources: [
         { name: "Khan Academy: Representing Graphs", url: "https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/representing-graphs" },
-        { name: "CP-Algorithms: Graph Representation", url: "https://cp-algorithms.com/graph/descriptor.html" }
+        { name: "CP-Algorithms: Graph Traversal & Representation", url: "https://cp-algorithms.com/graph/breadth-first-search.html" }
       ]},
       { title: "BFS: level-order traversal, shortest path in unweighted graph", resources: [
         { name: "VisuAlgo: Graph BFS/DFS", url: "https://visualgo.net/en/dfsbfs" },
@@ -282,7 +292,7 @@ const roadmapData = [
         { name: "Postman: HTTP Tutorial", url: "https://learning.postman.com/docs/getting-started/introduction/" }
       ]},
       { title: "Browser Rendering: DOM, CSSOM, Reflow, Repaint, Critical Path", resources: [
-        { name: "web.dev: How Browsers Work", url: "https://developer.chrome.com/blog/inside-browser-part1/" },
+        { name: "web.dev: How Browsers Work", url: "https://developer.chrome.com/docs/chromium/renderingng" },
         { name: "MDN: Critical Rendering Path", url: "https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path" }
       ]},
       { title: "HTML5 Semantic Structuring & Accessibility (ARIA)", resources: [
@@ -406,7 +416,7 @@ const roadmapData = [
       ]},
       { title: "Input Validation, Sanitization & Error Handling Strategies", resources: [
         { name: "Joi: Input Validation Library", url: "https://joi.dev/api/" },
-        { name: "Joyent: Error Handling in Node.js", url: "https://www.tritondatacenter.com/node-js/production/design/errors" }
+        { name: "Joyent: Error Handling in Node.js", url: "https://nodejs.org/en/docs/guides/error-handling/" }
       ]},
       { title: "API Testing: Postman, cURL, and writing Integration Tests", resources: [
         { name: "Postman Learning Center", url: "https://learning.postman.com/" },
@@ -426,7 +436,7 @@ const roadmapData = [
       { title: "System Design Basics & Interview Framework (RESHADED)", resources: [
         { name: "System Design Primer (GitHub)", url: "https://github.com/donnemartin/system-design-primer" },
         { name: "ByteByteGo: System Design Interview (Newsletter)", url: "https://blog.bytebytego.com/" },
-        { name: "💎 High Scalability Blog — real architecture of YouTube, Twitter, Amazon (case studies)", url: "http://highscalability.com/all-time-favorites/" },
+        { name: "💎 High Scalability Blog — real architecture of YouTube, Twitter, Amazon (case studies)", url: "https://highscalability.com/all-time-favorites/" },
         { name: "💎 Designing Data-Intensive Applications (DDIA) — the system design bible (free chapter 1)", url: "https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/" }
       ]},
       { title: "Vertical vs Horizontal Scaling: when to choose what", resources: [
@@ -492,7 +502,7 @@ const roadmapData = [
       ]},
       { title: "Kubernetes Fundamentals: Pods, Deployments, Services, Ingress", resources: [
         { name: "Kubernetes: Learn K8s (Interactive)", url: "https://kubernetes.io/docs/tutorials/kubernetes-basics/" },
-        { name: "KodeKloud: Kubernetes for Beginners (Free)", url: "https://kodekloud.com/courses/kubernetes-for-the-absolute-beginners-hands-on/" }
+        { name: "KodeKloud: Kubernetes for Beginners", url: "https://kodekloud.com/courses/kubernetes-for-the-absolute-beginners-hands-on-labs/" }
       ]},
       { title: "CI/CD Pipelines: concept, tools, pipeline stages", resources: [
         { name: "RedHat: What is CI/CD?", url: "https://www.redhat.com/en/topics/devops/what-is-ci-cd" },
@@ -523,7 +533,7 @@ const roadmapData = [
     topics: [
       { title: "NoSQL Databases: Document (MongoDB), Key-Value (Redis), Column (Cassandra)", resources: [
         { name: "MongoDB University (Free Courses)", url: "https://learn.mongodb.com/" },
-        { name: "Redis University", url: "https://university.redis.com/" }
+        { name: "Redis: Learn (Official Tutorials)", url: "https://redis.io/learn/" }
       ]},
       { title: "When to use SQL vs NoSQL: data model & access patterns", resources: [
         { name: "Couchbase: SQL vs NoSQL", url: "https://www.couchbase.com/resources/why-nosql" },
@@ -543,7 +553,7 @@ const roadmapData = [
       ]},
       { title: "Web Security: OWASP Top 10, SQL Injection, XSS, CSRF", resources: [
         { name: "OWASP Top Ten", url: "https://owasp.org/www-project-top-ten/" },
-        { name: "PortSwigger Web Security Academy (Free!)", url: "https://portswigger.net/web-security" }
+        { name: "PortSwigger Web Security Academy (Free — industry standard)", url: "https://portswigger.net/web-security/all-topics" }
       ]},
       { title: "Auth Security: CORS, HTTPS, CSP, Secure Cookies, HSTS", resources: [
         { name: "MDN: CORS", url: "https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" },
@@ -569,11 +579,11 @@ const roadmapData = [
     estimatedWeeks: 4,
     topics: [
       { title: "Build a Full-Stack Capstone Project (with CI/CD + cloud deployment)", resources: [
-        { name: "FreeCodeCamp: 15 Project Ideas", url: "https://www.youtube.com/watch?v=3PHXvlpOkf4" },
-        { name: "Build a Portfolio: Scrimba Guide", url: "https://scrimba.com/articles/react-projects-for-beginners/" }
+        { name: "FreeCodeCamp: 15 React Project Ideas (Video)", url: "https://www.youtube.com/watch?v=rH3OihCn6sM" },
+        { name: "Build a Portfolio: 40 React Project Ideas", url: "https://www.freecodecamp.org/news/react-projects-for-beginners-build-step-by-step/" }
       ]},
       { title: "System Design Mock Interviews (Timed Practice)", resources: [
-        { name: "Pramp: Free Mock Interviews", url: "https://www.tryexponent.com/pramp" },
+        { name: "Exponent: Free Mock Interviews (Pramp)", url: "https://www.tryexponent.com/mock-interviews" },
         { name: "Exponent: System Design Course", url: "https://www.tryexponent.com/courses/system-design-interview" }
       ]},
       { title: "DSA Practice: NeetCode 150 + Blind 75", resources: [
@@ -601,7 +611,7 @@ const roadmapData = [
       ]},
       { title: "Writing Great READMEs & Technical Documentation", resources: [
         { name: "Make a README", url: "https://www.makeareadme.com/" },
-        { name: "Divio: Documentation System", url: "https://documentation.divio.com/" }
+        { name: "Divio: Documentation System (archived)", url: "https://docs.divio.com/documentation-system/" }
       ]},
       { title: "Job Search Strategy: outreach, referrals, company research, timing", resources: [
         { name: "Levels.fyi: Compensation Research", url: "https://www.levels.fyi/" },
@@ -630,9 +640,9 @@ const dsaRoadmapData = [
         { name: "Codeforces: Getting Started Blog", url: "https://codeforces.com/blog/entry/65133" }
       ]},
       { title: "Your First Program: Hello World, Compilation Steps, Execution", resources: [
+        { name: "🎬 Bro Code: C++ Full Course (6 hrs) — Focus: 0:00–0:20 (setup, hello world, compilation)", url: "https://www.youtube.com/watch?v=8jLOx1hD3_o", focusTime: "0:00–0:20" },
         { name: "📖 LearnCPP Ch.1.1-1.9 — Statements, structure, compilation (read in order)", url: "https://www.learncpp.com/cpp-tutorial/statements-and-the-structure-of-a-program/" },
-        { name: "🎬 C++ Full Course — Bro Code (watch chapters 1-3)", url: "https://www.youtube.com/watch?v=-TkoO8Z07hI" },
-        { name: "📖 CPP Reference: Hello World breakdown", url: "https://en.cppreference.com/w/cpp/language/hello_world" }
+        { name: "📖 CPP Reference: Hello World breakdown", url: "https://www.learncpp.com/cpp-tutorial/writing-your-first-program/" }
       ]},
       { title: "I/O: cin, cout, scanf, printf — and Fast I/O for Competitive Programming", resources: [
         { name: "📖 LearnCPP Ch.1.5 — Introduction to iostream (cout, cin, endl)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-iostream-cout-cin-and-endl/" },
@@ -640,6 +650,7 @@ const dsaRoadmapData = [
         { name: "📝 Tip: Always add at start of main(): ios::sync_with_stdio(false); cin.tie(NULL); — makes I/O 10x faster.", url: "https://www.geeksforgeeks.org/fast-io-for-competitive-programming/" }
       ]},
       { title: "Data Types: int, long long, double, char, bool — sizes, overflow, casting", resources: [
+        { name: "🎬 Bro Code: C++ Full Course — Focus: 0:20–0:50 (data types, sizeof, overflow, casting)", url: "https://www.youtube.com/watch?v=8jLOx1hD3_o&t=1200", focusTime: "0:20–0:50" },
         { name: "📖 LearnCPP Ch.4.1-4.6 — Fundamental data types (skip 4.7+)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-fundamental-data-types/" },
         { name: "📖 LearnCPP Ch.4.11 — Chars specifically", url: "https://www.learncpp.com/cpp-tutorial/chars/" },
         { name: "📝 Tip: Always use long long in CP to avoid overflow. int max = 2.1 billion, long long = 9.2 quintillion.", url: "https://www.geeksforgeeks.org/c-data-types/" },
@@ -648,25 +659,29 @@ const dsaRoadmapData = [
       { title: "Operators: Arithmetic, Relational, Logical, Bitwise, Assignment, Ternary", resources: [
         { name: "📖 LearnCPP Ch.6.1-6.7 — Operators (focus: precedence table)", url: "https://www.learncpp.com/cpp-tutorial/operator-precedence-and-associativity/" },
         { name: "📖 LearnCPP Ch.6.21 — Bitwise operators specifically", url: "https://www.learncpp.com/cpp-tutorial/bitwise-operators/" },
-        { name: "🔧 Bitwise Visualizer — watch bits flip in real time", url: "https://visualize-it.github.io/bitwise/simulation.html" }
+        { name: "🔧 Bitwise Visualizer — watch bits flip in real time", url: "https://bitwisecmd.com/" }
       ]},
       { title: "Control Flow: if/else, switch, ternary — nested conditions", resources: [
+        { name: "🎬 Bro Code: C++ Full Course — Focus: 0:50–1:20 (if/else, switch, ternary operator)", url: "https://www.youtube.com/watch?v=8jLOx1hD3_o&t=3000", focusTime: "0:50–1:20" },
         { name: "📖 LearnCPP Ch.8.1-8.8 — Control flow introduction (read all 8 sections)", url: "https://www.learncpp.com/cpp-tutorial/control-flow-introduction/" },
         { name: "📖 Programiz: C++ if...else with examples", url: "https://www.programiz.com/cpp-programming/if-else" },
         { name: "🏋️ HackerRank: C++ conditionals (first 5 problems)", url: "https://www.hackerrank.com/domains/cpp" }
       ]},
       { title: "Loops: for, while, do-while, range-based for, break/continue", resources: [
+        { name: "🎬 Bro Code: C++ Full Course — Focus: 1:20–2:00 (while, do-while, for, range-based for, break/continue)", url: "https://www.youtube.com/watch?v=8jLOx1hD3_o&t=4800", focusTime: "1:20–2:00" },
         { name: "📖 LearnCPP Ch.8.7-8.15 — Loop chapters (while, do-while, for, range-based)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-loops-and-while-statements/" },
         { name: "🔧 Python Tutor (C++ mode) — paste loop code and watch it execute step by step", url: "https://pythontutor.com/cpp.html" },
         { name: "📖 Programiz: C++ for loop with examples", url: "https://www.programiz.com/cpp-programming/for-loop" }
       ]},
       { title: "Functions: declaration, definition, pass by value vs reference, default args, overloading", resources: [
+        { name: "🎬 Bro Code: C++ Full Course — Focus: 2:00–2:40 (functions, pass by value/ref, default args, overloading)", url: "https://www.youtube.com/watch?v=8jLOx1hD3_o&t=7200", focusTime: "2:00–2:40" },
         { name: "📖 LearnCPP Ch.2 — Functions (read ALL of chapter 2, it is short and essential)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-functions/" },
         { name: "📖 LearnCPP Ch.12.1 — Pass by reference (critical for performance)", url: "https://www.learncpp.com/cpp-tutorial/lvalue-references/" },
         { name: "🎬 The Cherno: C++ Functions (14 min)", url: "https://www.youtube.com/watch?v=V9zuox47zr0" }
       ]},
       { title: "Arrays and 2D Arrays: declaration, traversal, common patterns", resources: [
-        { name: "📖 LearnCPP Ch.17.1-17.6 — Arrays (read sections 17.1 to 17.6 only)", url: "https://www.learncpp.com/cpp-tutorial/arrays-part-i/" },
+        { name: "🎬 Bro Code: C++ Full Course — Focus: 2:40–3:10 (arrays, 2D arrays, traversal)", url: "https://www.youtube.com/watch?v=8jLOx1hD3_o&t=9600", focusTime: "2:40–3:10" },
+        { name: "📖 LearnCPP Ch.17.1 — Introduction to Arrays (read 17.1–17.6)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-arrays/" },
         { name: "📝 Tip: Prefer std::vector over raw arrays in modern C++. Use arrays only when size is fixed.", url: "https://www.learncpp.com/cpp-tutorial/an-introduction-to-stdvector/" },
         { name: "📖 GeeksforGeeks: C++ Arrays with examples", url: "https://www.geeksforgeeks.org/arrays-in-c-cpp/" }
       ]},
@@ -684,6 +699,7 @@ const dsaRoadmapData = [
     estimatedWeeks: 2, badge: "🔧",
     topics: [
       { title: "Pointers: address-of (&), dereference (*), pointer arithmetic, nullptr", resources: [
+        { name: "🎬 Bro Code: C++ Full Course — Focus: 3:10–3:40 (pointers, address-of, dereference, nullptr)", url: "https://www.youtube.com/watch?v=8jLOx1hD3_o&t=11400", focusTime: "3:10–3:40" },
         { name: "📖 LearnCPP Ch.9.6-9.12 — Introduction to Pointers (read in order)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-pointers/" },
         { name: "🎬 The Cherno: Pointers in C++ (18 min, excellent visual)", url: "https://www.youtube.com/watch?v=DTxHyVn0ODg" },
         { name: "🔧 Python Tutor (C++ mode): Paste pointer code and watch memory layout", url: "https://pythontutor.com/cpp.html" }
@@ -695,7 +711,7 @@ const dsaRoadmapData = [
       ]},
       { title: "Dynamic Memory: new/delete, heap vs stack, memory leaks", resources: [
         { name: "📖 LearnCPP Ch.19.1-19.4 — Dynamic Memory Allocation with new and delete", url: "https://www.learncpp.com/cpp-tutorial/dynamic-memory-allocation-with-new-and-delete/" },
-        { name: "📖 LearnCPP Ch.22 — Smart Pointers (use these instead of raw new/delete)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-smart-pointers-move-semantics/" },
+        { name: "📖 LearnCPP Ch.22.1 — Smart Pointers & Move Semantics (use over raw new/delete)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-smart-pointers-move-semantics/" },
         { name: "🎬 The Cherno: Stack vs Heap Memory in C++ (16 min)", url: "https://www.youtube.com/watch?v=wJ1L2nSIV1s" }
       ]},
       { title: "Strings: std::string, string methods (find, substr, stoi, to_string), stringstream", resources: [
@@ -704,7 +720,8 @@ const dsaRoadmapData = [
         { name: "📝 Tip: Use stoi() to convert string to int, to_string() for int to string. Use stringstream for parsing.", url: "https://en.cppreference.com/w/cpp/string/basic_string" }
       ]},
       { title: "STL Vector: dynamic array, push_back, emplace_back, iterators, sort", resources: [
-        { name: "📖 LearnCPP Ch.16.1-16.8 — std::vector (the complete vector chapter)", url: "https://www.learncpp.com/cpp-tutorial/an-introduction-to-stdvector/" },
+        { name: "🎬 Bro Code: C++ Full Course — Focus: 4:30–5:00 (vectors, push_back, iterators, sort)", url: "https://www.youtube.com/watch?v=8jLOx1hD3_o&t=16200", focusTime: "4:30–5:00" },
+        { name: "📖 LearnCPP Ch.16 — std::vector (the complete vector chapter)", url: "https://www.learncpp.com/cpp-tutorial/an-introduction-to-stdvector/" },
         { name: "📝 Tip: Use emplace_back() not push_back() — constructs in place, slightly faster. Reserve capacity with reserve().", url: "https://en.cppreference.com/w/cpp/container/vector" },
         { name: "📖 CPP Reference: std::vector method reference", url: "https://en.cppreference.com/w/cpp/container/vector" }
       ]},
@@ -723,7 +740,7 @@ const dsaRoadmapData = [
         { name: "📖 CPP Reference: <algorithm> — full reference (bookmark this)", url: "https://en.cppreference.com/w/cpp/algorithm" }
       ]},
       { title: "Pairs, Tuples, auto, lambda functions & range-based algorithms", resources: [
-        { name: "📖 LearnCPP Ch.20.5 — Lambda Expressions (modern C++, essential for STL)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-lambdas-anonymous-functions/" },
+        { name: "📖 LearnCPP Ch.20 — Lambda Expressions (modern C++, essential for STL)", url: "https://www.learncpp.com/cpp-tutorial/introduction-to-lambdas-anonymous-functions/" },
         { name: "📝 Tip: Sort vector of pairs by 2nd element: sort(v.begin(),v.end(),[](auto&a,auto&b){return a.second<b.second;})", url: "https://www.geeksforgeeks.org/sorting-vector-of-pairs-in-c-set-1-sort-by-first-and-second/" },
         { name: "📖 CPP Reference: std::pair", url: "https://en.cppreference.com/w/cpp/utility/pair" }
       ]},
@@ -741,7 +758,7 @@ const dsaRoadmapData = [
     topics: [
       { title: "Big-O, Big-Ω, Big-Θ: formal definitions, deriving complexity from code", resources: [
         { name: "Big-O Cheat Sheet", url: "https://www.bigocheatsheet.com/" },
-        { name: "MIT 6.006: Lecture 1 — Algorithmic Thinking", url: "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/video_galleries/lecture-videos/" }
+        { name: "MIT 6.006: Lecture 1 — Algorithmic Thinking", url: "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/video_galleries/lecture-videos/" }
       ]},
       { title: "Modular Arithmetic: mod operator, properties, overflow prevention", resources: [
         { name: "CP-Algorithms: Modular Arithmetic", url: "https://cp-algorithms.com/algebra/module-inverse.html" },
@@ -840,6 +857,7 @@ const dsaRoadmapData = [
     estimatedWeeks: 2, badge: "🔗",
     topics: [
       { title: "Singly Linked List: Node struct, insert at head/tail/position, delete, reverse", resources: [
+        { name: "🎬 Bro Code: Data Structures & Algorithms — Focus: 0:25–0:55 (linked list, node struct, insert, delete, reverse)", url: "https://www.youtube.com/watch?v=CBYHwZcbD-s&t=1500", focusTime: "0:25–0:55" },
         { name: "LeetCode: Linked List Card", url: "https://leetcode.com/explore/learn/card/linked-list/" },
         { name: "VisuAlgo: Linked List", url: "https://visualgo.net/en/list" }
       ]},
@@ -937,7 +955,7 @@ const dsaRoadmapData = [
     estimatedWeeks: 3, badge: "🕸️",
     topics: [
       { title: "Graph Representations: Adjacency List, Matrix, Edge List — build in C++", resources: [
-        { name: "CP-Algorithms: Graph Basics & Representations", url: "https://cp-algorithms.com/graph/descriptor.html" },
+        { name: "CP-Algorithms: Graph Traversal & Representation", url: "https://cp-algorithms.com/graph/breadth-first-search.html" },
         { name: "Khan Academy: Graph Representation", url: "https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/representing-graphs" }
       ]},
       { title: "BFS: Level traversal, Shortest Path (unweighted), Multi-source BFS", resources: [
@@ -1045,8 +1063,8 @@ const dsaRoadmapData = [
     estimatedWeeks: 3, badge: "🏹",
     topics: [
       { title: "Greedy Algorithm Design: Exchange Arguments, proving optimality", resources: [
-        { name: "MIT 6.006: Greedy Algorithms Lecture", url: "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/" },
-        { name: "Brilliant: Greedy Algorithms", url: "https://brilliant.org/wiki/greedy-algorithm/" }
+        { name: "MIT 6.006: Greedy Algorithms Lecture", url: "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/" },
+        { name: "CP-Algorithms: Greedy Algorithms", url: "https://www.geeksforgeeks.org/greedy-algorithms/" }
       ]},
       { title: "Greedy Classics: Activity Selection, Jump Game, Gas Station, Job Scheduling", resources: [
         { name: "LeetCode: Jump Game", url: "https://leetcode.com/problems/jump-game/" },
@@ -1507,14 +1525,21 @@ const LEVEL_TITLES = [
 function defaultState() {
   return {
     xp: 0, level: 1,
+    username: '',  // User's display name
     completedQuests: {},
+    completedResources: {}, // key = "monthId-topicIdx-resIdx", value = true
     unlockedMonths: [1],
     unlockedDsaMonths: ["dsa-1"],
     achievements: [],
     streak: 0,
     lastActivityDate: null,
     notes: {},            // key = "monthId-questIndex", value = note string
-    bookmarkedQuests: {}  // key = "monthId-questIndex", value = true
+    bookmarkedQuests: {}, // key = "monthId-questIndex", value = true
+    // Per-track resume state
+    sdeLastMonth: null,
+    sdeLastQuest: null,
+    dsaLastMonth: null,
+    dsaLastQuest: null
   };
 }
 
@@ -1613,6 +1638,9 @@ function init() {
   updatePlayerStatsUI();
   updateTrackStats();
   renderAchievements();
+  renderDashboard();
+  // Default tab is dashboard
+  currentTab = 'dashboard';
 
   // 2. Firebase auth state — resolves asynchronously
   auth.onAuthStateChanged(async user => {
@@ -1637,7 +1665,9 @@ function init() {
       if (saveInd) saveInd.style.display = 'flex'; // show local save icon
 
       if (_authResolved) {
-        // Real logout — keep local progress visible, cloud sync disabled
+        // Real logout — wipe state so XP/streak show 0 (user's cloud data gone from view)
+        playerState = defaultState();
+        try { localStorage.removeItem(LS_KEY); } catch(e) {}
         renderBothRoadmaps();
         updatePlayerStatsUI();
         updateTrackStats();
@@ -1693,12 +1723,96 @@ function init() {
   // Forgot password link
   const forgotBtn = document.getElementById('forgot-password-btn');
   if (forgotBtn) forgotBtn.addEventListener('click', handleForgotPassword);
+  
+  // Dashboard Continue buttons - ROBUST event delegation
+  document.addEventListener('click', e => {
+    const continueBtn = e.target.closest('.track-continue-btn');
+    if (continueBtn && continueBtn.dataset.track && continueBtn.dataset.monthId) {
+      e.preventDefault();
+      e.stopPropagation();
+      const track = continueBtn.dataset.track;
+      const monthId = continueBtn.dataset.monthId;
+      const questIndex = continueBtn.dataset.questIndex ? parseInt(continueBtn.dataset.questIndex) : null;
+      
+      // Switch to correct tab
+      switchTab(track);
+      
+      // Open modal and scroll to quest
+      setTimeout(() => {
+        openModal(monthId, track);
+        if (questIndex !== null) {
+          setTimeout(() => scrollToQuest(questIndex), 300);
+        }
+      }, 200);
+    }
+    
+    // Dashboard action cards
+    const actionCard = e.target.closest('.db-action-card');
+    if (actionCard && actionCard.dataset.action) {
+      const action = actionCard.dataset.action;
+      if (action === 'achievements') {
+        document.getElementById('achievements-btn').click();
+      } else if (action === 'sde-roadmap') {
+        switchTab('sde');
+      } else if (action === 'dsa-roadmap') {
+        switchTab('dsa');
+      }
+    }
+    
+    // Username edit
+    if (e.target.closest('.username-display') || e.target.closest('.edit-username-icon')) {
+      editUsername();
+    }
+  });
+  
+  // Quest search with debouncing - set up via event delegation
+  document.addEventListener('input', e => {
+    if (e.target && e.target.id === 'quest-search-input') {
+      filterQuests();
+    }
+  });
+  
+  // Intersection Observer for animations
+  setupIntersectionObserver();
+}
+
+// Scroll to specific quest and highlight it
+function scrollToQuest(questIndex) {
+  const questItems = document.querySelectorAll('.quest-item');
+  if (questItems[questIndex]) {
+    questItems[questIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    questItems[questIndex].classList.add('highlight-quest');
+    setTimeout(() => questItems[questIndex].classList.remove('highlight-quest'), 2000);
+  }
+}
+
+// Setup Intersection Observer for viewport animations
+function setupIntersectionObserver() {
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+  
+  // Observe elements that should animate in
+  document.querySelectorAll('.month-card, .quest-item, .dashboard-track-card').forEach(el => {
+    observer.observe(el);
+  });
 }
 
 function switchTab(tab) {
   currentTab = tab;
   tabBtns.forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
   tabContents.forEach(c => c.classList.toggle('active', c.id === `tab-${tab}`));
+  if (tab === 'dashboard') renderDashboard();
 }
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -1749,6 +1863,7 @@ function ensureDefaults() {
   if (playerState.streak == null)     playerState.streak            = 0;
   if (!playerState.notes)             playerState.notes             = {};
   if (!playerState.bookmarkedQuests)  playerState.bookmarkedQuests  = {};
+  if (!playerState.completedResources) playerState.completedResources = {};
 }
 
 function resetProgress() {
@@ -1823,15 +1938,28 @@ function updateStreak() {
 function recordActivity() {
   const today = new Date().toDateString();
   const last = playerState.lastActivityDate;
-  if (last === today) return; // already active today
-  const yesterday = new Date(Date.now() - 86400000).toDateString();
-  if (!last || last === yesterday) {
-    playerState.streak = (playerState.streak || 0) + 1;
-  } else if (last !== today) {
-    playerState.streak = 1;
+  if (last !== today) {
+    const yesterday = new Date(Date.now() - 86400000).toDateString();
+    if (!last || last === yesterday) {
+      playerState.streak = (playerState.streak || 0) + 1;
+    } else {
+      playerState.streak = 1;
+    }
+    playerState.lastActivityDate = today;
+    playerState.todayXP = 0; // reset daily XP counter on new day
   }
-  playerState.lastActivityDate = today;
   updateStreakUI();
+}
+
+function addTodayXP(amount) {
+  if (!playerState.todayXP) playerState.todayXP = 0;
+  playerState.todayXP += amount;
+  updateTodayXPUI();
+}
+
+function updateTodayXPUI() {
+  const el = document.getElementById('today-xp-count');
+  if (el) el.textContent = playerState.todayXP || 0;
 }
 
 function updateStreakUI() {
@@ -1951,6 +2079,7 @@ function renderAchievements() {
 function updatePlayerStatsUI() {
   levelEl.innerText = playerState.level;
   titleEl.innerText = getTitle(playerState.level);
+  updateTodayXPUI();
   const totalRequired = getRequiredXP(playerState.level);
   const prevRequired = playerState.level === 1 ? 0 : getRequiredXP(playerState.level - 1);
   currentXpEl.innerText = playerState.xp;
@@ -1990,6 +2119,197 @@ function updateTrackStats() {
 function renderBothRoadmaps() {
   renderRoadmap(roadmapData, sdeContainer, 'sde');
   renderRoadmap(dsaRoadmapData, dsaContainer, 'dsa');
+  renderDashboard();
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+//  DASHBOARD
+// ═══════════════════════════════════════════════════════════════════════
+function renderDashboard() {
+  const db_cont = document.getElementById('dashboard-content');
+  if (!db_cont) return;
+
+  // SDE stats
+  let sdeDone = 0, sdeMonths = 0;
+  roadmapData.forEach(m => {
+    m.topics.forEach((_, q) => { if (playerState.completedQuests[`${m.id}-${q}`]) sdeDone++; });
+    if (isMonthComplete(playerState, m.id, roadmapData)) sdeMonths++;
+  });
+  const sdeTotal = roadmapData.reduce((a, m) => a + m.topics.length, 0);
+  const sdePct = Math.round((sdeDone / sdeTotal) * 100);
+
+  // DSA stats
+  let dsaDone = 0, dsaMonths = 0;
+  dsaRoadmapData.forEach(m => {
+    m.topics.forEach((_, q) => { if (playerState.completedQuests[`${m.id}-${q}`]) dsaDone++; });
+    if (isMonthComplete(playerState, m.id, dsaRoadmapData)) dsaMonths++;
+  });
+  const dsaTotal = dsaRoadmapData.reduce((a, m) => a + m.topics.length, 0);
+  const dsaPct = Math.round((dsaDone / dsaTotal) * 100);
+
+  // Find "continue where you left off" for each track
+  const sdeNext = findNextTopic(roadmapData, playerState.unlockedMonths, 'sde');
+  const dsaNext = findNextTopic(dsaRoadmapData, playerState.unlockedDsaMonths, 'dsa');
+
+  const totalDone = sdeDone + dsaDone;
+  const hasStarted = totalDone > 0;
+  
+  const username = playerState.username || 'Developer';
+
+  db_cont.innerHTML = `
+    <div class="dashboard-hero">
+      <div class="dashboard-greeting">
+        <h2>${getGreeting()}, <span class="username-display" style="cursor:pointer; color:var(--primary);" title="Click to edit">${username}</span> <i class="fa-solid fa-pen-to-square edit-username-icon" style="font-size:0.7em; opacity:0.6; cursor:pointer;" title="Edit username"></i></h2>
+        <p class="dashboard-subtitle">${hasStarted ? `You've completed <strong>${totalDone}</strong> topics across both tracks. Keep building.` : 'Your engineering journey starts here. Pick a track and begin.'}</p>
+      </div>
+      <div class="dashboard-quick-stats">
+        <div class="dq-stat"><span>${playerState.level}</span><small>Level</small></div>
+        <div class="dq-stat"><span>${playerState.xp}</span><small>Total XP</small></div>
+        <div class="dq-stat"><span>${playerState.streak || 0}</span><small>Day Streak</small></div>
+        <div class="dq-stat"><span>${sdeMonths + dsaMonths}</span><small>Months Done</small></div>
+      </div>
+    </div>
+
+    <div class="dashboard-tracks">
+      <div class="dashboard-track-card ${sdeDone === 0 ? 'track-pristine' : ''}">
+        <div class="track-card-header">
+          <div class="track-label sde-label"><i class="fa-solid fa-laptop-code"></i> SDE Journey</div>
+          <span class="track-pct">${sdePct}%</span>
+        </div>
+        <div class="track-progress-bar"><div class="track-bar-fill sde-bar" style="width:${sdePct}%"></div></div>
+        <div class="track-card-stats">
+          <span>${sdeDone}/${sdeTotal} topics</span>
+          <span>${sdeMonths}/12 months</span>
+        </div>
+        ${sdeNext ? `
+        <div class="track-continue-btn" data-track="sde" data-month-id="${sdeNext.monthId}" data-quest-index="${sdeNext.questIndex}">
+          <i class="fa-solid fa-play"></i>
+          <div class="continue-btn-text">
+            <span class="continue-label">Continue</span>
+            <span class="continue-topic">${sdeNext.topicTitle}</span>
+          </div>
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>` : `<div class="track-complete-msg"><i class="fa-solid fa-circle-check"></i> SDE Track Complete!</div>`}
+      </div>
+
+      <div class="dashboard-track-card ${dsaDone === 0 ? 'track-pristine' : ''} dsa-track-card">
+        <div class="track-card-header">
+          <div class="track-label dsa-label"><i class="fa-solid fa-microchip"></i> DSA Master Path</div>
+          <span class="track-pct dsa-pct">${dsaPct}%</span>
+        </div>
+        <div class="track-progress-bar"><div class="track-bar-fill dsa-bar" style="width:${dsaPct}%"></div></div>
+        <div class="track-card-stats">
+          <span>${dsaDone}/${dsaTotal} topics</span>
+          <span>${dsaMonths}/10 months</span>
+        </div>
+        ${dsaNext ? `
+        <div class="track-continue-btn dsa-continue" data-track="dsa" data-month-id="${dsaNext.monthId}" data-quest-index="${dsaNext.questIndex}">
+          <i class="fa-solid fa-play"></i>
+          <div class="continue-btn-text">
+            <span class="continue-label">Continue</span>
+            <span class="continue-topic">${dsaNext.topicTitle}</span>
+          </div>
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>` : `<div class="track-complete-msg dsa-complete"><i class="fa-solid fa-circle-check"></i> DSA Track Complete!</div>`}
+      </div>
+    </div>
+
+    <div class="dashboard-bottom-row">
+      <div class="db-action-card" data-action="achievements">
+        <i class="fa-solid fa-trophy"></i>
+        <div>
+          <div class="db-action-title">Achievements</div>
+          <div class="db-action-sub">${playerState.achievements.length} / ${ACHIEVEMENTS.length} unlocked</div>
+        </div>
+      </div>
+      <div class="db-action-card" data-action="sde-roadmap">
+        <i class="fa-solid fa-map"></i>
+        <div>
+          <div class="db-action-title">SDE Roadmap</div>
+          <div class="db-action-sub">View all 12 months</div>
+        </div>
+      </div>
+      <div class="db-action-card" data-action="dsa-roadmap">
+        <i class="fa-solid fa-code-branch"></i>
+        <div>
+          <div class="db-action-title">DSA Roadmap</div>
+          <div class="db-action-sub">View all 10 months</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function getGreeting() {
+  const hour = new Date().getHours();
+  if (hour < 12) return 'Good morning.';
+  if (hour < 17) return 'Good afternoon.';
+  return 'Good evening.';
+}
+
+function editUsername() {
+  const current = playerState.username || 'Developer';
+  const newName = prompt('Enter your name:', current);
+  if (newName !== null && newName.trim()) {
+    playerState.username = newName.trim();
+    saveProgress();
+    renderDashboard();
+  }
+}
+
+function findNextTopic(data, unlockedList, track) {
+  // Check if we have a saved resume point for this track
+  const savedMonth = track === 'sde' ? playerState.sdeLastMonth : playerState.dsaLastMonth;
+  const savedQuest = track === 'sde' ? playerState.sdeLastQuest : playerState.dsaLastQuest;
+  
+  // If we have a saved position, try to resume from there
+  if (savedMonth !== null && savedQuest !== null) {
+    const month = data.find(m => String(m.id) === String(savedMonth));
+    if (month && unlockedList.some(u => String(u) === String(month.id))) {
+      // Check if this quest is still incomplete
+      if (!playerState.completedQuests[`${month.id}-${savedQuest}`]) {
+        return { 
+          monthId: month.id, 
+          questIndex: savedQuest,
+          topicTitle: month.topics[savedQuest]?.title || 'Continue Learning', 
+          monthTitle: month.title 
+        };
+      }
+      // If saved quest is complete, find next incomplete in same month
+      for (let q = savedQuest + 1; q < month.topics.length; q++) {
+        if (!playerState.completedQuests[`${month.id}-${q}`]) {
+          return { 
+            monthId: month.id, 
+            questIndex: q,
+            topicTitle: month.topics[q].title, 
+            monthTitle: month.title 
+          };
+        }
+      }
+    }
+  }
+  
+  // Otherwise, find the first incomplete topic in any unlocked month
+  for (let i = 0; i < data.length; i++) {
+    const month = data[i];
+    const isUnlocked = unlockedList.some(u => String(u) === String(month.id));
+    if (!isUnlocked) continue;
+    const isComplete = isMonthComplete(playerState, month.id, data);
+    if (isComplete) continue;
+    
+    // Find first incomplete topic with index
+    for (let q = 0; q < month.topics.length; q++) {
+      if (!playerState.completedQuests[`${month.id}-${q}`]) {
+        return { 
+          monthId: month.id, 
+          questIndex: q,
+          topicTitle: month.topics[q].title, 
+          monthTitle: month.title 
+        };
+      }
+    }
+  }
+  return null; // all done
 }
 
 function renderRoadmap(data, container, track) {
@@ -2050,6 +2370,15 @@ function renderRoadmap(data, container, track) {
 function openModal(monthId, track) {
   currentOpenMonthId = monthId;
   currentOpenTrack = track;
+  
+  // Save resume state for this track
+  if (track === 'sde') {
+    playerState.sdeLastMonth = monthId;
+  } else {
+    playerState.dsaLastMonth = monthId;
+  }
+  saveProgress();
+  
   const data = track === 'dsa' ? dsaRoadmapData : roadmapData;
   const month = data.find(m => String(m.id) === String(monthId));
   const xpPerQ = track === 'dsa' ? DSA_XP_PER_QUEST : SDE_XP_PER_QUEST;
@@ -2067,8 +2396,41 @@ function openModal(monthId, track) {
 
 function closeModal() { modal.classList.remove('show'); currentOpenMonthId = null; }
 
+// Debounce utility for performance
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+// Debounced filter function for better performance
+const debouncedFilterQuests = debounce(() => {
+  const searchInput = document.getElementById('quest-search-input');
+  if (!searchInput) return;
+  const q = searchInput.value.toLowerCase().trim();
+  const items = questList.querySelectorAll('.quest-item');
+  items.forEach(item => {
+    const title = item.querySelector('.quest-title');
+    const text = title ? title.textContent.toLowerCase() : '';
+    item.style.display = (!q || text.includes(q)) ? '' : 'none';
+  });
+}, 200);
+
+function filterQuests() {
+  debouncedFilterQuests();
+}
+
 function renderQuests(month, track) {
   questList.innerHTML = '';
+  // Reset search input
+  const searchInput = document.getElementById('quest-search-input');
+  if (searchInput) searchInput.value = '';
   let doneCount = 0;
   const xpPerQ = track === 'dsa' ? DSA_XP_PER_QUEST : SDE_XP_PER_QUEST;
 
@@ -2091,21 +2453,53 @@ function renderQuests(month, track) {
     // Tip banner
     const tipHtml = tip ? `<div class="quest-tip"><i class="fa-solid fa-lightbulb"></i> ${tip}</div>` : '';
 
-    // Resources with type detection
+    // Resources with type detection — each gets an individual tick mark
     let resourcesHtml = '';
     if (topicObj.resources && topicObj.resources.length > 0) {
-      const links = topicObj.resources.map(r => {
+      // Count completed resources for this topic
+      const totalRes = topicObj.resources.length;
+      let doneRes = 0;
+      topicObj.resources.forEach((_, ri) => {
+        if (playerState.completedResources && playerState.completedResources[`${key}-${ri}`]) doneRes++;
+      });
+
+      const links = topicObj.resources.map((r, ri) => {
         const n = r.name;
         let typeIcon = '🔗', typeCls = 'res-generic';
-        if (n.startsWith('🎬') || /video|watch|youtube|playlist/i.test(n)) { typeIcon='🎬'; typeCls='res-video'; }
+        if (n.startsWith('🎬') || /bro.?code|video|watch|youtube|playlist|cherno|computerphile|neetcode.*video/i.test(n)) { typeIcon='🎬'; typeCls='res-video'; }
         else if (n.startsWith('📖') || /book|guide|docs|tutorial|read|chapter|reference|learncpp/i.test(n)) { typeIcon='📖'; typeCls='res-read'; }
         else if (n.startsWith('🔧') || /interactive|visuali|game|froggy|garden|playground/i.test(n)) { typeIcon='🔧'; typeCls='res-interactive'; }
         else if (n.startsWith('🏋️') || n.startsWith('📝') || /leetcode|hackerrank|cses|codeforces|practice|problem|exercise/i.test(n)) { typeIcon='🏋️'; typeCls='res-practice'; }
         else if (/tip:/i.test(n)) { typeIcon='💡'; typeCls='res-tip'; }
-        return `<a href="${r.url}" target="_blank" rel="noopener" class="resource-link ${typeCls}" onclick="event.stopPropagation()">
-          <span class="res-type-icon">${typeIcon}</span><span class="res-name">${r.name}</span>
-        </a>`;
+
+        const resKey = `${key}-${ri}`;
+        const resDone = !!(playerState.completedResources && playerState.completedResources[resKey]);
+        const isTip = /tip:/i.test(n);
+        // Convert H:MM focusTime to YouTube MM:SS/H:MM:SS format for clarity
+        const fmtFocus = r.focusTime ? r.focusTime.replace(/(\d+):(\d{2})/g, (_, h, m) => {
+          const tot = parseInt(h)*60 + parseInt(m);
+          return tot >= 60 ? `${Math.floor(tot/60)}:${String(tot%60).padStart(2,'0')}:00` : `${tot}:00`;
+        }) : '';
+        const focusTag = fmtFocus ? `<span class="res-focus-time">⏱ ${fmtFocus}</span>` : '';
+
+        // Strip leading emoji prefix from name (type icon is shown separately)
+        const displayName = n.replace(/^(?:🎬|📖|🔧|🏋️|📝|💡|💎|🔗)\s*/, '');
+        return `<div class="resource-row${resDone ? ' res-done' : ''}" data-res-key="${resKey}">
+          ${!isTip ? `<button class="res-tick-btn${resDone ? ' res-tick-active' : ''}" title="${resDone ? 'Mark incomplete' : 'Mark as done'}" data-res-key="${resKey}">
+            <i class="fa-solid fa-check"></i>
+          </button>` : '<span class="res-tick-spacer"></span>'}
+          <a href="${r.url}" target="_blank" rel="noopener" class="resource-link ${typeCls}">
+            <span class="res-type-icon">${typeIcon}</span><span class="res-name">${displayName}</span>${focusTag}
+          </a>
+        </div>`;
       }).join('');
+
+      // Resource progress mini-bar
+      const resPct = totalRes > 0 ? Math.round((doneRes / totalRes) * 100) : 0;
+      const resPrgHtml = `<div class="res-progress-row">
+        <span class="res-progress-label">${doneRes}/${totalRes} resources done</span>
+        <div class="res-mini-bar"><div class="res-mini-bar-fill" style="width:${resPct}%"></div></div>
+      </div>`;
 
       // Notes section inside resources panel
       const notesSection = `
@@ -2115,11 +2509,23 @@ function renderQuests(month, track) {
         </div>`;
 
       resourcesHtml = `<div class="quest-resources">
-        <div class="resources-title"><i class="fa-solid fa-book-open"></i> Learning Resources</div>
+        <div class="resources-title"><i class="fa-solid fa-book-open"></i> Learning Resources ${resPrgHtml}</div>
         ${links}
         ${notesSection}
       </div>`;
     }
+
+    // Count completed resources for subtopic indicator in header
+    const totalRes = topicObj.resources ? topicObj.resources.length : 0;
+    let doneRes = 0;
+    if (topicObj.resources) {
+      topicObj.resources.forEach((_, ri) => {
+        if (playerState.completedResources && playerState.completedResources[`${key}-${ri}`]) doneRes++;
+      });
+    }
+    const resIndicator = totalRes > 0 && !done
+      ? `<span class="res-subtopic-count${doneRes === totalRes ? ' all-done' : ''}">${doneRes}/${totalRes}</span>`
+      : '';
 
     const item = document.createElement('div');
     item.className = `quest-item ${done ? 'completed' : ''} ${bookmarked ? 'is-bookmarked' : ''} ${track === 'dsa' ? 'dsa-quest' : ''}`;
@@ -2135,8 +2541,9 @@ function renderQuests(month, track) {
           ${tipHtml}
         </div>
         <div class="quest-meta">
+          ${resIndicator}
           <span class="quest-xp">+${xpPerQ} XP</span>
-          <button class="bookmark-btn${bookmarked ? ' active' : ''}" title="${bookmarked ? 'Remove bookmark' : 'Bookmark to revisit'}" onclick="event.stopPropagation()">
+          <button class="bookmark-btn${bookmarked ? ' active' : ''}" title="${bookmarked ? 'Remove bookmark' : 'Bookmark to revisit'}">
             <i class="fa-${bookmarked ? 'solid' : 'regular'} fa-bookmark"></i>
           </button>
           ${resourcesHtml ? '<i class="fa-solid fa-chevron-down expand-icon"></i>' : ''}
@@ -2159,6 +2566,23 @@ function renderQuests(month, track) {
       item.querySelector('.quest-header').addEventListener('click', () => {
         item.classList.toggle('expanded');
       });
+      
+      // Resource tick buttons - event delegation
+      item.querySelectorAll('.res-tick-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+          e.stopPropagation();
+          const resKey = btn.dataset.resKey;
+          toggleResource(resKey, btn);
+        });
+      });
+      
+      // Resource links - prevent propagation
+      item.querySelectorAll('.resource-link').forEach(link => {
+        link.addEventListener('click', e => {
+          e.stopPropagation();
+        });
+      });
+      
       // Auto-save notes
       const notesInput = item.querySelector('.quest-notes-input');
       if (notesInput) {
@@ -2182,6 +2606,42 @@ function renderQuests(month, track) {
   updateModalProgress(doneCount, month.topics.length);
 }
 
+// Toggle individual resource completion
+function toggleResource(resKey, btn) {
+  if (!playerState.completedResources) playerState.completedResources = {};
+  const done = !!playerState.completedResources[resKey];
+  if (done) {
+    delete playerState.completedResources[resKey];
+  } else {
+    playerState.completedResources[resKey] = true;
+  }
+  const newDone = !done;
+  btn.classList.toggle('res-tick-active', newDone);
+  const row = btn.closest('.resource-row');
+  if (row) row.classList.toggle('res-done', newDone);
+
+  // Update the res-progress-row inside this quest item
+  const questItem = btn.closest('.quest-item');
+  if (questItem) {
+    // Re-count resources for this topic
+    const rows = questItem.querySelectorAll('.resource-row .res-tick-btn');
+    const total = rows.length;
+    let done2 = 0;
+    rows.forEach(b => { if (b.classList.contains('res-tick-active')) done2++; });
+    const labelEl = questItem.querySelector('.res-progress-label');
+    const barEl = questItem.querySelector('.res-mini-bar-fill');
+    if (labelEl) labelEl.textContent = `${done2}/${total} resources done`;
+    if (barEl) barEl.style.width = `${total > 0 ? Math.round((done2/total)*100) : 0}%`;
+    // Update subtopic count in header
+    const countEl = questItem.querySelector('.res-subtopic-count');
+    if (countEl) {
+      countEl.textContent = `${done2}/${total}`;
+      countEl.classList.toggle('all-done', done2 === total);
+    }
+  }
+  saveProgress();
+}
+
 function toggleQuest(monthId, questIndex, el, track) {
   const key = `${monthId}-${questIndex}`;
   const done = !!playerState.completedQuests[key];
@@ -2198,6 +2658,16 @@ function toggleQuest(monthId, questIndex, el, track) {
     el.style.transform = 'scale(1.02)';
     setTimeout(() => el.style.transform = '', 200);
     recordActivity();
+    addTodayXP(xpPerQ);
+    
+    // Update per-track resume state when quest is completed
+    if (track === 'sde') {
+      playerState.sdeLastMonth = monthId;
+      playerState.sdeLastQuest = questIndex;
+    } else {
+      playerState.dsaLastMonth = monthId;
+      playerState.dsaLastQuest = questIndex;
+    }
   }
 
   checkUnlocks();
@@ -2215,6 +2685,7 @@ function toggleQuest(monthId, questIndex, el, track) {
 
   updatePlayerStatsUI();
   updateTrackStats();
+  renderDashboard();
   // Only re-render the single card that changed, not all 22 cards
   updateSingleCard(monthId, track);
 }
